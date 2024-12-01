@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const routes = require('./routes/routes');
 
 require('dotenv').config();
 
@@ -10,6 +11,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.disable('x-powered-by');
 app.use(express.urlencoded({ extended: false }));
+
+app.use(routes);
 
 app.use((req, res) => {
   return res.send(200).json({ message: 'okay' });
