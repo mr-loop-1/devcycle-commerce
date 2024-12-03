@@ -32,6 +32,4 @@ if (country) {
   devCycleConfig.user = { country: JSON.parse(country) };
 }
 
-export default withDevCycleProvider({
-  devCycleConfig,
-})(App);
+export default withDevCycleProvider(devCycleConfig)(App);
