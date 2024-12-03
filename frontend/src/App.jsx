@@ -10,13 +10,7 @@ import HomePage from './pages/home';
 import { LoadingSpinner } from '@/components/Spinner';
 
 function App() {
-  let devCycleReady = false;
-  try {
-    devCycleReady = useIsDevCycleInitialized();
-  } catch (err) {
-    console.error(err);
-    return <LoadingSpinner />;
-  }
+  const devCycleReady = useIsDevCycleInitialized();
 
   if (!devCycleReady) return <LoadingSpinner />;
 
@@ -29,6 +23,15 @@ function App() {
   );
 }
 
-export default withDevCycleProvider({
+const devCycleConfig = {
   sdkKey: import.meta.env.VITE_SDK_KEY,
+};
+
+const country = localStorage.getItem('forceCountry');
+if (country) {
+  devCycleConfig.user = { country: JSON.parse(country) };
+}
+
+export default withDevCycleProvider({
+  devCycleConfig,
 })(App);
