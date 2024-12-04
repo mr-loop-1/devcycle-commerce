@@ -6,7 +6,7 @@ import {
 } from '@devcycle/react-client-sdk';
 
 import './App.css';
-import HomePage from './pages/home';
+import HomePage from './pages/Home';
 import { LoadingSpinner } from '@/components/Spinner';
 
 function App() {

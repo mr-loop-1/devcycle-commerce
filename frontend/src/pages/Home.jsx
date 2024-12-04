@@ -10,7 +10,7 @@ export default function HomePage() {
   if (saleActiveFlag) {
     useEffect(() => {
       if (!localStorage.getItem('confetti')) {
-        localStorage.setItem('confetti', 'balbla');
+        localStorage.setItem('confetti', 'blabla');
         toggleConfetti(() => true);
         setTimeout(() => toggleConfetti(() => false), 4000);
       }
