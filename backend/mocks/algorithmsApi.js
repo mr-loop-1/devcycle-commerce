@@ -12,4 +12,9 @@ const sortAlgorithm = () => {
   }
 };
 
-const recommendAlgo = () => {};
+const recommendAlgo = () => {
+  switch (strategy) {
+    default: {
+    }
+  }
+};

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "123",
+    "title": "blue checked shirt",
+    "category": 1,
+    "imageSlug": 23,
+    "available": ["us", "in", "fr"],
+    "price": {
+      "us": 2.99,
+      "in": 123,
+      "fr": 8.32
+    },
+    "sale": {
+      "available": ["us", "in"],
+      "price": {
+        "us": 1.99,
+        "in": 100
+      }
+    },
+    "shipping": {
+      "us": 0,
+      "in": {
+        "type": "third party",
+        "cost": 20
+      },
+      "fr": {
+        "type": "partner",
+        "cost": 32
+      }
+    }
+  }
+]
