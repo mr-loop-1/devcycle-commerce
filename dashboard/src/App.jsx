@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import { Card } from './components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from './components/ui/button';
 import { checkApiKey } from './api/devcycle';
 import { LoadingSpinner } from './components/Spinner';
+import Mode from './components/Mode';
 
 function App() {
-  const [apiKey, setApiKey] = useState(null);
+  const [apiKey, setApiKey] = useState('');
   const [hasApikey, setHasApiKey] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleResetApi = () => {
+    setHasApiKey(() => null);
     setApiKey(() => null);
   };
 
@@ -22,7 +22,6 @@ function App() {
     setError(() => '');
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
-    console.log('🚀 ~ handleSetApi ~ isKeyValid:', isKeyValid);
     if (isKeyValid) {
       setHasApiKey(() => true);
     } else {
@@ -49,6 +48,8 @@ function App() {
         )}
       </div>
       {error && <div className="text-red-900">{error}</div>}
+
+      <Mode mode="simulation" />
     </Card>
   );
 }
