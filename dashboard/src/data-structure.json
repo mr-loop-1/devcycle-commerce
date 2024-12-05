@@ -1,0 +1,104 @@
+{
+  "in": {
+    "name": "india",
+    "code": "in",
+    "id": 1,
+    "features": [
+      {
+        "id": 1,
+        "name": "my-feature-1",
+        "served": {
+          "id": 1,
+          "name": "my-variation-1",
+          "variables": [
+            {
+              "id": 1,
+              "name": "my-variable-1",
+              "type": "boolean",
+              "value": false
+            },
+            {
+              "id": 2,
+              "name": "my-variable-2",
+              "type": "boolean",
+              "value": true
+            }
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "name": "my-feature-2",
+        "served": {
+          "id": 1,
+          "name": "my-variation-2",
+          "variables": [
+            {
+              "id": 1,
+              "name": "my-variable-1",
+              "type": "boolean",
+              "value": true
+            },
+            {
+              "id": 2,
+              "name": "my-variable-2",
+              "type": "boolean",
+              "value": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "en": {
+    "name": "england",
+    "code": "en",
+    "id": 1,
+    "features": [
+      {
+        "id": 1,
+        "name": "my-feature-1",
+        "served": {
+          "id": 2,
+          "name": "my-variation-2",
+          "variables": [
+            {
+              "id": 1,
+              "name": "my-variable-1",
+              "type": "boolean",
+              "value": true
+            },
+            {
+              "id": 2,
+              "name": "my-variable-2",
+              "type": "boolean",
+              "value": true
+            }
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "name": "my-feature-2",
+        "served": {
+          "id": 2,
+          "name": "my-variation-2",
+          "variables": [
+            {
+              "id": 1,
+              "name": "my-variable-1",
+              "type": "boolean",
+              "value": true
+            },
+            {
+              "id": 2,
+              "name": "my-variable-2",
+              "type": "boolean",
+              "value": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

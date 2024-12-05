@@ -13,6 +13,10 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // on every init create a new project with full state
+  const [baseProject, setBaseProject] = useState(null);
+  const [baseFeatures, setBaseFeatures] = useState(null);
+
   const handleResetApi = () => {
     setHasApiKey(() => null);
     setApiKey(() => null);
