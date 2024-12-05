@@ -1,0 +1,93 @@
+{
+  "sale": {
+    "name": "sale",
+    "key": "sale",
+    "description": "Indicates whether sale is active or not",
+    "variables": [
+      {
+        "name": "sale status",
+        "description": "boolean variable indicating sale validity",
+        "key": "sale-status",
+        "_feature": "sale",
+        "type": "Boolean"
+      }
+    ],
+    "variations": [
+      {
+        "key": "active",
+        "name": "active",
+        "variables": {
+          "sale-status": true
+        }
+      },
+      {
+        "key": "inactive",
+        "name": "inactive",
+        "variables": {
+          "sale-status": false
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "sale",
+      "publicDescription": "Indicates whether sale is active or not",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  },
+  "algorithms": {
+    "name": "algorithms",
+    "key": "algorithms",
+    "description": "the backend algorithms in use",
+    "variables": [
+      {
+        "name": "sort algo",
+        "description": "sort algorithms in use",
+        "key": "sort-algo",
+        "_feature": "algorithms",
+        "type": "String"
+      },
+      {
+        "name": "recommend algo",
+        "description": "recommend algorithms in use",
+        "key": "recommend-algo",
+        "_feature": "algorithms",
+        "type": "String"
+      }
+    ],
+    "variations": [
+      {
+        "key": "profit-aggressive",
+        "name": "profit aggressive",
+        "variables": {
+          "sort-algo": "profit",
+          "recommend-algo": "profit"
+        }
+      },
+      {
+        "key": "stock-aware",
+        "name": "stock aware",
+        "variables": {
+          "sort-algo": "stock",
+          "recommend-algo": "profit"
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "algorithms",
+      "publicDescription": "the backend algorithms in use",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  }
+}
