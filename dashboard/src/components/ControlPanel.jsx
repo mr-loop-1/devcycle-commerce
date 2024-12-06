@@ -17,7 +17,21 @@ export default function ControlPanel({
   const [stream, setStream] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleAction = async (data) => {
+  const handleAction = async (rawData) => {
+    const data = {
+      country: {
+        key: rawData.country,
+      },
+      feature: {
+        key: rawData.feature,
+      },
+      newVariation: {
+        key: rawData.variation,
+      },
+      oldVariation: {
+        key: featureState[country][feature].served.key,
+      },
+    };
     setLoading(() => true);
 
     // change both feature state and target state and using target state change the api too;
@@ -43,7 +57,9 @@ export default function ControlPanel({
       newTargetState
     );
 
-    setTargetState(() => newTargetState);
+    setTargetState(() => {
+      (old) => ({ ...old, [data.feature.key]: targetData.targets });
+    });
     setStream(() => [...stream, data]);
 
     setLoading(() => false);

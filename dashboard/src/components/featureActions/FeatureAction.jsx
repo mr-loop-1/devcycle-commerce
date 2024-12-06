@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form';
 import {
   Select,
   SelectContent,
@@ -6,26 +5,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { Form, FormField, FormItem, FormLabel } from '../ui/form';
 import { config } from '../../../config/config';
 import featuresJson from './../../data/features.json';
 import VariationsJson from './../../data/variations.json';
 import { Button } from '../ui/button';
 
-export default function FeatureAction({ featureState, targetState, setError }) {
+export default function FeatureAction({ featureState, loading, handleSubmit }) {
   const [country, setCountry] = useState(null);
   const [feature, setFeature] = useState(null);
   const [variation, setVariation] = useState(null);
 
-  const form = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   return (
     <div>
-      <Select>
+      <Select disabled={loading}>
         <SelectTrigger>
           <SelectValue placeholder="Select a country" />
         </SelectTrigger>
@@ -47,7 +39,7 @@ export default function FeatureAction({ featureState, targetState, setError }) {
         </SelectContent>
       </Select>
       {country && (
-        <Select>
+        <Select disabled={loading}>
           <SelectTrigger>
             <SelectValue placeholder="Select a feature" />
           </SelectTrigger>
@@ -70,7 +62,7 @@ export default function FeatureAction({ featureState, targetState, setError }) {
       )}
       {feature && <div>current variation is: </div>}
       {feature && (
-        <Select>
+        <Select disabled={loading}>
           <SelectTrigger>
             <SelectValue placeholder="Select new variation" />
           </SelectTrigger>
@@ -93,7 +85,14 @@ export default function FeatureAction({ featureState, targetState, setError }) {
       {variation && (
         <>
           <div className="">New variation is:</div>
-          <Button onClick={onSubmit}>Submit</Button>
+          <Button
+            disabled={loading}
+            onClick={() => {
+              handleSubmit({ country, feature, variation });
+            }}
+          >
+            Submit
+          </Button>
         </>
       )}
     </div>
