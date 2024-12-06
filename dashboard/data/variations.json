@@ -1,0 +1,32 @@
+{
+  "active": {
+    "key": "active",
+    "name": "active",
+    "variables": {
+      "sale-status": true
+    }
+  },
+  "inactive": {
+    "key": "inactive",
+    "name": "inactive",
+    "variables": {
+      "sale-status": false
+    }
+  },
+  "profit-aggressive": {
+    "key": "profit-aggressive",
+    "name": "profit aggressive",
+    "variables": {
+      "sort-algo": "profit",
+      "recommend-algo": "profit"
+    }
+  },
+  "stock-aware": {
+    "key": "stock-aware",
+    "name": "stock aware",
+    "variables": {
+      "sort-algo": "stock",
+      "recommend-algo": "profit"
+    }
+  }
+}

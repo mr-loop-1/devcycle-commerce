@@ -1,12 +1,21 @@
 import { useForm } from 'react-hook-form';
-import { Select, SelectItem } from '../ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 import { Form, FormField, FormItem, FormLabel } from '../ui/form';
 import { config } from '../../../config/config';
+import featuresJson from './../../data/features.json';
+import VariationsJson from './../../data/variations.json';
+import { Button } from '../ui/button';
 
 export default function FeatureAction({ featureState, targetState, setError }) {
-  const [loading, setLoading] = useState(true);
-
-  const [featureSelected, setFeatureSelected] = useState(false);
+  const [country, setCountry] = useState(null);
+  const [feature, setFeature] = useState(null);
+  const [variation, setVariation] = useState(null);
 
   const form = useForm();
 
@@ -16,100 +25,77 @@ export default function FeatureAction({ featureState, targetState, setError }) {
 
   return (
     <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => {
-              <FormItem>
-                <FormLabel>Feature</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {config.countriesArray.map((country) => {
-                      return (
-                        <SelectItem value={country}>
-                          {config.countries[country]}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
-              </FormItem>;
-            }}
-          />
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => {
-              <FormItem>
-                <FormLabel>Feature</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {config.countriesArray.map((country) => {
-                      return (
-                        <SelectItem value={country}>
-                          {config.countries[country]}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
-              </FormItem>;
-            }}
-          />
-          {featureSelected && (
-            <>
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => {
-                  <FormItem>
-                    <FormLabel>Feature</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a verified email to display" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {config.countriesArray.map((country) => {
-                          return (
-                            <SelectItem value={country}>
-                              {config.countries[country]}
-                            </SelectItem>
-                          );
-                        })}
-                      </SelectContent>
-                    </Select>
-                  </FormItem>;
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a country" />
+        </SelectTrigger>
+        <SelectContent>
+          {config.countriesArray.map((c) => {
+            return (
+              <SelectItem
+                value={c}
+                onClick={(e) => {
+                  setCountry(() => e.target.value);
+                  setFeature(() => null);
+                  setVariation(() => null);
                 }}
-              />
-              <div>Current values</div>
-              <Button type="submit">Submit</Button>
-            </>
-          )}
-        </form>
-      </Form>
+              >
+                config.countries[c]
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </Select>
+      {country && (
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a feature" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.keys(featuresJson).map((f) => {
+              return (
+                <SelectItem
+                  value={f}
+                  onClick={(e) => {
+                    setFeature(() => e.target.value);
+                    setVariation(() => null);
+                  }}
+                >
+                  {f}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+      )}
+      {feature && <div>current variation is: </div>}
+      {feature && (
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Select new variation" />
+          </SelectTrigger>
+          <SelectContent>
+            {featuresJson[feature].variations
+              .filter((v) => v.key != featureState[country][feature].served.key)
+              .map((v) => {
+                return (
+                  <SelectItem
+                    value={v.key}
+                    onClick={(e) => setFeature(() => e.target.value)}
+                  >
+                    {v.key}
+                  </SelectItem>
+                );
+              })}
+          </SelectContent>
+        </Select>
+      )}
+      {variation && (
+        <>
+          <div className="">New variation is:</div>
+          <Button onClick={onSubmit}>Submit</Button>
+        </>
+      )}
     </div>
   );
 }
