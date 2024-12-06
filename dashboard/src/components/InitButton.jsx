@@ -7,6 +7,7 @@ import setVariations from '@/lib/setVariations';
 
 export default function InitButton({
   remoteSetup,
+  varitionIds,
   setRemoteSetup,
   setTargetState,
   setProjectKey,
