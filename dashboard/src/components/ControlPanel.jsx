@@ -43,9 +43,7 @@ export default function ControlPanel({
       newTargetState
     );
 
-    // check if correct response
     setTargetState(() => newTargetState);
-
     setStream(() => [...stream, data]);
 
     setLoading(() => false);
@@ -56,7 +54,11 @@ export default function ControlPanel({
       {stream.forEach((history) => {
         return <FeatureHistory history={history} />;
       })}
-      {loading ? <FeatureAction /> : 'under process'}
+      {loading ? (
+        <FeatureAction handleAction={handleAction} />
+      ) : (
+        'under process'
+      )}
     </div>
   );
 }
