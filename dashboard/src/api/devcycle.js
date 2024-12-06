@@ -61,26 +61,13 @@ export const createFeaturesApi = async (key, projectKey, data) => {
   return response.data;
 };
 
-export const listEnvironmentsApi = async (key, projectKey) => {
-  const response = await axios.get(
-    `https://api.devcycle.com/v1/projects/${projectKey}/environments`,
-    {
-      headers: {
-        Authorization: `Bearer ${key}`,
-      },
-    }
-  );
-
-  return true;
-};
-
 export const createTargetsApi = async (key, projectKey, featureKey, data) => {
   const response = await axios.patch(
     `https://api.devcycle.com/v1/projects/${projectKey}/features/${featureKey}/configurations`,
     data,
     {
       params: {
-        environment: 'development',
+        environment: import.meta.env.DEVCYCLE_ENV || 'development',
       },
       headers: {
         Authorization: `Bearer ${key}`,

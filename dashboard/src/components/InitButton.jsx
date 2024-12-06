@@ -18,18 +18,16 @@ export default function InitButton({
   const handleSetup = async () => {
     try {
       setLoading(() => true);
+
       const projectKey = await createProject({ apiKey });
       setProjectKey(() => projectKey);
       const featuresData = await createFeatures({ apiKey, projectKey });
-      console.log('🚀 ~ handleSetup ~ featuresData:', featuresData);
 
       const variationIds = setVariations(featuresData);
-      console.log('🚀 ~ handleSetup ~ variationIds:', variationIds);
 
       setVariationIds(() => variationIds);
 
       const targetsData = await createTargets(apiKey, projectKey, variationIds);
-      console.log('🚀 ~ handleSetup ~ targetsData:', targetsData);
       setTargetState(() => targetsData);
 
       setRemoteSetup(() => true);

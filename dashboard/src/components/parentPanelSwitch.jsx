@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import InitButton from './InitButton';
 import setFeatures from '@/lib/setFeatureState';
+import ControlPanel from './ControlPanel';
 
 export default function ParentPanelSwitch({ apiKey }) {
   const [targetState, setTargetState] = useState(null);
@@ -37,7 +38,15 @@ export default function ParentPanelSwitch({ apiKey }) {
             Control
           </div>
           <div id="panel" className="">
-            {/* {mode == 'control' && <ControlPanel />} */}
+            {mode == 'control' && (
+              <ControlPanel
+                apiKey={apiKey}
+                projectKey={projectKey}
+                variationIds={variationIds}
+                featureState={featureState}
+                targetState={targetState}
+              />
+            )}
           </div>
         </div>
       )}
