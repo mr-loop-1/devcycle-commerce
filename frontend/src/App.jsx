@@ -18,6 +18,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="" Component={HomePage} />
+        <Route path="/recommend" Component={SuggestPage} />
+        <Route path="/cart" Component={CartPage} />
       </Routes>
     </Router>
   );
@@ -27,6 +29,7 @@ const devCycleConfig = {
   sdkKey: import.meta.env.VITE_SDK_KEY,
 };
 
+// refresh page after setting the country to force this
 const country = localStorage.getItem('forceCountry');
 if (country) {
   devCycleConfig.user = { country: JSON.parse(country) };

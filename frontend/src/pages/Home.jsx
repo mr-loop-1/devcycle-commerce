@@ -2,6 +2,7 @@ import react, { useEffect, useState } from 'react';
 import { useVariableValue } from '@devcycle/react-client-sdk';
 import Navbar from '@/components/navbar/Navbar';
 import Confetti from 'https://esm.sh/react-confetti';
+import Showcase from '@/components/Showcase';
 
 export default function HomePage() {
   const saleActiveFlag = useVariableValue('sale-active', false);
@@ -38,6 +39,9 @@ export default function HomePage() {
         </div>
         {/* <img src={Delivery} className="delivery" /> */}
         {/* <Popular /> */}
+        <Showcase />
+        <Categories />
+        <CategoryProducts />
       </div>
     </div>
   );
