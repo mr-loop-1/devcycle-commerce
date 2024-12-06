@@ -1,19 +1,27 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { LoadingSpinner } from './Spinner';
+import createFeatures from '@/lib/createFeatures';
+import createProject from '@/lib/createProject';
+import setVariations from '@/lib/setVariations';
 
 export default function InitButton({
   remoteSetup,
   setRemoteSetup,
-  setTargets,
-  setProject,
+  setTargetState,
+  setProjectKey,
+  setVariationIds,
   apiKey,
 }) {
   const [loading, setLoading] = useState(false);
-  const handleSetup = () => {
+  const handleSetup = async () => {
     try {
       setLoading(() => true);
-      // call to create project, create flags etc
+      const projectKey = await createProject({ apiKey });
+      setProjectKey(() => projectKey);
+      const featuresData = await createFeatures({ apiKey, projectKey });
+      setVariationIds(() => setVariations(featuresData));
+
       // also the call to set target ids
       setRemoteSetup(() => true);
     } catch (err) {

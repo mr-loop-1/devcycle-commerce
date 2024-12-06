@@ -31,7 +31,7 @@ export default async function createProject({ apiKey }) {
 
       const project = await createProjectApi(apiKey, data);
 
-      return project;
+      return project.key;
 
       // create features, variables, and variations
       // then store them in an object so that they can be referenced later

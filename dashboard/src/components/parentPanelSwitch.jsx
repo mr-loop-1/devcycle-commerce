@@ -5,9 +5,15 @@ export default function ParentPanelSwitch({ apiKey }) {
   // const [flagState, setFlagState] = useState(null);
   const [targets, setTargets] = useState(null);
   const [mode, setMode] = useState('control');
+  const [project, setProject] = useState(null);
 
   const [remoteSetup, setRemoteSetup] = useState(false);
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    (() => {})();
+  }, []);
+
+  handleInit = () => {};
 
   // init button
   // switch
@@ -17,7 +23,13 @@ export default function ParentPanelSwitch({ apiKey }) {
   return (
     <div>
       <div id="init">
-        <InitButton setRemoteSetup={setRemoteSetup} setTargets={setTargets} />
+        <InitButton
+          remoteSetup={remoteSetup}
+          setRemoteSetup={setRemoteSetup}
+          setTargets={setTargets}
+          setProject={setProject}
+          apiKey={apiKey}
+        />
       </div>
       {remoteSetup && (
         <div className="">

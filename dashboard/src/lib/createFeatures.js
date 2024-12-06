@@ -7,12 +7,14 @@ import featuresJson from './../../data/features.json';
 import targetsJson from './../../data/targets.json';
 import config from './../../config/config';
 
-export default async function createFeaturesAndTargets({ apiKey, project }) {
+export default async function createFeatures({ apiKey, projectKey }) {
   const featuresData = await createFeaturesApi(
     apiKey,
-    project.key,
+    projectKey,
     featuresJson
   );
+
+  return featuresData;
 
   const targets = prepareTargets(data);
   targets.forEach(async (target) => {
