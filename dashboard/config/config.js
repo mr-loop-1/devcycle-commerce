@@ -3,4 +3,5 @@ export const config = {
     in: 'india',
     en: 'england',
   },
+  countriesArray: ['in', 'en'],
 };

@@ -1,0 +1,16 @@
+{
+  "sale": {
+    "key": "sale",
+    "served": {
+      "key": "sale-active",
+      "name": "sale active"
+    }
+  },
+  "algorithms": {
+    "key": "algorithms",
+    "served": {
+      "key": "profit",
+      "name": "profit"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import InitButton from './InitButton';
-import featuresJson from './../../data/features.json';
+import setFeatures from '@/lib/setFeatureState';
 
 export default function ParentPanelSwitch({ apiKey }) {
   const [targetState, setTargetState] = useState(null);
@@ -12,8 +12,8 @@ export default function ParentPanelSwitch({ apiKey }) {
   const [featureState, setFeatureState] = useState(null);
 
   useEffect(() => {
-    setFeatureState(() => featuresJson);
-  }, []);
+    setFeatureState(() => setFeatures());
+  });
 
   return (
     <div>
