@@ -12,7 +12,7 @@ export default async function createTargets(apiKey, projectKey, variationIds) {
       apiKey,
       projectKey,
       data.key,
-      data
+      data.targets
     );
     targetsData[data.key] = targetData.targets;
   }

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import StateAction from './StateAction';
 import FeatureHistory from './featureActions/featureHistory';
 import FeatureAction from './featureActions/FeatureAction';
 import { createTargetsApi } from '@/api/devcycle';
@@ -18,6 +17,8 @@ export default function ControlPanel({
   const [loading, setLoading] = useState(false);
 
   const handleAction = async (rawData) => {
+    setLoading(() => true);
+
     const data = {
       country: {
         key: rawData.country,
@@ -29,38 +30,36 @@ export default function ControlPanel({
         key: rawData.variation,
       },
       oldVariation: {
-        key: featureState[country][feature].served.key,
+        key: featureState[rawData.country][rawData.feature].served.key,
       },
     };
-    setLoading(() => true);
 
     // change both feature state and target state and using target state change the api too;
-    const newFeatureState = { ...featureState };
+    const newFeatureState = structuredClone(featureState);
     newFeatureState[data.country.key][data.feature.key].served.key =
       data.newVariation.key;
 
-    setFeatureState(() => newFeatureState);
-
-    const newTargetState = { ...targetState };
-    const target = newTargetState[data.feature.key].find((target) => {
+    const newTargetState = structuredClone(targetState);
+    const idx = newTargetState[data.feature.key].findIndex((target) => {
       return (
         target.audience.filters.filters[0].values[0] ==
         data.country.key.toUpperCase()
       );
     });
-    target.distribution._variation = variationIds[data.newVariation.key];
+
+    newTargetState[data.feature.key][idx].distribution[0]._variation =
+      variationIds[data.newVariation.key];
 
     const targetData = await createTargetsApi(
       apiKey,
       projectKey,
       data.feature.key,
-      newTargetState
+      newTargetState[data.feature.key]
     );
 
-    setTargetState(() => {
-      (old) => ({ ...old, [data.feature.key]: targetData.targets });
-    });
-    setStream(() => [...stream, data]);
+    setFeatureState(() => newFeatureState);
+    setTargetState(() => newTargetState);
+    setStream((oldStream) => [...oldStream, data]);
 
     setLoading(() => false);
   };
@@ -71,9 +70,13 @@ export default function ControlPanel({
         return <FeatureHistory history={history} />;
       })}
       {loading ? (
-        <FeatureAction handleAction={handleAction} />
-      ) : (
         'under process'
+      ) : (
+        <FeatureAction
+          handleAction={handleAction}
+          featureState={featureState}
+          loading={loading}
+        />
       )}
     </div>
   );

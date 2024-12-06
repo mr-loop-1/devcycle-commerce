@@ -1,19 +1,15 @@
-import featuresJson from './../../data/features.json';
-import VariationsJson from './../../data/variations.json';
+import featuresJson from './../../../data/features.json';
+import VariationsJson from './../../../data/variations.json';
 import { config } from '../../../config/config';
 
 export default function FeatureHistory({ history }) {
   return (
     <div>
-      {history.map((data) => {
-        return (
-          <div>
-            in country {config.countries[data.country.key]}, feature{' '}
-            {data.feature.key} changed from {data.oldVariation.key} to{' '}
-            {data.newVariation.key}
-          </div>
-        );
-      })}
+      <div>
+        in country {config.countries[history.country.key]}, feature{' '}
+        {history.feature.key} changed from {history.oldVariation.key} to{' '}
+        {history.newVariation.key}
+      </div>
     </div>
   );
 }
