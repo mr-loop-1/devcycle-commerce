@@ -1,4 +1,4 @@
-export default config = {
+export const config = {
   countries: {
     in: 'india',
     en: 'england',

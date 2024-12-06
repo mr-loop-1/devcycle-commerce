@@ -1,43 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InitButton from './InitButton';
+import featuresJson from './../../data/features.json';
 
 export default function ParentPanelSwitch({ apiKey }) {
-  // const [flagState, setFlagState] = useState(null);
-  const [targets, setTargets] = useState(null);
+  const [targetState, setTargetState] = useState(null);
   const [mode, setMode] = useState('control');
-  const [project, setProject] = useState(null);
+  const [projectKey, setProjectKey] = useState(null);
+  const [variationIds, setVariationIds] = useState(null);
 
   const [remoteSetup, setRemoteSetup] = useState(false);
+  const [featureState, setFeatureState] = useState(null);
 
   useEffect(() => {
-    (() => {})();
+    setFeatureState(() => featuresJson);
   }, []);
-
-  handleInit = () => {};
-
-  // init button
-  // switch
-  // control panel
-  // simulation panel
 
   return (
     <div>
       <div id="init">
         <InitButton
           remoteSetup={remoteSetup}
+          variationIds={variationIds}
           setRemoteSetup={setRemoteSetup}
-          setTargets={setTargets}
-          setProject={setProject}
+          setTargetState={setTargetState}
+          setProjectKey={setProjectKey}
+          setVariationIds={setVariationIds}
           apiKey={apiKey}
         />
       </div>
       {remoteSetup && (
         <div className="">
+          <div id="project-info">
+            using project "{projectKey}" in environment "production"
+          </div>
           <div id="switch-mode" className="">
             Control
           </div>
           <div id="panel" className="">
-            {mode == 'control' && <ControlPanel />}
+            {/* {mode == 'control' && <ControlPanel />} */}
           </div>
         </div>
       )}

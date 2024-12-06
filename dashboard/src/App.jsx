@@ -6,10 +6,11 @@ import { Button } from './components/ui/button';
 import { checkApiKey } from './api/devcycle';
 import { LoadingSpinner } from './components/Spinner';
 import Mode from './components/Mode';
+import ParentPanelSwitch from './components/parentPanelSwitch';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
-  const [hasApikey, setHasApiKey] = useState(false);
+  const [hasValidApikey, setHasValidApiKey] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -17,17 +18,17 @@ function App() {
   const [baseProject, setBaseProject] = useState(null);
   const [baseFeatures, setBaseFeatures] = useState(null);
 
-  const handleResetApi = () => {
-    setHasApiKey(() => null);
+  const handleReset = () => {
+    setHasValidApiKey(() => null);
     setApiKey(() => null);
   };
 
-  const handleSetApi = async () => {
+  const handleSet = async () => {
     setError(() => '');
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
     if (isKeyValid) {
-      setHasApiKey(() => true);
+      setHasValidApiKey(() => true);
     } else {
       setError('Api Key is Invalid or Expired');
     }
@@ -43,25 +44,20 @@ function App() {
           onChange={(e) => setApiKey(e.target.value)}
           disabled={loading}
         />
-        {hasApikey ? (
-          <Button variant="destructive">Reset</Button>
+        {hasValidApikey ? (
+          <Button variant="destructive" onClick={handleReset}>
+            Reset
+          </Button>
         ) : (
-          <Button className="w-24" onClick={handleSetApi} disabled={loading}>
+          <Button className="w-24" onClick={handleSet} disabled={loading}>
             {loading ? <LoadingSpinner /> : 'Check'}
           </Button>
         )}
       </div>
       {error && <div className="text-red-900">{error}</div>}
-      {hasApikey && (
+      {hasValidApikey && (
         <div>
-          <div id="init" className="">
-            <Button diabled={init}>Initialize</Button>
-          </div>
-          {init && (
-            <div>
-              <Mode mode="simulation" />
-            </div>
-          )}
+          <ParentPanelSwitch apiKey={apiKey} />
         </div>
       )}
     </Card>

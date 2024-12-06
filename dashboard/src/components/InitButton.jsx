@@ -4,6 +4,7 @@ import { LoadingSpinner } from './Spinner';
 import createFeatures from '@/lib/createFeatures';
 import createProject from '@/lib/createProject';
 import setVariations from '@/lib/setVariations';
+import createTargets from '@/lib/createTargets';
 
 export default function InitButton({
   remoteSetup,
@@ -20,10 +21,12 @@ export default function InitButton({
       setLoading(() => true);
       const projectKey = await createProject({ apiKey });
       setProjectKey(() => projectKey);
-      const featuresData = await createFeatures({ apiKey, projectKey });
-      setVariationIds(() => setVariations(featuresData));
+      // const featuresData = await createFeatures({ apiKey, projectKey });
+      // setVariationIds(() => setVariations(featuresData));
 
-      // also the call to set target ids
+      // const targetsData = await createTargets(apiKey.projectKey, varitionIds);
+      // setTargetState(() => targetsData);
+
       setRemoteSetup(() => true);
     } catch (err) {
       console.error(err);

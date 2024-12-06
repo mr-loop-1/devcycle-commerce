@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const checkApiKeyApi = async (key) => {
+export const checkApiKey = async (key) => {
   try {
     const response = await axios.get('https://api.devcycle.com/v1/projects', {
       headers: {
@@ -44,7 +44,7 @@ export const createProjectApi = async (key, data) => {
     }
   );
 
-  return true;
+  return response.data;
 };
 
 export const createFeaturesApi = async (key, projectKey, data) => {
