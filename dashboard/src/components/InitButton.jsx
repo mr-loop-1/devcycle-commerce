@@ -8,7 +8,6 @@ import createTargets from '@/lib/createTargets';
 
 export default function InitButton({
   remoteSetup,
-  varitionIds,
   setRemoteSetup,
   setTargetState,
   setProjectKey,
@@ -21,11 +20,17 @@ export default function InitButton({
       setLoading(() => true);
       const projectKey = await createProject({ apiKey });
       setProjectKey(() => projectKey);
-      // const featuresData = await createFeatures({ apiKey, projectKey });
-      // setVariationIds(() => setVariations(featuresData));
+      const featuresData = await createFeatures({ apiKey, projectKey });
+      console.log('🚀 ~ handleSetup ~ featuresData:', featuresData);
 
-      // const targetsData = await createTargets(apiKey.projectKey, varitionIds);
-      // setTargetState(() => targetsData);
+      const variationIds = setVariations(featuresData);
+      console.log('🚀 ~ handleSetup ~ variationIds:', variationIds);
+
+      setVariationIds(() => variationIds);
+
+      const targetsData = await createTargets(apiKey, projectKey, variationIds);
+      console.log('🚀 ~ handleSetup ~ targetsData:', targetsData);
+      setTargetState(() => targetsData);
 
       setRemoteSetup(() => true);
     } catch (err) {

@@ -1,20 +1,21 @@
 import { createTargetsApi } from '@/api/devcycle';
 import featuresJson from './../../data/features.json';
-import targetsJson from './../../data/targets.json';
+import targetsCommonJson from './../../data/targets-common.json';
+import { config } from './../../config/config';
 
 export default async function createTargets(apiKey, projectKey, variationIds) {
   const preparedData = prepareTargets(variationIds);
   const targetsData = {};
 
-  preparedData.forEach(async (data) => {
-    const targetData = await createTargetsApi(
-      apiKey,
-      projectKey,
-      data.key,
-      data.targets
-    );
+  for (const data of preparedData) {
+    console.log('🚀 ~ createTargets ~ data:', data.key);
+    console.log('🚀 ~ createTargets ~ data:', data.targets);
+
+    const targetData = await createTargetsApi(apiKey, projectKey, data.key, {
+      targets: data.targets,
+    });
     targetsData[data.key] = targetData.targets;
-  });
+  }
 
   // this is the data passed to control's api calls to change variation
   return targetsData;
@@ -24,27 +25,26 @@ const prepareTargets = (variationIds) => {
   return Object.keys(featuresJson).map((featureKey) => {
     return {
       key: featureKey,
-      targets: targetsJson.map((target) => {
+      targets: config.countriesArray.map((countryKey) => {
         return {
-          distribution: {
-            percentage: 1,
-            _variation:
-              variationIds[
-                target.features.find(
-                  (f) => f.key == featuresJson[featureKey].key
-                ).serve
-              ],
-          },
+          name: config.countries[countryKey],
+          distribution: [
+            {
+              percentage: 1,
+              _variation:
+                variationIds[targetsCommonJson[featureKey].served.key],
+            },
+          ],
           audience: {
-            name: config.countries[target.country],
+            name: config.countries[countryKey],
             filters: {
               operator: 'and',
               filters: [
                 {
                   type: 'user',
-                  subType: 'all',
-                  compare: '=',
-                  values: [target.country.toUpperCase()],
+                  subType: 'country',
+                  comparator: '=',
+                  values: [countryKey.toUpperCase()],
                 },
               ],
             },

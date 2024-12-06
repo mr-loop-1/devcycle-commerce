@@ -27,6 +27,7 @@ function App() {
     setError(() => '');
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
+    console.log('🚀 ~ handleSet ~ isKeyValid:', isKeyValid);
     if (isKeyValid) {
       setHasValidApiKey(() => true);
     } else {

@@ -5,7 +5,7 @@ export default async function createFeatures({ apiKey, projectKey }) {
   const featuresData = await createFeaturesApi(
     apiKey,
     projectKey,
-    featuresJson
+    Object.values(featuresJson)
   );
 
   return featuresData;

@@ -1,7 +1,7 @@
 export const config = {
   countries: {
     in: 'india',
-    en: 'england',
+    us: 'united states',
   },
-  countriesArray: ['in', 'en'],
+  countriesArray: ['in', 'us'],
 };

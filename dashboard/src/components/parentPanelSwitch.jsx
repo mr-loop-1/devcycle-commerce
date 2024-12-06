@@ -13,7 +13,7 @@ export default function ParentPanelSwitch({ apiKey }) {
 
   useEffect(() => {
     setFeatureState(() => setFeatures());
-  });
+  }, []);
 
   return (
     <div>

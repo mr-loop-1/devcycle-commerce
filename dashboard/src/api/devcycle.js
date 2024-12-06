@@ -58,7 +58,7 @@ export const createFeaturesApi = async (key, projectKey, data) => {
     }
   );
 
-  return true;
+  return response.data;
 };
 
 export const listEnvironmentsApi = async (key, projectKey) => {
@@ -88,5 +88,5 @@ export const createTargetsApi = async (key, projectKey, featureKey, data) => {
     }
   );
 
-  return true;
+  return response.data;
 };

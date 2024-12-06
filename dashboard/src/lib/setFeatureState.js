@@ -1,11 +1,11 @@
-import targetsCommon from './../../data/targets-common.json';
-import config from './../../config/config';
+import targetsCommonJson from './../../data/targets-common.json';
+import { config } from './../../config/config';
 
 export default async function setFeatures() {
   const obj = {};
 
   config.countriesArray.map((country) => {
-    obj[country] = targetsCommon;
+    obj[country] = targetsCommonJson;
   });
 
   return obj;
