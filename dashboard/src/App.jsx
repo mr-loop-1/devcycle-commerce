@@ -52,8 +52,18 @@ function App() {
         )}
       </div>
       {error && <div className="text-red-900">{error}</div>}
-
-      <Mode mode="simulation" />
+      {hasApikey && (
+        <div>
+          <div id="init" className="">
+            <Button diabled={init}>Initialize</Button>
+          </div>
+          {init && (
+            <div>
+              <Mode mode="simulation" />
+            </div>
+          )}
+        </div>
+      )}
     </Card>
   );
 }

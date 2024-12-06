@@ -46,3 +46,47 @@ export const createProjectApi = async (key, data) => {
 
   return true;
 };
+
+export const createFeaturesApi = async (key, projectKey, data) => {
+  const response = await axios.post(
+    `https://api.devcycle.com/v1/projects/${projectKey}/features/multiple`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${key}`,
+      },
+    }
+  );
+
+  return true;
+};
+
+export const listEnvironmentsApi = async (key, projectKey) => {
+  const response = await axios.get(
+    `https://api.devcycle.com/v1/projects/${projectKey}/environments`,
+    {
+      headers: {
+        Authorization: `Bearer ${key}`,
+      },
+    }
+  );
+
+  return true;
+};
+
+export const createTargetsApi = async (key, projectKey, featureKey, data) => {
+  const response = await axios.patch(
+    `https://api.devcycle.com/v1/projects/${projectKey}/features/${featureKey}/configurations`,
+    data,
+    {
+      params: {
+        environment: 'development',
+      },
+      headers: {
+        Authorization: `Bearer ${key}`,
+      },
+    }
+  );
+
+  return true;
+};

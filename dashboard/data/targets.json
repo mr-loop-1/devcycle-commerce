@@ -1,22 +1,28 @@
-{
-  "in": [
-    {
-      "key": "sale",
-      "serve": "active"
-    },
-    {
-      "key": "algorithms",
-      "serve": "stock-aware"
-    }
-  ],
-  "en": [
-    {
-      "key": "sale",
-      "serve": "active"
-    },
-    {
-      "key": "algorithms",
-      "serve": "stock-aware"
-    }
-  ]
-}
+[
+  {
+    "country": "in",
+    "features": [
+      {
+        "key": "sale",
+        "serve": "active"
+      },
+      {
+        "key": "algorithms",
+        "serve": "stock-aware"
+      }
+    ]
+  },
+  {
+    "country": "en",
+    "features": [
+      {
+        "key": "sale",
+        "serve": "active"
+      },
+      {
+        "key": "algorithms",
+        "serve": "stock-aware"
+      }
+    ]
+  }
+]
