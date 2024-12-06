@@ -2,15 +2,13 @@
   "sale": {
     "key": "sale",
     "served": {
-      "key": "active",
-      "name": "active"
+      "key": "active"
     }
   },
   "algorithms": {
     "key": "algorithms",
     "served": {
-      "key": "stock-aware",
-      "name": "stock-aware"
+      "key": "stock-aware"
     }
   }
 }

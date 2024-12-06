@@ -45,6 +45,8 @@ export default function ParentPanelSwitch({ apiKey }) {
                 variationIds={variationIds}
                 featureState={featureState}
                 targetState={targetState}
+                setFeatureState={setFeatureState}
+                setTargetState={setTargetState}
               />
             )}
           </div>

@@ -64,7 +64,7 @@ export const createFeaturesApi = async (key, projectKey, data) => {
 export const createTargetsApi = async (key, projectKey, featureKey, data) => {
   const response = await axios.patch(
     `https://api.devcycle.com/v1/projects/${projectKey}/features/${featureKey}/configurations`,
-    data,
+    { targets: data },
     {
       params: {
         environment: import.meta.env.DEVCYCLE_ENV || 'development',

@@ -8,9 +8,12 @@ export default async function createTargets(apiKey, projectKey, variationIds) {
   const targetsData = {};
 
   for (const data of preparedData) {
-    const targetData = await createTargetsApi(apiKey, projectKey, data.key, {
-      targets: data.targets,
-    });
+    const targetData = await createTargetsApi(
+      apiKey,
+      projectKey,
+      data.key,
+      data
+    );
     targetsData[data.key] = targetData.targets;
   }
 
