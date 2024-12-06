@@ -12,7 +12,6 @@ export default function ControlPanel({
   variationIds,
   projectKey,
 }) {
-  // this component controls the normal api actions
   const [stream, setStream] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -66,7 +65,7 @@ export default function ControlPanel({
 
   return (
     <div>
-      {stream.forEach((history) => {
+      {stream.map((history) => {
         return <FeatureHistory history={history} />;
       })}
       {loading ? (
