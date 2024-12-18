@@ -9,34 +9,41 @@ import PanelSwitch from './components/PanelSwitch';
 import ControlPanel from './pages/ControlPanel';
 import InitButton from './components/InitButton';
 import setFeatures from './lib/setFeatureState';
+import ApiKeyInput from './components/ApiKeyInput';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
+  const [apiKeyError, setApiKeyError] = useState(null);
   const [hasValidApikey, setHasValidApiKey] = useState(false);
-  const [error, setError] = useState(null);
+
   const [loading, setLoading] = useState(false);
+  // this loading is only for api key and project setup
 
   const [targetState, setTargetState] = useState(null);
-  const [mode, setMode] = useState('control');
   const [projectKey, setProjectKey] = useState(null);
   const [variationIds, setVariationIds] = useState(null);
-
-  const [remoteSetup, setRemoteSetup] = useState(false);
   const [featureState, setFeatureState] = useState(null);
 
+  // true only after above all are setup
+  const [remoteSetup, setRemoteSetup] = useState(false);
+  const [remoteSetupError, setRemoteSetupError] = useState(null);
+
+  const [panel, setPanel] = useState('control');
+
   const handleReset = () => {
-    setHasValidApiKey(() => null);
+    setApiKeyError(() => null);
+    setHasValidApiKey(() => false);
     setApiKey(() => null);
   };
 
-  const handleSet = async () => {
-    setError(() => '');
+  const storeApiKey = async () => {
+    setApiKeyError(() => null);
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
     if (isKeyValid) {
       setHasValidApiKey(() => true);
     } else {
-      setError('Api Key is Invalid or Expired');
+      setApiKeyError('Api Key is Invalid or Expired');
     }
     setLoading(() => false);
   };
@@ -44,27 +51,30 @@ function App() {
   useEffect(() => {
     setFeatureState(() => setFeatures());
   }, []);
+  // this should be done in
 
   return (
     <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
-      <div className="flex justify-between">
-        <Input
-          className=""
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          disabled={loading}
-        />
-        {hasValidApikey ? (
-          <Button variant="destructive" onClick={handleReset}>
-            Reset
-          </Button>
-        ) : (
-          <Button className="w-24" onClick={handleSet} disabled={loading}>
-            {loading ? <LoadingSpinner /> : 'Check'}
-          </Button>
-        )}
+      <div id="api-input">
+        <div className="flex justify-between">
+          <Input
+            className=""
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            disabled={loading || hasValidApikey}
+          />
+          {hasValidApikey ? (
+            <Button variant="destructive" onClick={handleReset}>
+              Reset
+            </Button>
+          ) : (
+            <Button className="w-24" onClick={storeApiKey} disabled={loading}>
+              {loading ? <LoadingSpinner /> : 'Check'}
+            </Button>
+          )}
+        </div>
+        {apiKeyError && <div className="text-red-900">{apiKeyError}</div>}
       </div>
-      {error && <div className="text-red-900">{error}</div>}
       {hasValidApikey && (
         <div>
           <div id="init">

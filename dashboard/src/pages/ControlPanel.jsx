@@ -65,8 +65,8 @@ export default function ControlPanel({
 
   return (
     <div>
-      {stream.map((history) => {
-        return <FeatureHistory history={history} />;
+      {stream.map((history, i) => {
+        return <FeatureHistory history={history} key={i} />;
       })}
       {loading ? (
         'under process'
