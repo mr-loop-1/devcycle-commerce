@@ -53,7 +53,11 @@ export default function FeatureAction({ featureState, loading, handleAction }) {
           </SelectContent>
         </Select>
       )}
-      {feature && <div>current variation is: </div>}
+      {feature && (
+        <div>
+          current variation is: {featureState[country][feature].served.key}
+        </div>
+      )}
       {feature && (
         <Select
           disabled={loading}
@@ -77,7 +81,7 @@ export default function FeatureAction({ featureState, loading, handleAction }) {
       )}
       {variation && (
         <>
-          <div className="">New variation is:</div>
+          <div className="">New variation is: {variation}</div>
           <Button
             disabled={loading}
             onClick={() => handleAction({ country, feature, variation })}

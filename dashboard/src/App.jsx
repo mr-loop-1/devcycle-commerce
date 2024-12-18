@@ -13,11 +13,11 @@ import ApiKeyInput from './components/ApiKeyInput';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
-  const [apiKeyError, setApiKeyError] = useState(null);
   const [hasValidApikey, setHasValidApiKey] = useState(false);
+  const [error, setError] = useState(null);
 
-  const [loading, setLoading] = useState(false);
   // this loading is only for api key and project setup
+  const [loading, setLoading] = useState(false);
 
   const [targetState, setTargetState] = useState(null);
   const [projectKey, setProjectKey] = useState(null);
@@ -31,13 +31,13 @@ function App() {
   const [panel, setPanel] = useState('control');
 
   const handleReset = () => {
-    setApiKeyError(() => null);
+    setError(() => null);
     setHasValidApiKey(() => false);
     setApiKey(() => null);
   };
 
   const storeApiKey = async () => {
-    setApiKeyError(() => null);
+    setError(() => null);
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
     if (isKeyValid) {
@@ -51,7 +51,7 @@ function App() {
   useEffect(() => {
     setFeatureState(() => setFeatures());
   }, []);
-  // this should be done in
+  // this should be done in the init button step
 
   return (
     <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
@@ -73,7 +73,15 @@ function App() {
             </Button>
           )}
         </div>
-        {apiKeyError && <div className="text-red-900">{apiKeyError}</div>}
+        {error == 'apiInit' && (
+          <div className="text-red-900">Invalid Api Key</div>
+        )}
+        {error == 'apiRuntime' && (
+          <div>
+            Your Api key has expired, please reset the key and setup a new
+            project
+          </div>
+        )}
       </div>
       {hasValidApikey && (
         <div>
@@ -86,10 +94,12 @@ function App() {
               setProjectKey={setProjectKey}
               setVariationIds={setVariationIds}
               apiKey={apiKey}
+              error={error}
+              setError={setError}
             />
           </div>
           {remoteSetup && (
-            <div className="">
+            <div>
               <div id="project-info">
                 using project "{projectKey}" in environment "production"
               </div>
@@ -97,7 +107,7 @@ function App() {
                 Control
               </div>
               <div id="panel" className="">
-                {mode == 'control' && (
+                {panel == 'control' ? (
                   <ControlPanel
                     apiKey={apiKey}
                     projectKey={projectKey}
@@ -106,7 +116,11 @@ function App() {
                     targetState={targetState}
                     setFeatureState={setFeatureState}
                     setTargetState={setTargetState}
+                    error={error}
+                    setError={setError}
                   />
+                ) : (
+                  <></>
                 )}
               </div>
             </div>
