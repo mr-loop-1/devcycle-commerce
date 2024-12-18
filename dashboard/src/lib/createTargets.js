@@ -8,13 +8,15 @@ export default async function createTargets(apiKey, projectKey, variationIds) {
   const targetsData = {};
 
   for (const data of preparedData) {
-    const targetData = await createTargetsApi(
+    const response = await createTargetsApi(
       apiKey,
       projectKey,
       data.key,
       data.targets
     );
-    targetsData[data.key] = targetData.targets;
+    if (response.type == 'success') {
+      targetsData[data.key] = response.data.targets;
+    }
   }
 
   // this is the data passed to control's api calls to change variation

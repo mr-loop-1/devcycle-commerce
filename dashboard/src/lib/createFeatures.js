@@ -2,11 +2,11 @@ import { createFeaturesApi } from '@/api/devcycle';
 import featuresJson from './../../data/features.json';
 
 export default async function createFeatures({ apiKey, projectKey }) {
-  const featuresData = await createFeaturesApi(
+  const response = await createFeaturesApi(
     apiKey,
     projectKey,
     Object.values(featuresJson)
   );
 
-  return featuresData;
+  return response.data;
 }

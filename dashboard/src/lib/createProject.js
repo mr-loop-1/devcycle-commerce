@@ -10,8 +10,9 @@ const getMaxNumber = (arr) => {
 
 export default async function createProject({ apiKey }) {
   try {
-    const allProjects = await listProjectsApi(apiKey);
-    if (allProjects) {
+    const response = await listProjectsApi(apiKey);
+    if (response.type == 'success') {
+      const allProjects = response.data;
       const projectId =
         getMaxNumber(allProjects.map((project) => project.key)) + 1;
 

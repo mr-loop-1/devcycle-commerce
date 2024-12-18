@@ -39,8 +39,8 @@ function App() {
   const storeApiKey = async () => {
     setError(() => null);
     setLoading(() => true);
-    const isKeyValid = await checkApiKey(apiKey);
-    if (isKeyValid) {
+    const response = await checkApiKey(apiKey);
+    if (response.type == 'success') {
       setHasValidApiKey(() => true);
     } else {
       setApiKeyError('Api Key is Invalid or Expired');
