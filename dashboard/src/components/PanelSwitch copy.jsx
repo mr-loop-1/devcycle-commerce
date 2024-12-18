@@ -3,7 +3,7 @@ import InitButton from './InitButton';
 import setFeatures from '@/lib/setFeatureState';
 import ControlPanel from './ControlPanel';
 
-export default function ParentPanelSwitch({ apiKey }) {
+export default function PanelSwitch({ apiKey }) {
   const [targetState, setTargetState] = useState(null);
   const [mode, setMode] = useState('control');
   const [projectKey, setProjectKey] = useState(null);

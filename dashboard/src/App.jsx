@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Card } from './components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from './components/ui/button';
 import { checkApiKey } from './api/devcycle';
 import { LoadingSpinner } from './components/Spinner';
-import Mode from './components/Mode';
-import ParentPanelSwitch from './components/parentPanelSwitch';
+import PanelSwitch from './components/PanelSwitch';
+import ControlPanel from './pages/ControlPanel';
+import InitButton from './components/InitButton';
+import setFeatures from './lib/setFeatureState';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -14,9 +16,13 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // on every init create a new project with full state
-  const [baseProject, setBaseProject] = useState(null);
-  const [baseFeatures, setBaseFeatures] = useState(null);
+  const [targetState, setTargetState] = useState(null);
+  const [mode, setMode] = useState('control');
+  const [projectKey, setProjectKey] = useState(null);
+  const [variationIds, setVariationIds] = useState(null);
+
+  const [remoteSetup, setRemoteSetup] = useState(false);
+  const [featureState, setFeatureState] = useState(null);
 
   const handleReset = () => {
     setHasValidApiKey(() => null);
@@ -27,7 +33,6 @@ function App() {
     setError(() => '');
     setLoading(() => true);
     const isKeyValid = await checkApiKey(apiKey);
-    console.log('🚀 ~ handleSet ~ isKeyValid:', isKeyValid);
     if (isKeyValid) {
       setHasValidApiKey(() => true);
     } else {
@@ -35,6 +40,10 @@ function App() {
     }
     setLoading(() => false);
   };
+
+  useEffect(() => {
+    setFeatureState(() => setFeatures());
+  }, []);
 
   return (
     <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
@@ -58,7 +67,40 @@ function App() {
       {error && <div className="text-red-900">{error}</div>}
       {hasValidApikey && (
         <div>
-          <ParentPanelSwitch apiKey={apiKey} />
+          <div id="init">
+            <InitButton
+              remoteSetup={remoteSetup}
+              variationIds={variationIds}
+              setRemoteSetup={setRemoteSetup}
+              setTargetState={setTargetState}
+              setProjectKey={setProjectKey}
+              setVariationIds={setVariationIds}
+              apiKey={apiKey}
+            />
+          </div>
+          {remoteSetup && (
+            <div className="">
+              <div id="project-info">
+                using project "{projectKey}" in environment "production"
+              </div>
+              <div id="switch-mode" className="">
+                Control
+              </div>
+              <div id="panel" className="">
+                {mode == 'control' && (
+                  <ControlPanel
+                    apiKey={apiKey}
+                    projectKey={projectKey}
+                    variationIds={variationIds}
+                    featureState={featureState}
+                    targetState={targetState}
+                    setFeatureState={setFeatureState}
+                    setTargetState={setTargetState}
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </Card>
