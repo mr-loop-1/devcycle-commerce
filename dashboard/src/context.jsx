@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ApiContext = createContext();
 
+// Only for storing api key and project key and nothing else
+
 export const useCart = () => useContext(ApiContext);
 
 export const CartProvider = ({ children }) => {

@@ -36,7 +36,7 @@ export default async function createProject({ apiKey }) {
       // create features, variables, and variations
       // then store them in an object so that they can be referenced later
     } else {
-      // apiKey was wrong
+      // apiKey was wrong or internal server error (check the status code)
       console.error('wrong api key');
     }
   } catch (err) {

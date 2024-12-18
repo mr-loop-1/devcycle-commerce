@@ -9,7 +9,7 @@ import PanelSwitch from './components/PanelSwitch';
 import ControlPanel from './pages/ControlPanel';
 import InitButton from './components/InitButton';
 import setFeatures from './lib/setFeatureState';
-import ApiKeyInput from './components/ApiKeyInput';
+import SimulationPanel from './pages/SimulationPanel';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -104,7 +104,7 @@ function App() {
                 using project "{projectKey}" in environment "production"
               </div>
               <div id="switch-mode" className="">
-                Control
+                <PanelSwitch />
               </div>
               <div id="panel" className="">
                 {panel == 'control' ? (
@@ -120,7 +120,17 @@ function App() {
                     setError={setError}
                   />
                 ) : (
-                  <></>
+                  <SimulationPanel
+                    apiKey={apiKey}
+                    projectKey={projectKey}
+                    variationIds={variationIds}
+                    featureState={featureState}
+                    targetState={targetState}
+                    setFeatureState={setFeatureState}
+                    setTargetState={setTargetState}
+                    error={error}
+                    setError={setError}
+                  />
                 )}
               </div>
             </div>

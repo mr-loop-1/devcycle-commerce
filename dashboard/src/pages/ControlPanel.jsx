@@ -11,6 +11,8 @@ export default function ControlPanel({
   setTargetState,
   variationIds,
   projectKey,
+  error,
+  setError,
 }) {
   const [stream, setStream] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -80,3 +82,5 @@ export default function ControlPanel({
     </div>
   );
 }
+// the loading has to be handled inside feature actions and not here
+// it should be done in a way that makes it seamless to change from a pending action to history
