@@ -21,6 +21,7 @@ export default function PanelSwitch({ panel, setPanel }) {
             'py-2 px-6 rounded-xl',
             panel == 'control' && 'bg-stone-300'
           )}
+          disabled={panel == 'control'}
         >
           Control
         </AlertDialogTrigger>
@@ -48,6 +49,7 @@ export default function PanelSwitch({ panel, setPanel }) {
             'py-2 px-6 rounded-xl',
             panel == 'simulation' && 'bg-stone-300'
           )}
+          disabled={panel == 'simulation'}
         >
           Simulation
         </AlertDialogTrigger>
