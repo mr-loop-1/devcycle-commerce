@@ -3,6 +3,8 @@ import { createTargetsApi } from '@/api/devcycle';
 import FeatureAction from '@/components/featureActions/FeatureAction';
 import FeatureHistory from '@/components/featureActions/featureHistory';
 import ErrorTab from '@/components/ErrorTab';
+import { useToast } from '@/hooks/use-toast';
+import showToast from '@/components/errorToast';
 
 export default function ControlPanel({
   apiKey,
@@ -17,6 +19,7 @@ export default function ControlPanel({
 }) {
   const [stream, setStream] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleAction = async (rawData) => {
     setLoading(() => true);
@@ -64,6 +67,7 @@ export default function ControlPanel({
       setTargetState(() => newTargetState);
       setStream((oldStream) => [...oldStream, data]);
     } else {
+      showToast(toast, response.type);
       setError(() => response.type);
     }
 

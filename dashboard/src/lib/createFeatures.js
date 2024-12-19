@@ -8,5 +8,5 @@ export default async function createFeatures({ apiKey, projectKey }) {
     Object.values(featuresJson)
   );
 
-  return response.data;
+  return response;
 }

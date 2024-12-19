@@ -16,11 +16,16 @@ export default async function createTargets(apiKey, projectKey, variationIds) {
     );
     if (response.type == 'success') {
       targetsData[data.key] = response.data.targets;
+    } else {
+      return response;
     }
   }
 
   // this is the data passed to control's api calls to change variation
-  return targetsData;
+  return {
+    type: 'success',
+    data: targetsData,
+  };
 }
 
 const prepareTargets = (variationIds) => {

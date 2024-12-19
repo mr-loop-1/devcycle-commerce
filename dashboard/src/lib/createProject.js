@@ -31,12 +31,18 @@ export default async function createProject({ apiKey }) {
 
     const projectResponse = await createProjectApi(apiKey, data);
 
-    return projectResponse.data.key;
+    if (projectResponse.type == 'success') {
+      return {
+        type: 'success',
+        data: projectResponse.data.key,
+      };
+    }
+    return projectResponse;
 
     // create features, variables, and variations
     // then store them in an object so that they can be referenced later
   } else {
     // apiKey was wrong or internal server error (check the status code)
-    console.error('wrong api key');
+    return response;
   }
 }
