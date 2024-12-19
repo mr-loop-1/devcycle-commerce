@@ -14,6 +14,7 @@ import SimulationPanel from './pages/SimulationPanel';
 function App() {
   const [apiKey, setApiKey] = useState('');
   const [hasValidApikey, setHasValidApiKey] = useState(false);
+  // apiInitError, apiError, serverError, dataError, unknownError
   const [error, setError] = useState(null);
 
   // this loading is only for api key and project setup
@@ -73,10 +74,10 @@ function App() {
             </Button>
           )}
         </div>
-        {error == 'apiInit' && (
+        {error == 'apiInitError' && (
           <div className="text-red-900">Invalid Api Key</div>
         )}
-        {error == 'apiRuntime' && (
+        {error == 'apiError' && (
           <div>
             Your Api key has expired, please reset the key and setup a new
             project

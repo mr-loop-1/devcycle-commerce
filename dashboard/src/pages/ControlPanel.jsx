@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createTargetsApi } from '@/api/devcycle';
 import FeatureAction from '@/components/featureActions/FeatureAction';
 import FeatureHistory from '@/components/featureActions/featureHistory';
+import ErrorTab from '@/components/ErrorTab';
 
 export default function ControlPanel({
   apiKey,
@@ -51,16 +52,20 @@ export default function ControlPanel({
     newTargetState[data.feature.key][idx].distribution[0]._variation =
       variationIds[data.newVariation.key];
 
-    const targetData = await createTargetsApi(
+    const response = await createTargetsApi(
       apiKey,
       projectKey,
       data.feature.key,
       newTargetState[data.feature.key]
     );
 
-    setFeatureState(() => newFeatureState);
-    setTargetState(() => newTargetState);
-    setStream((oldStream) => [...oldStream, data]);
+    if (response.type == 'success') {
+      setFeatureState(() => newFeatureState);
+      setTargetState(() => newTargetState);
+      setStream((oldStream) => [...oldStream, data]);
+    } else {
+      setError(() => response.type);
+    }
 
     setLoading(() => false);
   };
@@ -70,14 +75,19 @@ export default function ControlPanel({
       {stream.map((history, i) => {
         return <FeatureHistory history={history} key={i} />;
       })}
-      {loading ? (
-        'under process'
-      ) : (
-        <FeatureAction
-          handleAction={handleAction}
-          featureState={featureState}
-          loading={loading}
-        />
+
+      <FeatureAction
+        handleAction={handleAction}
+        featureState={featureState}
+        loading={loading}
+        error={error}
+      />
+
+      {loading && 'under process'}
+      {error && (
+        <div>
+          <ErrorTab error={error} />
+        </div>
       )}
     </div>
   );

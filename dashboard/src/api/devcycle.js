@@ -19,7 +19,7 @@ const processApiError = (err) => {
     };
   }
   return {
-    type: 'unkownError',
+    type: 'unknownError',
   };
 };
 

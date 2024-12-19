@@ -9,38 +9,34 @@ const getMaxNumber = (arr) => {
 };
 
 export default async function createProject({ apiKey }) {
-  try {
-    const response = await listProjectsApi(apiKey);
-    if (response.type == 'success') {
-      const allProjects = response.data;
-      const projectId =
-        getMaxNumber(allProjects.map((project) => project.key)) + 1;
+  const response = await listProjectsApi(apiKey);
+  if (response.type == 'success') {
+    const allProjects = response.data;
+    const projectId =
+      getMaxNumber(allProjects.map((project) => project.key)) + 1;
 
-      const data = {
-        name: `ecom${projectId}`,
-        key: `ecom-${projectId}`,
-        description: 'project for devcycle-ecommerce by abdul samad',
-        settings: {
-          lifeCycle: {
-            disableCodeRefChecks: true,
-          },
-          sdkTypeVisibility: {
-            enabledInFeatureSettings: false,
-          },
+    const data = {
+      name: `ecom${projectId}`,
+      key: `ecom-${projectId}`,
+      description: 'project for devcycle-ecommerce by abdul samad',
+      settings: {
+        lifeCycle: {
+          disableCodeRefChecks: true,
         },
-      };
+        sdkTypeVisibility: {
+          enabledInFeatureSettings: false,
+        },
+      },
+    };
 
-      const project = await createProjectApi(apiKey, data);
+    const projectResponse = await createProjectApi(apiKey, data);
 
-      return project.key;
+    return projectResponse.data.key;
 
-      // create features, variables, and variations
-      // then store them in an object so that they can be referenced later
-    } else {
-      // apiKey was wrong or internal server error (check the status code)
-      console.error('wrong api key');
-    }
-  } catch (err) {
-    console.error(err);
+    // create features, variables, and variations
+    // then store them in an object so that they can be referenced later
+  } else {
+    // apiKey was wrong or internal server error (check the status code)
+    console.error('wrong api key');
   }
 }

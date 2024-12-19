@@ -11,15 +11,21 @@ import VariationsJson from './../../../data/variations.json';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 
-export default function FeatureAction({ featureState, loading, handleAction }) {
+export default function FeatureAction({
+  featureState,
+  loading,
+  handleAction,
+  error,
+}) {
   const [country, setCountry] = useState(null);
   const [feature, setFeature] = useState(null);
   const [variation, setVariation] = useState(null);
 
+  // outline the tab with red when error occurs
   return (
     <div>
       <Select
-        disabled={loading}
+        disabled={loading || error}
         onValueChange={(val) => {
           setCountry(() => val);
           setFeature(() => null);
@@ -37,7 +43,7 @@ export default function FeatureAction({ featureState, loading, handleAction }) {
       </Select>
       {country && (
         <Select
-          disabled={loading}
+          disabled={loading || error}
           onValueChange={(val) => {
             setFeature(() => val);
             setVariation(() => null);
@@ -60,7 +66,7 @@ export default function FeatureAction({ featureState, loading, handleAction }) {
       )}
       {feature && (
         <Select
-          disabled={loading}
+          disabled={loading || error}
           onValueChange={(val) => {
             setVariation(() => val);
           }}
@@ -83,7 +89,7 @@ export default function FeatureAction({ featureState, loading, handleAction }) {
         <>
           <div className="">New variation is: {variation}</div>
           <Button
-            disabled={loading}
+            disabled={loading || error}
             onClick={() => handleAction({ country, feature, variation })}
           >
             Submit

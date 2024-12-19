@@ -13,11 +13,14 @@ export default function InitButton({
   setProjectKey,
   setVariationIds,
   apiKey,
+  error,
+  setError,
 }) {
   const [loading, setLoading] = useState(false);
   const handleSetup = async () => {
     try {
       setLoading(() => true);
+      setError(() => null);
 
       const projectKey = await createProject({ apiKey });
       setProjectKey(() => projectKey);
@@ -38,9 +41,13 @@ export default function InitButton({
     }
   };
 
+  // highlight the button if error is dataError
   return (
     <div>
-      <Button onClick={handleSetup} disabled={remoteSetup || loading}>
+      <Button
+        onClick={handleSetup}
+        disabled={remoteSetup || loading || error == 'apiError'}
+      >
         Setup Devcycle Project {loading && <LoadingSpinner />}
       </Button>
       {remoteSetup && <div>Setup successful</div>}
