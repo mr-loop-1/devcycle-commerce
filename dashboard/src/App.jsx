@@ -11,6 +11,8 @@ import InitButton from './components/InitButton';
 import setFeatures from './lib/setFeatureState';
 import SimulationPanel from './pages/SimulationPanel';
 import Reference from './components/Reference';
+import { useToast } from '@/hooks/use-toast';
+import showToast from './components/errorToast';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -32,6 +34,8 @@ function App() {
 
   const [panel, setPanel] = useState('control');
 
+  const { toast } = useToast();
+
   const handleReset = () => {
     setError(() => null);
     setHasValidApiKey(() => false);
@@ -45,7 +49,8 @@ function App() {
     if (response.type == 'success') {
       setHasValidApiKey(() => true);
     } else {
-      setApiKeyError('Api Key is Invalid or Expired');
+      showToast(toast, 'apiInitError');
+      setError(() => 'apiInitError');
     }
     setLoading(() => false);
   };
