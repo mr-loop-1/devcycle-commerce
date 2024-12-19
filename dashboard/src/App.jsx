@@ -13,6 +13,7 @@ import SimulationPanel from './pages/SimulationPanel';
 import Reference from './components/Reference';
 import { useToast } from '@/hooks/use-toast';
 import showToast from './components/errorToast';
+import InfoBox from './components/ProjectInfo';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -39,7 +40,7 @@ function App() {
   const handleReset = () => {
     setError(() => null);
     setHasValidApiKey(() => false);
-    setApiKey(() => null);
+    setApiKey(() => '');
   };
 
   const storeApiKey = async () => {
@@ -60,36 +61,60 @@ function App() {
   }, []);
   // this should be done in the init button step
 
+  // I need to make hasValidaApi key false on server and unkown errors too
+
   return (
     <div>
       <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
+        <div id="header" className="flex justify-between mb-6">
+          <img
+            className="inline cursor-pointer"
+            src="/logo.png"
+            width={40}
+            height={40}
+          />
+          <span className="">:love by Abdul Samad</span>
+        </div>
         <div id="api-input">
           <div className="flex justify-between">
             <Input
-              className=""
+              className="mr-2"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               disabled={loading || hasValidApikey}
+              placeholder="Enter the Api Key"
             />
             {hasValidApikey ? (
-              <Button variant="destructive" onClick={handleReset}>
+              <Button className="bg-red-700" onClick={handleReset}>
                 Reset
               </Button>
             ) : (
-              <Button className="w-24" onClick={storeApiKey} disabled={loading}>
-                {loading ? <LoadingSpinner /> : 'Check'}
+              <Button
+                className="bg-blue-700"
+                onClick={storeApiKey}
+                disabled={loading}
+              >
+                {loading ? <LoadingSpinner /> : 'Store Api Key'}
               </Button>
             )}
           </div>
-          {error == 'apiInitError' && (
-            <div className="text-red-900">Invalid Api Key</div>
-          )}
-          {error == 'apiError' && (
-            <div>
-              Your Api key has expired, please reset the key and setup a new
-              project
-            </div>
-          )}
+          <div id="api-info" className="mt-2">
+            {hasValidApikey && (
+              <span className="text-lime-700 text-sm font-semibold">
+                api key verified successfully
+              </span>
+            )}
+            {error == 'apiInitError' && (
+              <span className="text-red-700 text-sm font-semibold">
+                api key is invalid or expired
+              </span>
+            )}
+            {error == 'apiError' && (
+              <span className="text-red-700 text-sm font-semibold">
+                api key is invalid or expired
+              </span>
+            )}
+          </div>
         </div>
         {hasValidApikey && (
           <div>
@@ -109,7 +134,7 @@ function App() {
             {remoteSetup && (
               <div>
                 <div id="project-info">
-                  using project "{projectKey}" in environment "production"
+                  <InfoBox projectKey={projectKey} />
                 </div>
                 <div id="switch-mode" className="">
                   <PanelSwitch />

@@ -66,20 +66,36 @@ export default function InitButton({
 
   // highlight the button if error is dataError
   return (
-    <div>
+    <div className="mt-4">
       <Button
+        className="bg-blue-700"
         onClick={handleSetup}
         disabled={remoteSetup || loading || error == 'apiError'}
       >
         Setup Devcycle Project {loading && <LoadingSpinner />}
       </Button>
-      {remoteSetup && <div>Setup successful</div>}
-      {error == 'dataError' && (
-        <div>
-          There seems to be some problem synchornising the features with
-          devcycle. The data is found to be out-of-order or invalid
-        </div>
-      )}
+      <div className="mt-2 mb-4">
+        {loading && (
+          <span className="text-blue-700 text-sm font-semibold">
+            Creating project...
+            <br />
+            Creating features, variables, variations
+            <br />
+            Applying defaults
+          </span>
+        )}
+        {remoteSetup && (
+          <span className="text-lime-700 text-sm font-semibold">
+            devcycle setup successfully
+          </span>
+        )}
+        {error == 'dataError' && (
+          <span className="text-red-700 text-sm font-semibold">
+            There seems to be some problem synchornising the features with
+            devcycle. The data is found to be out-of-order or invalid
+          </span>
+        )}
+      </div>
     </div>
   );
 }
