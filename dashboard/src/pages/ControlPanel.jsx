@@ -81,6 +81,7 @@ export default function ControlPanel({
         featureState={featureState}
         loading={loading}
         error={error}
+        key={stream.length}
       />
 
       {loading && 'under process'}

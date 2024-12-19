@@ -10,6 +10,7 @@ import ControlPanel from './pages/ControlPanel';
 import InitButton from './components/InitButton';
 import setFeatures from './lib/setFeatureState';
 import SimulationPanel from './pages/SimulationPanel';
+import Reference from './components/Reference';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -55,90 +56,93 @@ function App() {
   // this should be done in the init button step
 
   return (
-    <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
-      <div id="api-input">
-        <div className="flex justify-between">
-          <Input
-            className=""
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            disabled={loading || hasValidApikey}
-          />
-          {hasValidApikey ? (
-            <Button variant="destructive" onClick={handleReset}>
-              Reset
-            </Button>
-          ) : (
-            <Button className="w-24" onClick={storeApiKey} disabled={loading}>
-              {loading ? <LoadingSpinner /> : 'Check'}
-            </Button>
-          )}
-        </div>
-        {error == 'apiInitError' && (
-          <div className="text-red-900">Invalid Api Key</div>
-        )}
-        {error == 'apiError' && (
-          <div>
-            Your Api key has expired, please reset the key and setup a new
-            project
-          </div>
-        )}
-      </div>
-      {hasValidApikey && (
-        <div>
-          <div id="init">
-            <InitButton
-              remoteSetup={remoteSetup}
-              variationIds={variationIds}
-              setRemoteSetup={setRemoteSetup}
-              setTargetState={setTargetState}
-              setProjectKey={setProjectKey}
-              setVariationIds={setVariationIds}
-              apiKey={apiKey}
-              error={error}
-              setError={setError}
+    <div>
+      <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
+        <div id="api-input">
+          <div className="flex justify-between">
+            <Input
+              className=""
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              disabled={loading || hasValidApikey}
             />
+            {hasValidApikey ? (
+              <Button variant="destructive" onClick={handleReset}>
+                Reset
+              </Button>
+            ) : (
+              <Button className="w-24" onClick={storeApiKey} disabled={loading}>
+                {loading ? <LoadingSpinner /> : 'Check'}
+              </Button>
+            )}
           </div>
-          {remoteSetup && (
+          {error == 'apiInitError' && (
+            <div className="text-red-900">Invalid Api Key</div>
+          )}
+          {error == 'apiError' && (
             <div>
-              <div id="project-info">
-                using project "{projectKey}" in environment "production"
-              </div>
-              <div id="switch-mode" className="">
-                <PanelSwitch />
-              </div>
-              <div id="panel" className="">
-                {panel == 'control' ? (
-                  <ControlPanel
-                    apiKey={apiKey}
-                    projectKey={projectKey}
-                    variationIds={variationIds}
-                    featureState={featureState}
-                    targetState={targetState}
-                    setFeatureState={setFeatureState}
-                    setTargetState={setTargetState}
-                    error={error}
-                    setError={setError}
-                  />
-                ) : (
-                  <SimulationPanel
-                    apiKey={apiKey}
-                    projectKey={projectKey}
-                    variationIds={variationIds}
-                    featureState={featureState}
-                    targetState={targetState}
-                    setFeatureState={setFeatureState}
-                    setTargetState={setTargetState}
-                    error={error}
-                    setError={setError}
-                  />
-                )}
-              </div>
+              Your Api key has expired, please reset the key and setup a new
+              project
             </div>
           )}
         </div>
-      )}
-    </Card>
+        {hasValidApikey && (
+          <div>
+            <div id="init">
+              <InitButton
+                remoteSetup={remoteSetup}
+                variationIds={variationIds}
+                setRemoteSetup={setRemoteSetup}
+                setTargetState={setTargetState}
+                setProjectKey={setProjectKey}
+                setVariationIds={setVariationIds}
+                apiKey={apiKey}
+                error={error}
+                setError={setError}
+              />
+            </div>
+            {remoteSetup && (
+              <div>
+                <div id="project-info">
+                  using project "{projectKey}" in environment "production"
+                </div>
+                <div id="switch-mode" className="">
+                  <PanelSwitch />
+                </div>
+                <div id="panel" className="">
+                  {panel == 'control' ? (
+                    <ControlPanel
+                      apiKey={apiKey}
+                      projectKey={projectKey}
+                      variationIds={variationIds}
+                      featureState={featureState}
+                      targetState={targetState}
+                      setFeatureState={setFeatureState}
+                      setTargetState={setTargetState}
+                      error={error}
+                      setError={setError}
+                    />
+                  ) : (
+                    <SimulationPanel
+                      apiKey={apiKey}
+                      projectKey={projectKey}
+                      variationIds={variationIds}
+                      featureState={featureState}
+                      targetState={targetState}
+                      setFeatureState={setFeatureState}
+                      setTargetState={setTargetState}
+                      error={error}
+                      setError={setError}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </Card>
+      <Reference />
+    </div>
   );
 }
 

@@ -92,12 +92,15 @@ export default function FeatureAction({
       )}
       {variation && (
         <>
-          <div className="">New variation is: {variation}</div>
+          <div className="">
+            <VariationInfo label="new" variation={variation} />
+          </div>
           <Button
             disabled={loading || error}
             onClick={() => handleAction({ country, feature, variation })}
+            className="bg-lime-700"
           >
-            Submit
+            Confirm Change
           </Button>
         </>
       )}
