@@ -132,14 +132,15 @@ function App() {
               />
             </div>
             {remoteSetup && (
-              <div>
-                <div id="project-info">
+              <div id="main-box">
+                <div id="project-info" className="my-2">
                   <InfoBox projectKey={projectKey} />
                 </div>
-                <div id="switch-mode" className="">
-                  <PanelSwitch />
+                <div id="switch-mode" className="mt-6">
+                  <PanelSwitch panel={panel} setPanel={setPanel} />
+                  <hr className="mt-1 bg-stone-300" />
                 </div>
-                <div id="panel" className="">
+                <div id="panel" className="mt-6">
                   {panel == 'control' ? (
                     <ControlPanel
                       apiKey={apiKey}

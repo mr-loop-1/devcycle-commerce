@@ -33,12 +33,22 @@ export default function FeatureAction({
           setVariation(() => null);
         }}
       >
-        <SelectTrigger>
+        <SelectTrigger className="mt-20">
           <SelectValue placeholder="Select a country" />
         </SelectTrigger>
         <SelectContent>
           {config.countriesArray.map((c) => {
-            return <SelectItem value={c}>{config.countries[c]}</SelectItem>;
+            return (
+              <SelectItem value={c}>
+                <img
+                  className="inline mr-2"
+                  width={20}
+                  height={20}
+                  src={`/${c}.svg`}
+                />
+                {config.countries[c]}
+              </SelectItem>
+            );
           })}
         </SelectContent>
       </Select>
