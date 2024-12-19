@@ -10,6 +10,7 @@ import featuresJson from './../../../data/features.json';
 import VariationsJson from './../../../data/variations.json';
 import { Button } from '../ui/button';
 import { useState } from 'react';
+import VariationInfo from './variationInfo';
 
 export default function FeatureAction({
   featureState,
@@ -61,7 +62,11 @@ export default function FeatureAction({
       )}
       {feature && (
         <div>
-          current variation is: {featureState[country][feature].served.key}
+          <VariationInfo
+            label="current"
+            variation={featureState[country][feature].served.key}
+          />
+          {/* current variation is: {featureState[country][feature].served.key} */}
         </div>
       )}
       {feature && (

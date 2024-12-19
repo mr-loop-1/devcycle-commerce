@@ -4,14 +4,26 @@
     "name": "active",
     "variables": {
       "sale-status": true
-    }
+    },
+    "variablesArray": [
+      {
+        "key": "sale-status",
+        "value": "true"
+      }
+    ]
   },
   "inactive": {
     "key": "inactive",
     "name": "inactive",
     "variables": {
       "sale-status": false
-    }
+    },
+    "variablesArray": [
+      {
+        "key": "sale-status",
+        "value": "false"
+      }
+    ]
   },
   "profit-aggressive": {
     "key": "profit-aggressive",
@@ -19,7 +31,17 @@
     "variables": {
       "sort-algo": "profit",
       "recommend-algo": "profit"
-    }
+    },
+    "variablesArray": [
+      {
+        "key": "sort-algo",
+        "value": "profit"
+      },
+      {
+        "key": "recommend-algo",
+        "value": "profit"
+      }
+    ]
   },
   "stock-aware": {
     "key": "stock-aware",
@@ -27,6 +49,16 @@
     "variables": {
       "sort-algo": "stock",
       "recommend-algo": "profit"
-    }
+    },
+    "variablesArray": [
+      {
+        "key": "sort-algo",
+        "value": "stock"
+      },
+      {
+        "key": "recommend-algo",
+        "value": "profit"
+      }
+    ]
   }
 }
