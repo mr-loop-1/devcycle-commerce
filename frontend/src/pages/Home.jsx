@@ -12,7 +12,7 @@ import Header from '@/components/Header';
 
 export default function HomePage() {
   const saleActiveFlag = useVariableValue('sale-active', false);
-  console.log('🚀 ~ HomePage ~ saleActiveFlag:', saleActiveFlag);
+
   const [confetti, toggleConfetti] = useState(false);
 
   useEffect(() => {
