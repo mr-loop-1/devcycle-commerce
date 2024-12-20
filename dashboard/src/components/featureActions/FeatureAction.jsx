@@ -11,6 +11,7 @@ import VariationsJson from './../../../data/variations.json';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import VariationInfo from './variationInfo';
+import { Card } from '../ui/card';
 
 export default function FeatureAction({
   featureState,
@@ -24,51 +25,56 @@ export default function FeatureAction({
 
   // outline the tab with red when error occurs
   return (
-    <div>
-      <Select
-        disabled={loading || error}
-        onValueChange={(val) => {
-          setCountry(() => val);
-          setFeature(() => null);
-          setVariation(() => null);
-        }}
-      >
-        <SelectTrigger className="mt-20">
-          <SelectValue placeholder="Select a country" />
-        </SelectTrigger>
-        <SelectContent>
-          {config.countriesArray.map((c) => {
-            return (
-              <SelectItem value={c}>
-                <img
-                  className="inline mr-2"
-                  width={20}
-                  height={20}
-                  src={`/${c}.svg`}
-                />
-                {config.countries[c]}
-              </SelectItem>
-            );
-          })}
-        </SelectContent>
-      </Select>
-      {country && (
+    <Card className="mt-6 py-2 px-4">
+      <div className="">Feature Action</div>
+      <div className="mt-2">
         <Select
           disabled={loading || error}
           onValueChange={(val) => {
-            setFeature(() => val);
+            setCountry(() => val);
+            setFeature(() => null);
             setVariation(() => null);
           }}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select a feature" />
+            <SelectValue placeholder="Select a country" />
           </SelectTrigger>
           <SelectContent>
-            {Object.keys(featuresJson).map((f) => {
-              return <SelectItem value={f}>{f}</SelectItem>;
+            {config.countriesArray.map((c) => {
+              return (
+                <SelectItem value={c}>
+                  <img
+                    className="inline mr-2"
+                    width={20}
+                    height={20}
+                    src={`/${c}.svg`}
+                  />
+                  {config.countries[c]}
+                </SelectItem>
+              );
             })}
           </SelectContent>
         </Select>
+      </div>
+      {country && (
+        <div className="mt-2">
+          <Select
+            disabled={loading || error}
+            onValueChange={(val) => {
+              setFeature(() => val);
+              setVariation(() => null);
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select a feature" />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.keys(featuresJson).map((f) => {
+                return <SelectItem value={f}>{f}</SelectItem>;
+              })}
+            </SelectContent>
+          </Select>
+        </div>
       )}
       {feature && (
         <div>
@@ -114,6 +120,6 @@ export default function FeatureAction({
           </Button>
         </>
       )}
-    </div>
+    </Card>
   );
 }

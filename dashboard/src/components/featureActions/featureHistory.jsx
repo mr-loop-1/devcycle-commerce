@@ -4,20 +4,21 @@ import { config } from '../../../config/config';
 import VariationInfo from './variationInfo';
 import { Card } from '../ui/card';
 import { useState } from 'react';
+import { MoveRightIcon } from 'lucide-react';
 
 export default function FeatureHistory({ history }) {
   const [expand, setExpand] = useState(false);
 
   return (
-    <Card>
+    <Card className="mt-4">
       <div className="flex">
-        <div className="flex flex-col bg-red-100 items-end w-28 pr-2">
+        <div className="flex flex-col bg-zinc-100 items-end w-28 pr-2 py-2">
           <span>country</span>
           <span>feature</span>
           <span>variation </span>
           {expand && <span>variables</span>}
         </div>
-        <div className="flex flex-col pl-2 w-full overflow-x-auto">
+        <div className="flex flex-col pl-2 w-full overflow-x-auto py-2">
           <span>
             <img
               src={`/${history.country.key}.svg`}
@@ -25,11 +26,14 @@ export default function FeatureHistory({ history }) {
               height={20}
               className="inline mr-2"
             />
-            {history.country.key}
+            {config.countries[history.country.key]}
           </span>
           <span>{history.feature.key}</span>
-          <span className="whitespace-nowrap">
-            {history.oldVariation.key} --- {history.newVariation.key}{' '}
+          <span className="whitespace-nowrap text-blue-700 font-semibold">
+            {history.oldVariation.key}{' '}
+            {/* <img src="/right.svg" className="inline" height={20} width={20} />{' '} */}
+            <MoveRightIcon className="inline text-black mx-2" />
+            {history.newVariation.key}{' '}
             {expand ? (
               <img
                 className="inline"
@@ -53,12 +57,19 @@ export default function FeatureHistory({ history }) {
               (variable) => {
                 return (
                   <span className="ml-4 whitespace-nowrap" key={variable.key}>
-                    {variable.key} : {variable.value} ---{' '}
-                    {
-                      variationJson[history.newVariation.key].variables[
-                        variable.key
-                      ]
-                    }
+                    <span className="text-blue-700 font-semibold">
+                      {variable.key}
+                    </span>
+                    :{' '}
+                    <span className="text-red-700 font-semibold">
+                      {variable.value}
+                      <MoveRightIcon className="inline text-black mx-2" />
+                      {
+                        variationJson[history.newVariation.key].variables[
+                          variable.key
+                        ]
+                      }
+                    </span>
                   </span>
                 );
               }
