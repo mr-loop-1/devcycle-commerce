@@ -1,5 +1,8 @@
 import react, { useEffect, useState } from 'react';
-import { useVariableValue } from '@devcycle/react-client-sdk';
+import {
+  useDevCycleClient,
+  useVariableValue,
+} from '@devcycle/react-client-sdk';
 import Navbar from '@/components/navbar/Navbar';
 import Confetti from 'https://esm.sh/react-confetti';
 import Showcase from '@/components/Showcase';
@@ -9,19 +12,20 @@ import Header from '@/components/Header';
 
 export default function HomePage() {
   const saleActiveFlag = useVariableValue('sale-active', false);
+  console.log('🚀 ~ HomePage ~ saleActiveFlag:', saleActiveFlag);
   const [confetti, toggleConfetti] = useState(false);
 
-  if (saleActiveFlag) {
-    useEffect(() => {
+  useEffect(() => {
+    if (saleActiveFlag) {
       if (!localStorage.getItem('confetti')) {
         localStorage.setItem('confetti', 'blabla');
         toggleConfetti(() => true);
         setTimeout(() => toggleConfetti(() => false), 10000);
       }
+    }
 
-      return () => localStorage.removeItem('confetti');
-    }, []);
-  }
+    return () => localStorage.removeItem('confetti');
+  }, [saleActiveFlag]);
 
   return (
     <div className="mx-auto md:w-[80%] lg:w-[70%]">

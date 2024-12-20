@@ -13,6 +13,7 @@ import CartPage from './pages/Cart';
 
 function App() {
   const devCycleReady = useIsDevCycleInitialized();
+  console.log('🚀 ~ App ~ devCycleReady:', devCycleReady);
 
   if (!devCycleReady) return <LoadingSpinner />;
 
@@ -29,12 +30,14 @@ function App() {
 
 const devCycleConfig = {
   sdkKey: import.meta.env.VITE_SDK_KEY,
+  user: { country: 'IN' },
 };
+console.log('🚀 ~ devCycleConfig.sdkKey:', devCycleConfig.sdkKey);
 
 // refresh page after setting the country to force this
 const country = localStorage.getItem('forceCountry');
 if (country) {
-  devCycleConfig.user = { country: JSON.parse(country) };
+  devCycleConfig.user = { country: 'IN' };
 }
 
 export default withDevCycleProvider(devCycleConfig)(App);

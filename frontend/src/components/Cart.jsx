@@ -9,8 +9,11 @@ import {
   SheetFooter,
   SheetClose,
 } from '@/components/ui/sheet';
+import { Card } from './ui/card';
 
-export default function CartDrawer() {
+export default function CartDrawer({ triggerCart, country }) {
+  const cart = [1, 2, 3];
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -18,17 +21,27 @@ export default function CartDrawer() {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            Make changes to your profile here. Click save when you're done.
-          </SheetDescription>
+          <SheetTitle>My Cart</SheetTitle>
         </SheetHeader>
 
-        <SheetFooter>
+        <div className="flex flex-col h-full justify-between">
+          <div id="cart-items" className=""></div>
+          <Card id="cart-price-and-coupons" className="mb-2">
+            <div className="">
+              Price:
+              <br />
+              jndjqwkn
+              <br />
+              jkdmw
+            </div>
+          </Card>
+        </div>
+
+        {/* <SheetFooter className="">
           <SheetClose asChild>
             <Button type="submit">Save changes</Button>
           </SheetClose>
-        </SheetFooter>
+        </SheetFooter> */}
       </SheetContent>
     </Sheet>
   );

@@ -14,7 +14,7 @@ export default function Products({ category }) {
               <div className="flex w-full justify-between">
                 <div className="">weqda</div>
                 {cart.includes(product.id) ? (
-                  <Button className="bg-red-400 hover:bg-orange-500">
+                  <Button className="bg-red-500 hover:bg-red-700">
                     <img className="w-6 h-6" src="/remove.svg" />
                   </Button>
                 ) : (
