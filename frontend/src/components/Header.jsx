@@ -12,7 +12,6 @@ export default function Header() {
         style={{ backgroundImage: `url(${navBannerPath})` }}
       >
         <div id="sitelogo"></div>
-        <div id="searchbar"></div>
         <div id="country selector"></div>
         <div id="cart"></div>
       </div>
