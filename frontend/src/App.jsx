@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
+  useDevCycleClient,
   useIsDevCycleInitialized,
   withDevCycleProvider,
 } from '@devcycle/react-client-sdk';
@@ -10,10 +11,18 @@ import HomePage from './pages/Home';
 import { LoadingSpinner } from '@/components/Spinner';
 import RecommendPage from './pages/Suggest';
 import CartPage from './pages/Cart';
+import { useCountry } from './contexts/CountryProvider';
 
 function App() {
-  const devCycleReady = useIsDevCycleInitialized();
+  const devcycleClient = useDevCycleClient();
 
+  const { country } = useCountry();
+
+  devcycleClient.identifyUser({
+    country: country || 'US',
+  });
+
+  const devCycleReady = useIsDevCycleInitialized();
   if (!devCycleReady) return <LoadingSpinner />;
 
   return (
@@ -27,15 +36,13 @@ function App() {
   );
 }
 
-const devCycleConfig = {
+// const devCycleConfig = {
+//   sdkKey: import.meta.env.VITE_SDK_KEY,
+// };
+
+export default withDevCycleProvider({
   sdkKey: import.meta.env.VITE_SDK_KEY,
-  user: { country: 'IN' },
-};
-
-// refresh page after setting the country to force this
-const country = localStorage.getItem('forceCountry');
-if (country) {
-  devCycleConfig.user = { country: 'IN' };
-}
-
-export default withDevCycleProvider(devCycleConfig)(App);
+  options: {
+    deferInitialization: true,
+  },
+})(App);

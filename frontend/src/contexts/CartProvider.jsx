@@ -7,7 +7,7 @@ export const useCart = () => {
   return useContext(CartContext);
 };
 
-export const CountryProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const localCart = JSON.parse(localStorage.getItem('cart'));
   const [cart, dispatch] = useReducer(cartReducer, localCart || []);
 

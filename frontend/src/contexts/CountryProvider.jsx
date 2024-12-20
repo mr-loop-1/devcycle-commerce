@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { LoadingSpinner } from './components/Spinner';
+import { LoadingSpinner } from '@/components/Spinner';
 
 const CountryContext = createContext();
 
@@ -12,7 +12,7 @@ export const CountryProvider = ({ children }) => {
   const [country, setCountry] = useState(null);
 
   useEffect(() => {
-    const fetchCountry = async () => {
+    (async () => {
       const storedCountry = localStorage.getItem('country');
 
       if (storedCountry) {
@@ -28,12 +28,11 @@ export const CountryProvider = ({ children }) => {
           localStorage.setItem('country', countryFromApi);
           setCountry(countryFromApi);
         } catch (error) {
-          setCountry('IN');
+          localStorage.setItem('country', 'US');
+          setCountry('US');
         }
       }
-    };
-
-    fetchCountry();
+    })();
   }, []);
 
   return (
