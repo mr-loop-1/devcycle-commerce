@@ -4,8 +4,12 @@ export default function Categories() {
   return (
     <div>
       <div className="flex justify-around">
-        {arr.map((a) => {
-          return <div className="h-48 w-48 bg-red-400"></div>;
+        {arr.map((i) => {
+          return (
+            <div className="">
+              <img src={`/categories/${i}.jpg`} className="" />
+            </div>
+          );
         })}
       </div>
     </div>
