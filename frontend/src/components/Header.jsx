@@ -1,5 +1,6 @@
 import { useVariableValue } from '@devcycle/react-client-sdk';
 import react from 'react';
+import CartDrawer from './Cart';
 
 export default function Header() {
   const saleActiveFlag = useVariableValue('sale-active', false);
@@ -13,7 +14,7 @@ export default function Header() {
       >
         <div id="sitelogo"></div>
         <div id="country selector"></div>
-        <div id="cart"></div>
+        <CartDrawer />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Confetti from 'https://esm.sh/react-confetti';
 import Showcase from '@/components/Showcase';
 import Categories from '@/components/Categories';
 import ProductList from '@/components/ProductList';
+import Header from '@/components/Header';
 
 export default function HomePage() {
   const saleActiveFlag = useVariableValue('sale-active', false);
@@ -23,10 +24,10 @@ export default function HomePage() {
   }
 
   return (
-    <div className="mx-2 md:mx-40 lg:mx-80">
+    <div className="mx-auto md:w-[80%] lg:w-[70%]">
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {confetti && <Confetti />}
-      <Navbar />
+      <Header />
       <Showcase saleActiveFlag={saleActiveFlag} />
       <Categories />
       <ProductList />
