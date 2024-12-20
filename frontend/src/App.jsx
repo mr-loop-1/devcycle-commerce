@@ -8,6 +8,8 @@ import {
 import './App.css';
 import HomePage from './pages/Home';
 import { LoadingSpinner } from '@/components/Spinner';
+import RecommendPage from './pages/Suggest';
+import CartPage from './pages/Cart';
 
 function App() {
   const devCycleReady = useIsDevCycleInitialized();
@@ -18,7 +20,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="" Component={HomePage} />
-        <Route path="/recommend" Component={SuggestPage} />
+        <Route path="/recommend" Component={RecommendPage} />
         <Route path="/cart" Component={CartPage} />
       </Routes>
     </Router>

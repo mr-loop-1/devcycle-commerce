@@ -13,7 +13,7 @@ export default function HomePage() {
       if (!localStorage.getItem('confetti')) {
         localStorage.setItem('confetti', 'blabla');
         toggleConfetti(() => true);
-        setTimeout(() => toggleConfetti(() => false), 4000);
+        setTimeout(() => toggleConfetti(() => false), 6000);
       }
 
       return () => localStorage.removeItem('confetti');
@@ -25,24 +25,7 @@ export default function HomePage() {
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {confetti && <Confetti />}
       <Navbar />
-      <div className="content">
-        <div className="poster-area">
-          <div className="poster-data">
-            <p className="poster-head">Free Delivery!</p>
-            <p className="poster-desc">
-              Don't miss it out! Only today, get free{' '}
-              <b style={{ fontSize: '22px' }}>Next Day</b> delivery on all your
-              orders.
-            </p>
-          </div>
-          <button className="browse-btn">Browse products</button>
-        </div>
-        {/* <img src={Delivery} className="delivery" /> */}
-        {/* <Popular /> */}
-        <Showcase />
-        <Categories />
-        <CategoryProducts />
-      </div>
+      <Showcase saleActiveFlag={saleActiveFlag} />
     </div>
   );
 }
