@@ -9,9 +9,10 @@ import {
 import './App.css';
 import HomePage from './pages/Home';
 import { LoadingSpinner } from '@/components/Spinner';
-import RecommendPage from './pages/Suggest';
+import RecommendPage from './pages/Recommend';
 import CartPage from './pages/Cart';
 import { useCountry } from './contexts/CountryProvider';
+import Header from './components/Header';
 
 function App() {
   const devcycleClient = useDevCycleClient();
@@ -26,19 +27,18 @@ function App() {
   if (!devCycleReady) return <LoadingSpinner />;
 
   return (
-    <Router>
-      <Routes>
-        <Route path="" Component={HomePage} />
-        <Route path="/recommend" Component={RecommendPage} />
-        <Route path="/cart" Component={CartPage} />
-      </Routes>
-    </Router>
+    <div>
+      <Header />
+      <Router>
+        <Routes>
+          <Route path="" Component={HomePage} />
+          <Route path="/recommend" Component={RecommendPage} />
+          <Route path="/cart" Component={CartPage} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
-
-// const devCycleConfig = {
-//   sdkKey: import.meta.env.VITE_SDK_KEY,
-// };
 
 export default withDevCycleProvider({
   sdkKey: import.meta.env.VITE_SDK_KEY,

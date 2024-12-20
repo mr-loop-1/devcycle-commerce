@@ -3,7 +3,6 @@ import {
   useDevCycleClient,
   useVariableValue,
 } from '@devcycle/react-client-sdk';
-import Navbar from '@/components/navbar/Navbar';
 import Confetti from 'https://esm.sh/react-confetti';
 import Showcase from '@/components/Showcase';
 import Categories from '@/components/Categories';
@@ -31,7 +30,7 @@ export default function HomePage() {
     <div className="mx-auto md:w-[80%] lg:w-[70%]">
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {confetti && <Confetti />}
-      <Header />
+
       <Showcase saleActiveFlag={saleActiveFlag} />
       <Categories />
       <ProductList />
