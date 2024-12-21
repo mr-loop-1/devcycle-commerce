@@ -36,7 +36,7 @@ export const CountryProvider = ({ children }) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={{ country }}>
+    <CountryContext.Provider value={{ country, setCountry }}>
       {country ? children : <LoadingSpinner />}
     </CountryContext.Provider>
   );

@@ -8,8 +8,13 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const localCart = JSON.parse(localStorage.getItem('cart'));
-  const [cart, dispatch] = useReducer(cartReducer, localCart || []);
+  let localCart = localStorage.getItem('cart');
+  if (!localCart || !Array.isArray(JSON.parse(localCart))) {
+    localStorage.setItem('cart', '[]');
+    localCart = '[]';
+  }
+  localCart = JSON.parse(localCart);
+  const [cart, dispatch] = useReducer(cartReducer, localCart);
 
   return (
     <CartContext.Provider value={{ cart, dispatch }}>
