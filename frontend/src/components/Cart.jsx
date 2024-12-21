@@ -12,8 +12,6 @@ import {
 import { Card } from './ui/card';
 
 export default function CartDrawer({ triggerCart, country }) {
-  const cart = [1, 2, 3];
-
   return (
     <Sheet>
       <SheetTrigger asChild>

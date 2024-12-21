@@ -11,8 +11,12 @@ export const getCountry = async () => {
   }
 };
 
-export const getCategoriesApi = () => {};
+// MOCK APIs
 
-export const getProductsCategoriesApi = () => {};
+export const getProductsCategoriesApi = (req) => {
+  const { isSale, sortAlgorithm } = req;
+};
 
-export const getRecommendedApi = () => {};
+export const getRecommendedApi = (req) => {};
+
+export const getCartValue = (req) => {};

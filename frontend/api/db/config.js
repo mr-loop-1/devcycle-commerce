@@ -14,3 +14,7 @@ export const country = {
     currency: 'Dollar',
   },
 };
+
+export const currencyMultiplicant = {
+  CA: 0.017,
+};
