@@ -1,4 +1,16 @@
 export default function CartPage() {
+  const saleActiveFlag = useVariableValue('sale-active', false);
+  const separateCartPageFlag = useVariableValue('separate-cart-page', false);
+  const shippingPriceStrategy = useVariableValue(
+    'shipping-price-strategy',
+    null
+  );
+  const chatbot = useVariableValue('chatbot', false);
+
+  if (!saleActiveFlag || !separateCartPageFlag) {
+    redirect('/');
+  }
+
   return (
     <div className="w-full p-2">
       <div className="">Cart checkout</div>

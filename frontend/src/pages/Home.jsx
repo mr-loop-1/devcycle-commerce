@@ -7,12 +7,16 @@ import Confetti from 'https://esm.sh/react-confetti';
 import Showcase from '@/components/Showcase';
 import Categories from '@/components/Categories';
 import ProductList from '@/components/ProductList';
-import Header from '@/components/Header';
+import { getProductsCategoriesApi } from './../../api/api';
 
 export default function HomePage() {
   const saleActiveFlag = useVariableValue('sale-active', false);
+  const sortOrderStrategy = useVariableValue('sortorder-strategy', 'default');
+  const chatbot = useVariableValue('chatbot', false);
 
   const [confetti, toggleConfetti] = useState(false);
+
+  // const productsAndCategories = getProductsCategoriesApi();
 
   useEffect(() => {
     if (saleActiveFlag) {
@@ -31,9 +35,12 @@ export default function HomePage() {
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {confetti && <Confetti />}
 
-      <Showcase saleActiveFlag={saleActiveFlag} />
-      <Categories />
-      <ProductList />
+      <Showcase
+        saleActiveFlag={saleActiveFlag}
+        sortOrderStrategy={sortOrderStrategy}
+      />
+      <Categories sortOrderStrategy={sortOrderStrategy} />
+      <ProductList sortOrderStrategy={sortOrderStrategy} />
     </div>
   );
 }

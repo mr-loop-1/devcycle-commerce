@@ -1,4 +1,4 @@
-export default categories = [
+export const categories = [
   {
     id: 1,
     title: 'Mens Wear',

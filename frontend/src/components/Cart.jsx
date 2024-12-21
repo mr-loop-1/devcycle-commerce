@@ -12,6 +12,12 @@ import {
 import { Card } from './ui/card';
 
 export default function CartDrawer({ triggerCart, country }) {
+  const shippingPriceStrategy = useVariableValue(
+    'shipping-price-strategy',
+    null
+  );
+  const saleActiveFlag = useVariableValue('sale-active', false);
+
   return (
     <Sheet>
       <SheetTrigger asChild>

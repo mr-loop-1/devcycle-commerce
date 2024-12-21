@@ -1,7 +1,16 @@
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 export default function RecommendPage() {
+  const saleActiveFlag = useVariableValue('sale-active', false);
+  const recommendPageFlag = useVariableValue('recommend-page', false);
+  const recommendStrategy = useVariableValue('recommend-strategy', null);
+  const chatbot = useVariableValue('chatbot', false);
+
+  if (!saleActiveFlag || !recommendPageFlag) {
+    redirect('/');
+  }
+
   return (
     <div>
       <div className="flex justify-around">

@@ -1,5 +1,5 @@
-import products from '../db/products';
-import categories from '../db/categories';
+import { products } from '../db/products';
+import { categories } from '../db/categories';
 import { currencyMultiplicant, country } from '../db/config';
 
 export const getAllProductsAndCategories = (req) => {

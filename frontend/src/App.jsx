@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   useDevCycleClient,
   useIsDevCycleInitialized,
+  useVariableValue,
   withDevCycleProvider,
 } from '@devcycle/react-client-sdk';
 

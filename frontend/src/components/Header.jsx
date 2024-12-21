@@ -4,6 +4,8 @@ import CartDrawer from './Cart';
 
 export default function Header() {
   const saleActiveFlag = useVariableValue('sale-active', false);
+  const separateCartPageFlag = useVariableValue('separate-cart-page', false);
+
   let navBannerPath = saleActiveFlag ? '/sale/banner.jpg' : '/navBanner.jpg';
 
   return (
@@ -14,7 +16,7 @@ export default function Header() {
       >
         <div id="sitelogo"></div>
         <div id="country selector"></div>
-        <CartDrawer />
+        {separateCartPageFlag ? <span>Cart</span> : <CartDrawer />}
       </div>
     </div>
   );
