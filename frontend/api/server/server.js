@@ -3,7 +3,7 @@ import { categories } from '../db/categories';
 import { currencyMultiplicant, country } from '../db/config';
 
 export const getAllProductsAndCategories = (req) => {
-  const { country, isSale, sortAlgorithm, shippingCost } = req;
+  const { country, isSale, sortStrategy, shippingWaiver } = req;
   /*
     1. filter products available in the country
     2. convert to correct currency
@@ -28,9 +28,7 @@ export const getAllProductsAndCategories = (req) => {
     product.specs = specs;
   }
 
-  const categoriesData = categories;
-
-  return categoriesData.map((category) => {
+  const categoriesData = categories.map((category) => {
     return {
       ...category,
       products: products.filter(
@@ -38,10 +36,50 @@ export const getAllProductsAndCategories = (req) => {
       ),
     };
   });
+
+  if (!isSale) {
+    return categoriesData;
+  }
+
+  categoriesData.profitPerItem = Math.floor(
+    categories.products.reduce(
+      (price, current) => price + current.specs.saleProfit,
+      0
+    ) / categories.products.length
+  );
+
+  categories.stockPerItem = Math.floor(
+    categories.products.reduce(
+      (stock, current) => stock + current.specs.stock,
+      0
+    ) / categories.products.length
+  );
+
+  if (sortStrategy == 'profit') {
+    categoriesData.sort((categoryA, categoryB) => {
+      return categoryA.profitPerItem > categoryB.profitPerItem;
+    });
+    for (const category of categoriesData) {
+      category.products.sort((productA, productB) => {
+        return productA.specs.saleProfit > productB.specs.saleProfit;
+      });
+    }
+  } else if (sortStrategy == 'stock') {
+    categoriesData.sort((categoryA, categoryB) => {
+      return categoryA.stockPerItem > categoryB.stockPerItem;
+    });
+    for (const category of categoriesData) {
+      category.products.sort((productA, productB) => {
+        return productA.specs.stock > productB.specs.stock;
+      });
+    }
+  }
+
+  return categoriesData;
 };
 
 export const getRecommendedProducts = (req) => {
-  const { country, isSale, recommendAlgo } = req;
+  const { country, isSale, recommendStrategy } = req;
   /*
   1. filter products available in the country
   2. get the products to feature
@@ -62,6 +100,14 @@ export const getRecommendedProducts = (req) => {
     product.specs = specs;
   }
 
+  if (!isSale) {
+    return productsData;
+  }
+
+  if (recommendStrategy == 'profit') {
+  } else if (recommendStrategy == 'stock') {
+  }
+
   return productsData;
 };
 
@@ -71,8 +117,8 @@ export const getCartSpecs = (req) => {
     2. then check shippping streategy
     3. group the cost
   */
-  const { country, isSale, shippingStrategy, products } = req;
-  const price = {
+  const { country, isSale, shippingWaiver, products } = req;
+  const priceData = {
     mrp: products.reduce((price, currentProduct) => {
       return price + currentProduct.specs.price;
     }, 0),
@@ -90,7 +136,17 @@ export const getCartSpecs = (req) => {
     shippingCost: products.reduce((price, currentProduct) => {
       return price + currentProduct.specs.cost;
     }, 0),
+    ...(shippingWaiver == 'medium' && {
+      discountedShipping: products.reduce((price, currentProduct) => {
+        return (
+          price +
+          (currentProduct.specs.shippingType == 3
+            ? currentProduct.specs.cost
+            : 0)
+        );
+      }, 0),
+    }),
   };
 
-  return price;
+  return priceData;
 };

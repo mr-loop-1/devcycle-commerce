@@ -10,6 +10,7 @@ export const products = [
       price: 199.0,
       discount: 25.25,
       salePrice: 174.75,
+      saleProfit: 32,
       shippingType: 3,
       cost: 23,
     },
