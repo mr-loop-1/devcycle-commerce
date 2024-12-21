@@ -14,16 +14,19 @@ export const getAllProductsAndCategories = (req) => {
   const productsData = products.filter((product) =>
     product.available.includes(country)
   );
-  const specs = {
-    price: productsData.price * currencyMultiplicant[country],
-    shippingType: productsData.shippingType,
-    cost: productsData.cost * currencyMultiplicant[country],
-  };
-  if (isSale) {
-    specs.discount = productsData.discount * currencyMultiplicant[country];
-    specs.salePrice = productsData.salePrice * currencyMultiplicant[country];
+
+  for (const product of productsData) {
+    const specs = {
+      price: product.price * currencyMultiplicant[country],
+      shippingType: product.shippingType,
+      cost: product.cost * currencyMultiplicant[country],
+    };
+    if (isSale) {
+      specs.discount = product.discount * currencyMultiplicant[country];
+      specs.salePrice = product.salePrice * currencyMultiplicant[country];
+    }
+    product.specs = specs;
   }
-  productsData.specs = specs;
 
   const categoriesData = categories;
 
@@ -37,6 +40,57 @@ export const getAllProductsAndCategories = (req) => {
   });
 };
 
-export const recommendAlgo = () => {};
+export const getRecommendedProducts = (req) => {
+  const { country, isSale, recommendAlgo } = req;
+  /*
+  1. filter products available in the country
+  2. get the products to feature
+  3. convert curreny to local
+  */
+  const productsData = products.slice(0, 3);
 
-export const sortAlgo = () => {};
+  for (const product of productsData) {
+    const specs = {
+      price: product.price * currencyMultiplicant[country],
+      shippingType: product.shippingType,
+      cost: product.cost * currencyMultiplicant[country],
+    };
+    if (isSale) {
+      specs.discount = product.discount * currencyMultiplicant[country];
+      specs.salePrice = product.salePrice * currencyMultiplicant[country];
+    }
+    product.specs = specs;
+  }
+
+  return productsData;
+};
+
+export const getCartSpecs = (req) => {
+  /*
+    1. check if is sale is true
+    2. then check shippping streategy
+    3. group the cost
+  */
+  const { country, isSale, shippingStrategy, products } = req;
+  const price = {
+    mrp: products.reduce((price, currentProduct) => {
+      return price + currentProduct.specs.price;
+    }, 0),
+    ...(isSale && {
+      discount: products.reduce((price, currentProduct) => {
+        return price + currentProduct.specs.discount;
+      }, 0),
+    }),
+    ...(isSale && {
+      salePrice: products.reduce((price, currentProduct) => {
+        return price + currentProduct.specs.salePrice;
+      }, 0),
+    }),
+    // check sale and streategy here
+    shippingCost: products.reduce((price, currentProduct) => {
+      return price + currentProduct.specs.cost;
+    }, 0),
+  };
+
+  return price;
+};

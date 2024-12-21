@@ -1,4 +1,9 @@
 import axios from 'axios';
+import {
+  getAllProductsAndCategories,
+  getCartSpecs,
+  getRecommendedProducts,
+} from './server/server';
 
 export const getCountry = async () => {
   try {
@@ -14,9 +19,13 @@ export const getCountry = async () => {
 // MOCK APIs
 
 export const getProductsCategoriesApi = (req) => {
-  const { isSale, sortAlgorithm } = req;
+  return getAllProductsAndCategories(req);
 };
 
-export const getRecommendedApi = (req) => {};
+export const getRecommendedApi = (req) => {
+  return getRecommendedProducts(req);
+};
 
-export const getCartValue = (req) => {};
+export const getCartValue = (req) => {
+  return getCartSpecs(req);
+};
