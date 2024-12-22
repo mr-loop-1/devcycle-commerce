@@ -14,6 +14,7 @@ import RecommendPage from './pages/Recommend';
 import CartPage from './pages/Cart';
 import { useCountry } from './contexts/CountryProvider';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const devcycleClient = useDevCycleClient();
@@ -36,6 +37,7 @@ function App() {
           <Route path="/recommend" Component={RecommendPage} />
           <Route path="/cart" Component={CartPage} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

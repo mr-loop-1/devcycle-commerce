@@ -23,29 +23,29 @@ export default function Showcase({ isSale, data }) {
   }, []);
 
   return (
-    <div id="showcase" className="mx-4">
-      <div className="flex flex-col md:flex-row justify-around w-full h-96 md:h-96">
-        <div className="w-full md:w-[66%] h-[66%] md:h-full bg-gray-400 p-2">
+    <div id="showcase" className="mx-4 my-4">
+      <div className="flex flex-col md:flex-row justify-around w-full max-sm:h-[100vw] md:h-[30vw] ">
+        <div className="max-sm:w-full md:h-full grow bg-gray-400 p-2 aspect-[3/2]">
           {isSale ? (
-            <img src={`/main.jpg`} className="" />
+            <img src={`/main.jpg`} className="h-full object-cover" />
           ) : (
             <img
-              src={`/products/${data[0].products[img2].slug}.png`}
+              src={`/products/${data[0].products[img1].slug}.png`}
               className=""
             />
           )}
         </div>
-        <div className="w-full md:w-[33%] h-[33%] md:h-full bg-green-200 p-2 flex flex-row md:flex-col justify-between">
-          <div className="w-full h-full aspect-square bg-red-100">
+        <div className="max-sm:w-full md:h-full border-2 p-2 flex flex-row md:flex-col justify-between">
+          <div className="max-sm:w-1/2 md:h-1/2 aspect-square bg-red-100">
             <img
               src={`/products/${data[1].products[img2].slug}.png`}
-              className=""
+              className="w-full h-full object-contain"
             />
           </div>
-          <div className="w-full h-full aspect-square bg-blue-100">
+          <div className="max-sm:w-1/2 md:h-1/2 aspect-square bg-blue-100">
             <img
               src={`/products/${data[2].products[img3].slug}.png`}
-              className=""
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
