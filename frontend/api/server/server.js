@@ -121,6 +121,9 @@ export const getCartSpecs = (req) => {
     3. group the cost
   */
   const { country, isSale, shippingWaiver, cartProducts } = req;
+
+  if (!cartProducts.length) return {};
+
   const productsData = structuredClone(products).filter((product) =>
     cartProducts.includes(product.id)
   );
