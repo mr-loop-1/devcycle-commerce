@@ -26,7 +26,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="w-full p-2">
+    <div className="mx-auto md:w-[80%] lg:w-[70%]">
       <div className="">Cart checkout</div>
       <div className="flex flex-col-reverse md:flex-row w-full p-2">
         <div className="cart-products w-full md:w-[50%] bg-red-200">

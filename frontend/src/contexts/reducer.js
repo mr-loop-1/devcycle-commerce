@@ -9,6 +9,10 @@ export default function cartReducer(cart, action) {
       localStorage.setItem('cart', JSON.stringify(newCart));
       return newCart;
     }
+    case 'clear': {
+      localStorage.setItem('cart', '[]');
+      return [];
+    }
     default: {
       console.error('unkown action');
     }

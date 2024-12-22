@@ -28,7 +28,7 @@ export default function RecommendPage() {
   });
 
   return (
-    <div>
+    <div className="mx-auto md:w-[80%] lg:w-[70%]">
       <div className="flex justify-around">
         <div className="">
           some recommendations that you may want to add to your cart"

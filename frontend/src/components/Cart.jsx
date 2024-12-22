@@ -35,7 +35,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
         </SheetHeader>
 
         <div className="flex flex-col h-full justify-between">
-          <div className="flex flex-col overflow-y-auto h-[80%] my-4 py-4 shadow-inner no-scrollbar">
+          <div className="flex flex-col overflow-y-auto h-[80%] my-4 shadow-inner no-scrollbar">
             {cartData.productsData.map((product) => {
               return (
                 <CartProduct

@@ -25,7 +25,7 @@ export const products = [
     categoryId: 1,
     title: 'Mens Plain Cotton Sky Blue Shirt',
     slug: 2,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 1234.0,
       discount: 251.25,
@@ -36,6 +36,7 @@ export const products = [
     },
     stock: {
       IN: 642,
+      CA: 45,
     },
   },
   {
@@ -43,7 +44,7 @@ export const products = [
     categoryId: 1,
     title: 'Mens Designer Textured Short - White',
     slug: 3,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 876.0,
       discount: 251.25,
@@ -54,6 +55,7 @@ export const products = [
     },
     stock: {
       IN: 10,
+      CA: 45,
     },
   },
   {
@@ -61,7 +63,7 @@ export const products = [
     categoryId: 2,
     title: 'Dual Color Leather Shoes - Dark Blue, White',
     slug: 4,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 431.0,
       discount: 21.25,
@@ -72,6 +74,7 @@ export const products = [
     },
     stock: {
       IN: 29,
+      CA: 45,
     },
   },
   {
@@ -79,7 +82,7 @@ export const products = [
     categoryId: 2,
     title: 'Dual Tone Leather Shoes - High Sole - Orange',
     slug: 5,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 5000.0,
       discount: 251.25,
@@ -90,6 +93,7 @@ export const products = [
     },
     stock: {
       IN: 800,
+      CA: 45,
     },
   },
   {
@@ -97,7 +101,7 @@ export const products = [
     categoryId: 2,
     title: 'Trendy Sneakers - Dual Blue Contrast',
     slug: 6,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 100.0,
       discount: 20.25,
@@ -108,6 +112,7 @@ export const products = [
     },
     stock: {
       IN: 23000,
+      CA: 45,
     },
   },
   {
@@ -115,7 +120,7 @@ export const products = [
     categoryId: 3,
     title: 'Mens Standard Bracelet Silver Gold',
     slug: 7,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 1234.0,
       discount: 251.25,
@@ -126,6 +131,7 @@ export const products = [
     },
     stock: {
       IN: 23,
+      CA: 45,
     },
   },
   {
@@ -133,7 +139,7 @@ export const products = [
     categoryId: 3,
     title: 'Leather Strap Premium Keyring - 987',
     slug: 8,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 1234.0,
       discount: 251.25,
@@ -144,6 +150,7 @@ export const products = [
     },
     stock: {
       IN: 23,
+      CA: 45,
     },
   },
   {
@@ -151,7 +158,7 @@ export const products = [
     categoryId: 3,
     title: 'Light Double String Bracelet with Silver Joint',
     slug: 9,
-    available: ['IN'],
+    available: ['IN', 'CA'],
     specs: {
       price: 1234.0,
       discount: 251.25,
@@ -162,6 +169,7 @@ export const products = [
     },
     stock: {
       IN: 23,
+      CA: 45,
     },
   },
 ];
