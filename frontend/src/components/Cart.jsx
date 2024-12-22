@@ -43,6 +43,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
             {cartData.productsData.map((product) => {
               return (
                 <CartProduct
+                  isSale={isSale}
                   product={product}
                   shippingWaiver={shippingWaiver}
                   dispatch={dispatch}

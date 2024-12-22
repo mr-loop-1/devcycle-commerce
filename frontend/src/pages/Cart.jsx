@@ -37,7 +37,14 @@ export default function CartPage() {
           <div className="mt-6 flex flex-col-reverse md:flex-row w-full p-2">
             <div className="cart-products w-full md:w-[55%]">
               {cartData.productsData.map((product) => {
-                return <CartProduct product={product} dispatch={dispatch} />;
+                return (
+                  <CartProduct
+                    isSale={isSale}
+                    shippingWaiver={shippingWaiver}
+                    product={product}
+                    dispatch={dispatch}
+                  />
+                );
               })}
             </div>
             <div className="md:ml-4 flex h-fit flex-col w-full md:w-[40%]  p-1">
