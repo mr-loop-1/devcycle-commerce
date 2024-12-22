@@ -13,8 +13,7 @@ import { useCountry } from '@/contexts/CountryProvider';
 export default function HomePage() {
   const isSale = useVariableValue('sale-active', true);
   const sortStrategy = useVariableValue('sort-strategy', 'normal');
-  console.log('🚀 ~ HomePage ~ sortStrategy:', sortStrategy);
-  const chatbotStatus = useVariableValue('chatbot', true);
+  const chatbot = useVariableValue('chatbot-status', true);
 
   const { country } = useCountry();
 
@@ -49,7 +48,6 @@ export default function HomePage() {
     isSale,
     sortStrategy,
   });
-  console.log('🚀 ~ HomePage ~ data:', data);
 
   useEffect(() => {
     if (isSale) {

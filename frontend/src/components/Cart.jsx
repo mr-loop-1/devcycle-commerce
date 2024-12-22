@@ -17,7 +17,6 @@ export default function CartDrawer({ triggerCart, country }) {
     'shipping-price-strategy',
     'null'
   );
-  const saleActiveFlag = useVariableValue('sale-active', false);
 
   return (
     <Sheet>

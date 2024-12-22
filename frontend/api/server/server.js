@@ -92,13 +92,15 @@ export const getRecommendedProducts = (req) => {
 
   for (const product of productsData) {
     const specs = {
-      price: product.price * currencyMultiplicant[country],
-      shippingType: product.shippingType,
-      cost: product.cost * currencyMultiplicant[country],
+      price: product.specs.price * currencyMultiplicant[country],
+      shippingType: product.specs.shippingType,
+      cost: product.specs.cost * currencyMultiplicant[country],
     };
     if (isSale) {
-      specs.discount = product.discount * currencyMultiplicant[country];
-      specs.salePrice = product.salePrice * currencyMultiplicant[country];
+      specs.discount = product.specs.discount * currencyMultiplicant[country];
+      specs.salePrice = product.specs.salePrice * currencyMultiplicant[country];
+      specs.saleProfit =
+        product.specs.saleProfit * currencyMultiplicant[country];
     }
     product.specs = specs;
   }

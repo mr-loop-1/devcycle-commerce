@@ -1,10 +1,13 @@
 import { useVariableValue } from '@devcycle/react-client-sdk';
 import react from 'react';
 import CartDrawer from './Cart';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const saleActiveFlag = useVariableValue('sale-active', false);
-  const separateCartPageFlag = useVariableValue('separate-cart-page', false);
+  const separateCartPageFlag = useVariableValue('cart-page', true);
+  const recommendPageFlag = useVariableValue('recommend-page', true);
+  const shippingWaiver = useVariableValue('shipping-waiver', true);
 
   let navBannerPath = saleActiveFlag ? '/sale/banner.jpg' : '/navBanner.jpg';
 
@@ -16,7 +19,11 @@ export default function Header() {
       >
         <div id="sitelogo"></div>
         <div id="country selector"></div>
-        {separateCartPageFlag ? <span>Cart</span> : <CartDrawer />}
+        {separateCartPageFlag ? (
+          <Link to={recommendPageFlag ? '/recommend' : '/cart'}>Cart</Link>
+        ) : (
+          <CartDrawer />
+        )}
       </div>
     </div>
   );

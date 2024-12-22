@@ -29,8 +29,8 @@ function App() {
 
   return (
     <div>
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route path="" Component={HomePage} />
           <Route path="/recommend" Component={RecommendPage} />

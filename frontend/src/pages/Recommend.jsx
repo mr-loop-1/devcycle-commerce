@@ -1,15 +1,31 @@
 import { Button } from '@/components/ui/button';
+import { useVariableValue } from '@devcycle/react-client-sdk';
 import { Link, redirect } from 'react-router-dom';
+import { getRecommendedApi } from '../../api/api';
+import Product from '@/components/Product';
+import { useCountry } from '@/contexts/CountryProvider';
 
 export default function RecommendPage() {
-  const saleActiveFlag = useVariableValue('sale-active', false);
-  const recommendPageFlag = useVariableValue('recommend-page', false);
-  const recommendStrategy = useVariableValue('recommend-strategy', null);
-  const chatbot = useVariableValue('chatbot', false);
+  const isSale = useVariableValue('sale-active', false);
+  const recommendPage = useVariableValue('recommend-page', false);
+  const recommendStrategy = useVariableValue(
+    'recommend-strategy',
+    'normal-order'
+  );
+  const chatbot = useVariableValue('chatbot-status', false);
+  const shippingWaiver = useVariableValue('shipping-waiver', 'normal');
 
-  if (!saleActiveFlag || !recommendPageFlag) {
+  const { country } = useCountry();
+
+  if (!isSale || !recommendPage) {
     redirect('/');
   }
+
+  const data = getRecommendedApi({
+    isSale,
+    country,
+    recommendStrategy,
+  });
 
   return (
     <div>
@@ -19,7 +35,15 @@ export default function RecommendPage() {
         </div>
         <Link to="/cart">Continue to cart...</Link>
       </div>
-      <div id="recommended-products"></div>
+      <div id="recommended-products">
+        <div className="flex">
+          {data.map((product) => {
+            return (
+              <Product product={product} shippingWaiver={shippingWaiver} />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

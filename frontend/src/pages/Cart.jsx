@@ -1,13 +1,13 @@
-export default function CartPage() {
-  const saleActiveFlag = useVariableValue('sale-active', false);
-  const separateCartPageFlag = useVariableValue('separate-cart-page', false);
-  const shippingPriceStrategy = useVariableValue(
-    'shipping-price-strategy',
-    null
-  );
-  const chatbot = useVariableValue('chatbot', false);
+import { useVariableValue } from '@devcycle/react-client-sdk';
+import { redirect } from 'react-router-dom';
 
-  if (!saleActiveFlag || !separateCartPageFlag) {
+export default function CartPage() {
+  const isSale = useVariableValue('sale-active', false);
+  const cartPage = useVariableValue('cart-page', false);
+  const shippingWaiver = useVariableValue('shipping-waiver', 'normal');
+  const chatbot = useVariableValue('chatbot-status', false);
+
+  if (!isSale || !cartPage) {
     redirect('/');
   }
 
