@@ -36,13 +36,13 @@ export default function Showcase({ isSale, data }) {
           )}
         </div>
         <div className="w-full md:w-[33%] h-[33%] md:h-full bg-green-200 p-2 flex flex-row md:flex-col justify-between">
-          <div className="w-full h-full bg-red-100">
+          <div className="w-full h-full aspect-square bg-red-100">
             <img
               src={`/products/${data[1].products[img2].slug}.png`}
               className=""
             />
           </div>
-          <div className="w-full h-full bg-blue-100">
+          <div className="w-full h-full aspect-square bg-blue-100">
             <img
               src={`/products/${data[2].products[img3].slug}.png`}
               className=""

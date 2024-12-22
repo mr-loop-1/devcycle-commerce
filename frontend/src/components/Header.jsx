@@ -39,7 +39,9 @@ export default function Header() {
         className="h-24 w-full flex justify-between items-center bg-red-100"
         // style={{ backgroundImage: `url(${navBannerPath})` }}
       >
-        <div id="sitelogo">logo</div>
+        <div id="sitelogo">
+          <img src={`/commerce.png`} className="inline h-14" />
+        </div>
         <div className="flex">
           <div id="country selector">
             <Select onValueChange={setCountry}>

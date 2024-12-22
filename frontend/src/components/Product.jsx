@@ -8,7 +8,7 @@ export default function Product({ product }) {
   const { cart, dispatch } = useCart();
 
   return (
-    <Card className="p-2 w-60 h-fit flex-shrink-0">
+    <Card className="p-2 w-60 mb-2 h-fit flex-shrink-0 mr-3 md:mr-6">
       <img src={`/products/${product.slug}.png`} />
       <div className="flex w-full justify-between">
         <div className="">weqda</div>
