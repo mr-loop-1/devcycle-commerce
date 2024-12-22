@@ -22,7 +22,6 @@ export default function CartPage() {
     shippingWaiver,
     cartProducts: cart,
   });
-  console.log('🚀 ~ CartPage ~ cartData:', cartData);
 
   if (!isSale || !cartPage) {
     redirect('/');
@@ -62,19 +61,31 @@ export default function CartPage() {
                   <span>Shipping Cost</span>
                   <span>{cartData.priceData.shippingCost.toFixed(2)}</span>
                 </span>
-                {shippingWaiver != 'normal' && (
-                  <span className="flex justify-between">
-                    <span>Shipping Discount</span>
-                    <span>
-                      {(
-                        cartData.priceData.shippingCost -
-                        cartData.priceData.discountedShipping
-                      ).toFixed(2)}
+                {isSale &&
+                  shippingWaiver == 'medium' &&
+                  cartData.priceData.shippingCost !=
+                    cartData.priceData.discountedShipping && (
+                    <span className="flex justify-between">
+                      <span>Shipping Discount</span>
+                      <span>
+                        -
+                        {(
+                          cartData.priceData.shippingCost -
+                          cartData.priceData.discountedShipping
+                        ).toFixed(2)}
+                      </span>
                     </span>
-                  </span>
-                )}
+                  )}
+                {isSale &&
+                  shippingWaiver == 'high' &&
+                  cartData.priceData.shippingCost != 0 && (
+                    <span className="flex justify-between">
+                      <span>Shipping Discount</span>
+                      <span>-{cartData.priceData.shippingCost.toFixed(2)}</span>
+                    </span>
+                  )}
                 {isSale && (
-                  <div className="p-2 mt-2 bg-lime-300 font-mono rounded-xl">
+                  <div className="p-2 bg-lime-300 font-mono rounded-xl">
                     Congratulations, you have saved{' '}
                     {(
                       cartData.priceData.mrp - cartData.priceData.salePrice
@@ -82,10 +93,34 @@ export default function CartPage() {
                     on this order
                   </div>
                 )}
+                {isSale &&
+                  shippingWaiver == 'medium' &&
+                  (cartData.priceData.shippingCost !=
+                  cartData.priceData.discountedShipping ? (
+                    <div className="bg-blue-300 h-3">congr</div>
+                  ) : (
+                    <div className="bg-blue-300 h-3">sory</div>
+                  ))}
+                {isSale &&
+                  shippingWaiver == 'high' &&
+                  (cartData.priceData.shippingCost ? (
+                    <div className="bg-red-300 h-3">congrats</div>
+                  ) : (
+                    <div className="bg-red-300 h-3">sryy</div>
+                  ))}
               </Card>
               <Card className="h-fit mt-4 py-4 px-2 mb-6 md:p-6 bg-stone-200 flex justify-between text-xl font-semibold">
                 <span>Total Cost</span>
-                <span>{cartData.priceData.salePrice.toFixed(2)}</span>
+                <span>
+                  {(shippingWaiver == 'high'
+                    ? cartData.priceData.salePrice
+                    : shippingWaiver == 'medium'
+                    ? cartData.priceData.salePrice +
+                      cartData.priceData.discountedShipping
+                    : cartData.priceData.salePrice +
+                      cartData.priceData.shippingCost
+                  ).toFixed(2)}
+                </span>
               </Card>
             </div>
           </div>

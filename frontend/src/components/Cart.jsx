@@ -1,13 +1,9 @@
-import { Button } from './ui/button';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
-  SheetClose,
 } from '@/components/ui/sheet';
 import { Card } from './ui/card';
 import CartProduct from './CartProducts';
@@ -24,7 +20,6 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
     shippingWaiver,
     cartProducts: cart,
   });
-  console.log('🚀 ~ CartDrawer ~ cartData:', cartData);
 
   return (
     <Sheet className="w-96">
@@ -57,8 +52,11 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
           </div>
           {isSale && (
             <div className="p-2 bg-lime-300 font-mono rounded-xl">
-              Congratulations, you have saved {cartData.priceData.discount} on
-              this order
+              Congratulations, you have saved{' '}
+              {(cartData.priceData.mrp - cartData.priceData.salePrice).toFixed(
+                2
+              )}{' '}
+              on this order
             </div>
           )}
           {isSale &&
