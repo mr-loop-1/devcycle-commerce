@@ -119,13 +119,16 @@ export default function CartPage() {
               <Card className="h-fit mt-4 py-4 px-2 mb-6 md:p-6 bg-stone-200 flex justify-between text-xl font-semibold">
                 <span>Total Cost</span>
                 <span>
-                  {(shippingWaiver == 'high'
-                    ? cartData.priceData.salePrice
-                    : shippingWaiver == 'medium'
-                    ? cartData.priceData.salePrice +
-                      cartData.priceData.discountedShipping
-                    : cartData.priceData.salePrice +
-                      cartData.priceData.shippingCost
+                  {(isSale
+                    ? shippingWaiver == 'normal'
+                      ? cartData.priceData.salePrice +
+                        cartData.priceData.shippingCost
+                      : shippingWaiver == 'medium'
+                      ? cartData.priceData.salePrice +
+                        cartData.priceData.discountedShipping
+                      : cartData.priceData.salePrice +
+                        cartData.priceData.shippingCost
+                    : cartData.priceData.mrp + cartData.priceData.shippingCost
                   ).toFixed(2)}
                 </span>
               </Card>

@@ -43,10 +43,10 @@ export default function Header() {
   return (
     <div className="top-0 sticky bg-white mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl">
       <div
-        className="  h-24 w-full flex justify-between items-center border-b-2"
+        className="mt-2 h-24 w-full flex justify-between items-center border-b-2"
         // style={{ backgroundImage: `url(${navBannerPath})` }}
       >
-        <div id="sitelogo">
+        <div id="sitelogo" className="ml-2 mt-2">
           <Link to="/">
             <img src={`/commerce.png`} className="inline h-14" />
             <span className="font-bold text-2xl ml-2">
@@ -57,7 +57,7 @@ export default function Header() {
             </span>
           </Link>
         </div>
-        <div className="flex">
+        <div className="flex mt-2">
           <div id="country selector" className="ml-2 mr-3 shadow-lg">
             <Select onValueChange={setCountry}>
               <SelectTrigger className="">
@@ -89,26 +89,28 @@ export default function Header() {
               </SelectContent>
             </Select>
           </div>
-          {cartPage ? (
-            <Link
-              className="relative"
-              to={isSale && recommendPage ? dynamicCartPath : '/cart'}
-            >
-              <ShoppingBag className="h-7 w-7" />
-              {cart.length > 0 && (
-                <span className="absolute -top-1 -right-2 bg-black font-bold dark:bg-coffee-light text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cart.length}
-                </span>
-              )}
-            </Link>
-          ) : (
-            <CartDrawer
-              cart={cart}
-              country={country}
-              isSale={isSale}
-              shippingWaiver={shippingWaiver}
-            />
-          )}
+          <span className="mr-3 mt-2">
+            {cartPage ? (
+              <Link
+                className="relative"
+                to={isSale && recommendPage ? dynamicCartPath : '/cart'}
+              >
+                <ShoppingBag className="h-7 w-7" />
+                {cart.length > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-black font-bold dark:bg-coffee-light text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cart.length}
+                  </span>
+                )}
+              </Link>
+            ) : (
+              <CartDrawer
+                cart={cart}
+                country={country}
+                isSale={isSale}
+                shippingWaiver={shippingWaiver}
+              />
+            )}
+          </span>
         </div>
       </div>
       {isSale && <div className="w-full h-3 bg-green-300"></div>}

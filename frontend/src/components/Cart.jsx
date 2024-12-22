@@ -20,6 +20,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
     shippingWaiver,
     cartProducts: cart,
   });
+  console.log('🚀 ~ CartDrawer ~ cartData:', cartData);
 
   return (
     <Sheet className="w-96">
@@ -126,13 +127,16 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
               <span className="flex justify-between text-2xl font-semibold">
                 <span className="">Total Cost:</span>
                 <span>
-                  {(shippingWaiver == 'high'
-                    ? cartData.priceData.salePrice
-                    : shippingWaiver == 'medium'
-                    ? cartData.priceData.salePrice +
-                      cartData.priceData.discountedShipping
-                    : cartData.priceData.salePrice +
-                      cartData.priceData.shippingCost
+                  {(isSale
+                    ? shippingWaiver == 'normal'
+                      ? cartData.priceData.salePrice +
+                        cartData.priceData.shippingCost
+                      : shippingWaiver == 'medium'
+                      ? cartData.priceData.salePrice +
+                        cartData.priceData.discountedShipping
+                      : cartData.priceData.salePrice +
+                        cartData.priceData.shippingCost
+                    : cartData.priceData.mrp + cartData.priceData.shippingCost
                   ).toFixed(2)}
                 </span>
               </span>

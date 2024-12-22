@@ -31,7 +31,7 @@ export default function Showcase({ isSale, data }) {
           ) : (
             <img
               src={`/products/${data[0].products[img1].slug}.png`}
-              className=""
+              className="h-full object-cover mx-auto"
             />
           )}
         </Card>
