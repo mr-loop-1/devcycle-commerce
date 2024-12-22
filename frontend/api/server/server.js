@@ -3,7 +3,7 @@ import { categories } from '../db/categories';
 import { currencyMultiplicant, country } from '../db/config';
 
 export const getAllProductsAndCategories = (req) => {
-  const { country, isSale, sortStrategy, shippingWaiver } = req;
+  const { country, isSale, sortStrategy } = req;
   /*
     1. filter products available in the country
     2. convert to correct currency
@@ -36,24 +36,27 @@ export const getAllProductsAndCategories = (req) => {
       ),
     };
   });
+  console.log('🚀 ~ categoriesData ~ categoriesData:', categoriesData);
 
   if (!isSale) {
     return categoriesData;
   }
 
-  categoriesData.profitPerItem = Math.floor(
-    categories.products.reduce(
-      (price, current) => price + current.specs.saleProfit,
-      0
-    ) / categories.products.length
-  );
+  for (const category of categoriesData) {
+    category.profitPerItem = Math.floor(
+      category.products.reduce(
+        (price, current) => price + current.specs.saleProfit,
+        0
+      ) / category.products.length
+    );
 
-  categories.stockPerItem = Math.floor(
-    categories.products.reduce(
-      (stock, current) => stock + current.specs.stock,
-      0
-    ) / categories.products.length
-  );
+    category.stockPerItem = Math.floor(
+      category.products.reduce(
+        (stock, current) => stock + current.stock[country],
+        0
+      ) / category.products.length
+    );
+  }
 
   if (sortStrategy == 'profit') {
     categoriesData.sort((categoryA, categoryB) => {
@@ -70,7 +73,7 @@ export const getAllProductsAndCategories = (req) => {
     });
     for (const category of categoriesData) {
       category.products.sort((productA, productB) => {
-        return productA.specs.stock > productB.specs.stock;
+        return productA.stock[country] > productB.stock[country];
       });
     }
   }

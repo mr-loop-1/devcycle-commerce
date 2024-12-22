@@ -10,11 +10,12 @@ import {
   SheetClose,
 } from '@/components/ui/sheet';
 import { Card } from './ui/card';
+import { useVariableValue } from '@devcycle/react-client-sdk';
 
 export default function CartDrawer({ triggerCart, country }) {
   const shippingPriceStrategy = useVariableValue(
     'shipping-price-strategy',
-    null
+    'null'
   );
   const saleActiveFlag = useVariableValue('sale-active', false);
 
