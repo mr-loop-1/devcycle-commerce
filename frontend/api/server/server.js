@@ -36,7 +36,6 @@ export const getAllProductsAndCategories = (req) => {
       ),
     };
   });
-  console.log('🚀 ~ categoriesData ~ categoriesData:', categoriesData);
 
   if (!isSale) {
     return categoriesData;
@@ -60,20 +59,20 @@ export const getAllProductsAndCategories = (req) => {
 
   if (sortStrategy == 'profit') {
     categoriesData.sort((categoryA, categoryB) => {
-      return categoryA.profitPerItem > categoryB.profitPerItem;
+      return categoryB.profitPerItem - categoryA.profitPerItem;
     });
     for (const category of categoriesData) {
       category.products.sort((productA, productB) => {
-        return productA.specs.saleProfit > productB.specs.saleProfit;
+        return productB.specs.saleProfit - productA.specs.saleProfit;
       });
     }
   } else if (sortStrategy == 'stock') {
     categoriesData.sort((categoryA, categoryB) => {
-      return categoryA.stockPerItem > categoryB.stockPerItem;
+      return categoryB.stockPerItem - categoryA.stockPerItem;
     });
     for (const category of categoriesData) {
       category.products.sort((productA, productB) => {
-        return productA.stock[country] > productB.stock[country];
+        return productB.stock[country] - productA.stock[country];
       });
     }
   }

@@ -8,12 +8,18 @@ export default function Showcase({ isSale, data }) {
   const [img3, setImg3] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval1 = setInterval(() => {
       setImg1((prev) => (prev + 1) % 3);
       setImg3((prev) => (prev + 1) % 3);
-    }, 5000);
+    }, 3000);
+    const interval2 = setInterval(() => {
+      setImg2((prev) => (prev + 1) % 3);
+    }, 2000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval1);
+      clearInterval(interval2);
+    };
   }, []);
 
   return (
@@ -21,12 +27,12 @@ export default function Showcase({ isSale, data }) {
       <div className="flex flex-col md:flex-row justify-around w-full h-96 md:h-96">
         <div className="w-full md:w-[66%] h-[66%] md:h-full bg-gray-400 p-2">
           {isSale ? (
+            <img src={`/main.jpg`} className="" />
+          ) : (
             <img
               src={`/products/${data[0].products[img2].slug}.png`}
               className=""
             />
-          ) : (
-            <img src={`/main.jpg`} className="" />
           )}
         </div>
         <div className="w-full md:w-[33%] h-[33%] md:h-full bg-green-200 p-2 flex flex-row md:flex-col justify-between">

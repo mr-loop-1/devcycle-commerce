@@ -1,13 +1,12 @@
-export default function Categories() {
+export default function Categories({ isSale, data }) {
   // top three/four categories
-  const arr = [1, 2, 3];
   return (
     <div>
       <div className="flex justify-around">
-        {arr.map((i) => {
+        {data.map((category) => {
           return (
             <div className="">
-              <img src={`/categories/${i}.jpg`} className="" />
+              <img src={`/categories/${category.slug}.png`} className="" />
             </div>
           );
         })}
