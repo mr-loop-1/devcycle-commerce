@@ -2,14 +2,19 @@ import { useVariableValue } from '@devcycle/react-client-sdk';
 import react from 'react';
 import CartDrawer from './Cart';
 import { Link } from 'react-router-dom';
+import { useCart } from '@/contexts/CartProvider';
+import { useCountry } from '@/contexts/CountryProvider';
 
 export default function Header() {
-  const saleActiveFlag = useVariableValue('sale-active', false);
-  const separateCartPageFlag = useVariableValue('cart-page', true);
-  const recommendPageFlag = useVariableValue('recommend-page', true);
+  const isSale = useVariableValue('sale-active', false);
+  const cartPage = useVariableValue('cart-page', false);
+  const recommendPage = useVariableValue('recommend-page', true);
   const shippingWaiver = useVariableValue('shipping-waiver', true);
 
-  let navBannerPath = saleActiveFlag ? '/sale/banner.jpg' : '/navBanner.jpg';
+  const { cart, dispatch } = useCart();
+  const { country } = useCountry();
+
+  let navBannerPath = isSale ? '/sale/banner.jpg' : '/navBanner.jpg';
 
   return (
     <div>
@@ -19,10 +24,15 @@ export default function Header() {
       >
         <div id="sitelogo"></div>
         <div id="country selector"></div>
-        {separateCartPageFlag ? (
-          <Link to={recommendPageFlag ? '/recommend' : '/cart'}>Cart</Link>
+        {cartPage ? (
+          <Link to={recommendPage ? '/recommend' : '/cart'}>Cart</Link>
         ) : (
-          <CartDrawer />
+          <CartDrawer
+            cart={cart}
+            country={country}
+            isSale={isSale}
+            shippingWaiver={shippingWaiver}
+          />
         )}
       </div>
     </div>

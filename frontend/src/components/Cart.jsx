@@ -11,12 +11,19 @@ import {
 } from '@/components/ui/sheet';
 import { Card } from './ui/card';
 import { useVariableValue } from '@devcycle/react-client-sdk';
+import CartProduct from './CartProducts';
+import { useCart } from '@/contexts/CartProvider';
+import { getCartValue } from '../../api/api';
 
-export default function CartDrawer({ triggerCart, country }) {
-  const shippingPriceStrategy = useVariableValue(
-    'shipping-price-strategy',
-    'null'
-  );
+export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
+  const { dispatch } = useCart();
+
+  const cartData = getCartValue({
+    isSale,
+    country,
+    shippingWaiver,
+    cartProducts: cart,
+  });
 
   return (
     <Sheet>
@@ -32,20 +39,12 @@ export default function CartDrawer({ triggerCart, country }) {
           <div id="cart-items" className=""></div>
           <Card id="cart-price-and-coupons" className="mb-2">
             <div className="">
-              Price:
-              <br />
-              jndjqwkn
-              <br />
-              jkdmw
+              {cartData.productsData.map((product) => {
+                return <CartProduct product={product} dispatch={dispatch} />;
+              })}
             </div>
           </Card>
         </div>
-
-        {/* <SheetFooter className="">
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-        </SheetFooter> */}
       </SheetContent>
     </Sheet>
   );

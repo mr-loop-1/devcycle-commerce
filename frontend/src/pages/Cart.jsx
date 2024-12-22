@@ -31,7 +31,7 @@ export default function CartPage() {
       <div className="flex flex-col-reverse md:flex-row w-full p-2">
         <div className="cart-products w-full md:w-[50%] bg-red-200">
           {cartData.productsData.map((product) => {
-            return <CartProduct product={product} />;
+            return <CartProduct product={product} dispatch={dispatch} />;
           })}
         </div>
         <div className="flex h-fit flex-col w-full md:w-[50%] bg-green-200 p-2">
