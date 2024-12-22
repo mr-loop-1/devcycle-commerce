@@ -22,7 +22,6 @@ export const getAllProductsAndCategories = (req) => {
       cost: product.specs.cost * currencyMultiplicant[country],
     };
     if (isSale) {
-      specs.discount = product.specs.discount * currencyMultiplicant[country];
       specs.salePrice = product.specs.salePrice * currencyMultiplicant[country];
       specs.saleProfit =
         product.specs.saleProfit * currencyMultiplicant[country];
@@ -97,7 +96,6 @@ export const getRecommendedProducts = (req) => {
       cost: product.specs.cost * currencyMultiplicant[country],
     };
     if (isSale) {
-      specs.discount = product.specs.discount * currencyMultiplicant[country];
       specs.salePrice = product.specs.salePrice * currencyMultiplicant[country];
       specs.saleProfit =
         product.specs.saleProfit * currencyMultiplicant[country];
@@ -130,11 +128,6 @@ export const getCartSpecs = (req) => {
     mrp: productsData.reduce((accumulator, currentProduct) => {
       return accumulator + currentProduct.specs.price;
     }, 0),
-    ...(isSale && {
-      discount: productsData.reduce((accumulator, currentProduct) => {
-        return accumulator + currentProduct.specs.discount;
-      }, 0),
-    }),
     ...(isSale && {
       salePrice: productsData.reduce((accumulator, currentProduct) => {
         return accumulator + currentProduct.specs.salePrice;
