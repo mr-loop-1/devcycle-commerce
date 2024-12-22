@@ -10,10 +10,10 @@ export default function Product({ isSale, product, country }) {
 
   return (
     <Card className="p-2 w-60 mb-2 flex-shrink-0 mr-3 md:mr-6 flex flex-col">
-      <img src={`/products/${product.slug}.png`} />
+      <img src={`/products/${product.slug}.webp`} />
       <div className="flex w-full flex-col justify-between grow">
         <div className="">
-          <span className="">{product.title}</span>
+          <span className="font-mono">{product.title}</span>
         </div>
 
         <div className="flex justify-between items-center">

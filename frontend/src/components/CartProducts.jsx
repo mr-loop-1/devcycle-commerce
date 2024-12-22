@@ -18,11 +18,11 @@ export default function CartProduct({
           <div className="h-28 md:h-36 aspect-square ">
             <img
               className="w-full h-full object-contain rounded-2xl "
-              src={`/products/${product.slug}.png`}
+              src={`/products/${product.slug}.webp`}
             />
           </div>
           <div className="ml-2 flex flex-col">
-            <span className="">{product.title}</span>
+            <span className="font-mono">{product.title}</span>
             <span className="mt-1">
               {isSale ? (
                 <span>

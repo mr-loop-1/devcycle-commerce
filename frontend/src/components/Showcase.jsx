@@ -30,7 +30,7 @@ export default function Showcase({ isSale, data }) {
             <img src={`/main.jpg`} className="h-full object-cover" />
           ) : (
             <img
-              src={`/products/${data[0].products[img1].slug}.png`}
+              src={`/products/${data[0].products[img1].slug}.webp`}
               className="h-full object-cover mx-auto"
             />
           )}
@@ -38,13 +38,13 @@ export default function Showcase({ isSale, data }) {
         <div className="max-sm:w-full md:h-full border-2 p-2 flex flex-row md:flex-col justify-between">
           <div className="max-sm:w-1/2 md:h-1/2 aspect-square bg-red-100">
             <img
-              src={`/products/${data[1].products[img2].slug}.png`}
+              src={`/products/${data[1].products[img2].slug}.webp`}
               className="w-full h-full object-contain"
             />
           </div>
           <div className="max-sm:w-1/2 md:h-1/2 aspect-square bg-blue-100">
             <img
-              src={`/products/${data[2].products[img3].slug}.png`}
+              src={`/products/${data[2].products[img3].slug}.webp`}
               className="w-full h-full object-contain"
             />
           </div>
