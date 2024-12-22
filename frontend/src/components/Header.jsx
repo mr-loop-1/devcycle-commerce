@@ -15,7 +15,7 @@ import { country as countryConfig, countryArray } from '../../api/db/config';
 import { ShoppingBag } from 'lucide-react';
 
 export default function Header() {
-  const isSale = useVariableValue('sale-active', true);
+  const isSale = useVariableValue('sale-active', false);
   const cartPage = useVariableValue('cart-page', false);
   const recommendPage = useVariableValue('recommend-page', true);
   const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
@@ -77,7 +77,7 @@ export default function Header() {
                   .map((c) => {
                     // slug here too
                     return (
-                      <SelectItem value={c}>
+                      <SelectItem value={c} className="cursor-pointer">
                         <img
                           src={`/countries/${countryConfig[c].slug}.svg`}
                           className="inline h-5 w-5 mr-2"

@@ -43,6 +43,7 @@ export default function CartPage() {
                     shippingWaiver={shippingWaiver}
                     product={product}
                     dispatch={dispatch}
+                    country={country}
                   />
                 );
               })}

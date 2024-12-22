@@ -3,7 +3,7 @@ import {
   useDevCycleClient,
   useVariableValue,
 } from '@devcycle/react-client-sdk';
-import Confetti from 'https://esm.sh/react-confetti';
+// import Confetti from 'https://esm.sh/react-confetti';
 import Showcase from '@/components/Showcase';
 import Categories from '@/components/Categories';
 import ProductList from '@/components/ProductList';
@@ -11,7 +11,7 @@ import { getProductsCategoriesApi } from './../../api/api';
 import { useCountry } from '@/contexts/CountryProvider';
 
 export default function HomePage() {
-  const isSale = useVariableValue('sale-active', true);
+  const isSale = useVariableValue('sale-active', false);
   const sortStrategy = useVariableValue('sort-strategy', 'normal');
   const chatbot = useVariableValue('chatbot-status', true);
 
@@ -64,11 +64,11 @@ export default function HomePage() {
   return (
     <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
-      {confetti && <Confetti />}
+      {/* {confetti && <Confetti />} */}
 
       <Showcase data={data} isSale={isSale} />
-      <Categories data={data} />
-      <ProductList data={data} />
+      <Categories data={data} isSale={isSale} />
+      <ProductList data={data} country={country} isSale={isSale} />
     </div>
   );
 }

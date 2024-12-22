@@ -1,6 +1,6 @@
 import Product from './Product.jsx';
 
-export default function ProductList({ isSale, data }) {
+export default function ProductList({ isSale, data, country }) {
   return (
     <div id="plist" className="mt-10">
       {data.map((category) => {
@@ -14,7 +14,13 @@ export default function ProductList({ isSale, data }) {
               style={{ scrollbarWidth: 'thin' }}
             >
               {category.products.map((product) => {
-                return <Product isSale={isSale} product={product} />;
+                return (
+                  <Product
+                    isSale={isSale}
+                    product={product}
+                    country={country}
+                  />
+                );
               })}
               {/* {category.products.map((product) => {
                 return <Product product={product} />;

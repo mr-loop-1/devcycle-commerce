@@ -10,6 +10,7 @@ import CartProduct from './CartProducts';
 import { useCart } from '@/contexts/CartProvider';
 import { getCartValue } from '../../api/api';
 import { ShoppingBag } from 'lucide-react';
+import { country as countryConfig } from '../../api/db/config';
 
 export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
   const { dispatch } = useCart();
@@ -20,7 +21,6 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
     shippingWaiver,
     cartProducts: cart,
   });
-  console.log('🚀 ~ CartDrawer ~ cartData:', cartData);
 
   return (
     <Sheet className="w-96">
@@ -48,6 +48,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   product={product}
                   shippingWaiver={shippingWaiver}
                   dispatch={dispatch}
+                  country={country}
                 />
               );
             })}
@@ -83,13 +84,16 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
             >
               <span className="flex justify-between">
                 <span>Cart Value</span>
-                <span>{cartData.priceData.mrp.toFixed(2)}</span>
+                <span>
+                  {countryConfig[country].currency}
+                  {cartData.priceData.mrp.toFixed(2)}
+                </span>
               </span>
               {isSale && (
                 <span className="flex justify-between">
                   <span className="">Sale Discount</span>
                   <span>
-                    -
+                    {countryConfig[country].currency}-
                     {(
                       cartData.priceData.mrp - cartData.priceData.salePrice
                     ).toFixed(2)}
@@ -99,7 +103,10 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
 
               <span className="flex justify-between">
                 <span>Shipping Charges</span>
-                <span>{cartData.priceData.shippingCost.toFixed(2)}</span>
+                <span>
+                  {countryConfig[country].currency}
+                  {cartData.priceData.shippingCost.toFixed(2)}
+                </span>
               </span>
               {isSale &&
                 shippingWaiver == 'medium' &&
@@ -108,7 +115,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   <span className="flex justify-between">
                     <span>Shipping Discount</span>
                     <span>
-                      -
+                      {countryConfig[country].currency}-
                       {(
                         cartData.priceData.shippingCost -
                         cartData.priceData.discountedShipping
@@ -121,12 +128,16 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                 cartData.priceData.shippingCost != 0 && (
                   <span className="flex justify-between">
                     <span>Shipping Discount</span>
-                    <span>-{cartData.priceData.shippingCost.toFixed(2)}</span>
+                    <span>
+                      {countryConfig[country].currency}-
+                      {cartData.priceData.shippingCost.toFixed(2)}
+                    </span>
                   </span>
                 )}
               <span className="flex justify-between text-2xl font-semibold">
                 <span className="">Total Cost:</span>
                 <span>
+                  {countryConfig[country].currency}
                   {(isSale
                     ? shippingWaiver == 'normal'
                       ? cartData.priceData.salePrice +

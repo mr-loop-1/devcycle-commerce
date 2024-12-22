@@ -53,21 +53,11 @@ export default function RecommendPage() {
             {data.map((product) => {
               return (
                 <div className="mt-4 mx-2">
-                  <Product product={product} shippingWaiver={shippingWaiver} />
-                </div>
-              );
-            })}
-            {data.map((product) => {
-              return (
-                <div className="mt-4 mx-2">
-                  <Product product={product} shippingWaiver={shippingWaiver} />
-                </div>
-              );
-            })}
-            {data.map((product) => {
-              return (
-                <div className="mt-4 mx-2">
-                  <Product product={product} shippingWaiver={shippingWaiver} />
+                  <Product
+                    product={product}
+                    shippingWaiver={shippingWaiver}
+                    country={country}
+                  />
                 </div>
               );
             })}

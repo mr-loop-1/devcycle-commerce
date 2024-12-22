@@ -4,7 +4,7 @@ export const products = [
     categoryId: 1,
     title: "Men's Cotton Dark Blue Shirt",
     slug: 1,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -15,6 +15,11 @@ export const products = [
     stock: {
       IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -22,7 +27,7 @@ export const products = [
     categoryId: 1,
     title: 'Mens Plain Cotton Sky Blue Shirt',
     slug: 2,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -31,8 +36,13 @@ export const products = [
       cost: 20.5,
     },
     stock: {
-      IN: 642,
+      IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -40,7 +50,7 @@ export const products = [
     categoryId: 1,
     title: 'Mens Designer Textured Short - White',
     slug: 3,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -49,8 +59,13 @@ export const products = [
       cost: 20.5,
     },
     stock: {
-      IN: 10,
+      IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -58,7 +73,7 @@ export const products = [
     categoryId: 2,
     title: 'Dual Color Leather Shoes - Dark Blue, White',
     slug: 4,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -67,8 +82,13 @@ export const products = [
       cost: 20.5,
     },
     stock: {
-      IN: 29,
+      IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -76,7 +96,7 @@ export const products = [
     categoryId: 2,
     title: 'Dual Tone Leather Shoes - High Sole - Orange',
     slug: 5,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -85,8 +105,13 @@ export const products = [
       cost: 20.5,
     },
     stock: {
-      IN: 800,
+      IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -94,7 +119,7 @@ export const products = [
     categoryId: 2,
     title: 'Trendy Sneakers - Dual Blue Contrast',
     slug: 6,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -103,8 +128,13 @@ export const products = [
       cost: 20.5,
     },
     stock: {
-      IN: 23000,
+      IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -112,7 +142,7 @@ export const products = [
     categoryId: 3,
     title: 'Mens Standard Bracelet Silver Gold',
     slug: 7,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -123,6 +153,11 @@ export const products = [
     stock: {
       IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -130,7 +165,7 @@ export const products = [
     categoryId: 3,
     title: 'Leather Strap Premium Keyring - 987',
     slug: 8,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -141,6 +176,11 @@ export const products = [
     stock: {
       IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
   {
@@ -148,7 +188,7 @@ export const products = [
     categoryId: 3,
     title: 'Light Double String Bracelet with Silver Joint',
     slug: 9,
-    available: ['IN', 'CA'],
+    available: ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'],
     specs: {
       price: 199.0,
       salePrice: 174.75,
@@ -159,6 +199,11 @@ export const products = [
     stock: {
       IN: 23,
       CA: 45,
+      US: 32,
+      JP: 123,
+      AE: 312,
+      CN: 12,
+      GB: 32,
     },
   },
 ];

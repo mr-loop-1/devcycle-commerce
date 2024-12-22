@@ -124,6 +124,19 @@ export const getCartSpecs = (req) => {
   const productsData = structuredClone(products).filter((product) =>
     cartProducts.includes(product.id)
   );
+  for (const product of productsData) {
+    const specs = {
+      price: product.specs.price * currencyMultiplicant[country],
+      shippingType: product.specs.shippingType,
+      cost: product.specs.cost * currencyMultiplicant[country],
+    };
+    if (isSale) {
+      specs.salePrice = product.specs.salePrice * currencyMultiplicant[country];
+      specs.saleProfit =
+        product.specs.saleProfit * currencyMultiplicant[country];
+    }
+    product.specs = specs;
+  }
   const priceData = {
     mrp: productsData.reduce((accumulator, currentProduct) => {
       return accumulator + currentProduct.specs.price;

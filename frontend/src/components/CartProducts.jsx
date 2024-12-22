@@ -2,12 +2,14 @@ import { shippingType } from '../../api/db/config.js';
 import Product from './Product.jsx';
 import { Button } from './ui/button.jsx';
 import { Card } from './ui/card.jsx';
+import { country as countryConfig } from '../../api/db/config';
 
 export default function CartProduct({
   isSale,
   product,
   shippingWaiver,
   dispatch,
+  country,
 }) {
   if (shippingWaiver)
     return (
@@ -25,14 +27,17 @@ export default function CartProduct({
               {isSale ? (
                 <span>
                   <span className="text-blue-700 font-semibold text-lg">
+                    {countryConfig[country].currency}
                     {product.specs.salePrice.toFixed(2)}
                   </span>
                   <span className="ml-2 line-through text font-semibold">
+                    {countryConfig[country].currency}
                     {product.specs.price.toFixed(2)}
                   </span>
                 </span>
               ) : (
                 <span className="font-semibold">
+                  {countryConfig[country].currency}
                   {product.specs.price.toFixed(2)}
                 </span>
               )}
@@ -43,27 +48,35 @@ export default function CartProduct({
               ) : product.specs.shippingType == 2 ? (
                 isSale && ['high', 'medium'].includes(shippingWaiver) ? (
                   <span className="line-through">
+                    {countryConfig[country].currency}
                     {product.specs.cost.toFixed(2)} shipping
                   </span>
                 ) : (
-                  <span>{product.specs.cost.toFixed(2)} shipping</span>
+                  <span>
+                    {countryConfig[country].currency}
+                    {product.specs.cost.toFixed(2)} shipping
+                  </span>
                 )
               ) : isSale && shippingWaiver == 'high' ? (
                 <span className="line-through">
+                  {countryConfig[country].currency}
                   {product.specs.cost.toFixed(2)} shipping
                 </span>
               ) : (
-                <span>{product.specs.cost.toFixed(2)} shipping</span>
+                <span>
+                  {countryConfig[country].currency}
+                  {product.specs.cost.toFixed(2)} shipping
+                </span>
               )}
             </span>
             {isSale &&
-              shippingType == 2 &&
+              product.specs.shippingType == 2 &&
               ['high', 'medium'].includes(shippingWaiver) && (
                 <span>Shipping Waived in Sale</span>
               )}
-            {isSale && shippingType == 3 && shippingWaiver == 'high' && (
-              <span>Shipping Waived in Sale</span>
-            )}
+            {isSale &&
+              product.specs.shippingType == 3 &&
+              shippingWaiver == 'high' && <span>Shipping Waived in Sale</span>}
           </div>
         </div>
         <div
