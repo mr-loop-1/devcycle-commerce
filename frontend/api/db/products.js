@@ -5,8 +5,9 @@ export const products = [
     title: "Men's Cotton Dark Blue Shirt",
     slug: 1,
     available: ['IN', 'CA'],
+    price: 199.0,
+    discount: 25.25,
     specs: {
-      // for India only, then use multiplicant
       price: 199.0,
       discount: 25.25,
       salePrice: 174.75,

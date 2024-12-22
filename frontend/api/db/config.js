@@ -16,5 +16,6 @@ export const country = {
 };
 
 export const currencyMultiplicant = {
+  IN: 1,
   CA: 0.017,
 };

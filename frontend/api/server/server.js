@@ -11,27 +11,29 @@ export const getAllProductsAndCategories = (req) => {
     4. sort the categories list
     5. sort products list
   */
-  const productsData = products.filter((product) =>
+  const productsData = structuredClone(products).filter((product) =>
     product.available.includes(country)
   );
 
   for (const product of productsData) {
     const specs = {
-      price: product.price * currencyMultiplicant[country],
-      shippingType: product.shippingType,
-      cost: product.cost * currencyMultiplicant[country],
+      price: product.specs.price * currencyMultiplicant[country],
+      shippingType: product.specs.shippingType,
+      cost: product.specs.cost * currencyMultiplicant[country],
     };
     if (isSale) {
-      specs.discount = product.discount * currencyMultiplicant[country];
-      specs.salePrice = product.salePrice * currencyMultiplicant[country];
+      specs.discount = product.specs.discount * currencyMultiplicant[country];
+      specs.salePrice = product.specs.salePrice * currencyMultiplicant[country];
+      specs.saleProfit =
+        product.specs.saleProfit * currencyMultiplicant[country];
     }
     product.specs = specs;
   }
 
-  const categoriesData = categories.map((category) => {
+  const categoriesData = structuredClone(categories).map((category) => {
     return {
       ...category,
-      products: products.filter(
+      products: productsData.filter(
         (product) => product.categoryId === category.id
       ),
     };
@@ -44,14 +46,13 @@ export const getAllProductsAndCategories = (req) => {
   for (const category of categoriesData) {
     category.profitPerItem = Math.floor(
       category.products.reduce(
-        (price, current) => price + current.specs.saleProfit,
+        (accumulator, current) => accumulator + current.specs.saleProfit,
         0
       ) / category.products.length
     );
-
     category.stockPerItem = Math.floor(
       category.products.reduce(
-        (stock, current) => stock + current.stock[country],
+        (accumulator, current) => accumulator + current.stock[country],
         0
       ) / category.products.length
     );
@@ -87,7 +88,7 @@ export const getRecommendedProducts = (req) => {
   2. get the products to feature
   3. convert curreny to local
   */
-  const productsData = products.slice(0, 3);
+  const productsData = structuredClone(products).slice(0, 3);
 
   for (const product of productsData) {
     const specs = {
@@ -120,28 +121,29 @@ export const getCartSpecs = (req) => {
     3. group the cost
   */
   const { country, isSale, shippingWaiver, products } = req;
+  const productsData = structuredClone(products);
   const priceData = {
-    mrp: products.reduce((price, currentProduct) => {
-      return price + currentProduct.specs.price;
+    mrp: productsData.reduce((accumulator, currentProduct) => {
+      return accumulator + currentProduct.specs.price;
     }, 0),
     ...(isSale && {
-      discount: products.reduce((price, currentProduct) => {
-        return price + currentProduct.specs.discount;
+      discount: productsData.reduce((accumulator, currentProduct) => {
+        return accumulator + currentProduct.specs.discount;
       }, 0),
     }),
     ...(isSale && {
-      salePrice: products.reduce((price, currentProduct) => {
-        return price + currentProduct.specs.salePrice;
+      salePrice: productsData.reduce((accumulator, currentProduct) => {
+        return accumulator + currentProduct.specs.salePrice;
       }, 0),
     }),
     // check sale and streategy here
-    shippingCost: products.reduce((price, currentProduct) => {
-      return price + currentProduct.specs.cost;
+    shippingCost: productsData.reduce((accumulator, currentProduct) => {
+      return accumulator + currentProduct.specs.cost;
     }, 0),
     ...(shippingWaiver == 'medium' && {
-      discountedShipping: products.reduce((price, currentProduct) => {
+      discountedShipping: productsData.reduce((accumulator, currentProduct) => {
         return (
-          price +
+          accumulator +
           (currentProduct.specs.shippingType == 3
             ? currentProduct.specs.cost
             : 0)
