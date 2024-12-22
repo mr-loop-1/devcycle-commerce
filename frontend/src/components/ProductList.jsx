@@ -5,7 +5,7 @@ export default function ProductList({ isSale, data }) {
     <div id="plist">
       {data.map((category) => {
         return (
-          <div className="my-4">
+          <div className="my-4" id={`category-${category.id}`}>
             <div className="">{category.title}</div>
             <div
               className="w-full flex overflow-x-auto"

@@ -15,7 +15,7 @@ import { country as countryConfig, countryArray } from '../../api/db/config';
 import { ShoppingBag } from 'lucide-react';
 
 export default function Header() {
-  const isSale = useVariableValue('sale-active', false);
+  const isSale = useVariableValue('sale-active', true);
   const cartPage = useVariableValue('cart-page', false);
   const recommendPage = useVariableValue('recommend-page', true);
   const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
@@ -41,18 +41,24 @@ export default function Header() {
   };
 
   return (
-    <div className="mx-4 md:mx-auto md:w-[80%] lg:w-[70%]">
+    <div className="top-0 sticky bg-white mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl">
       <div
-        className="h-24 w-full flex justify-between items-center border-b-2"
+        className="  h-24 w-full flex justify-between items-center border-b-2"
         // style={{ backgroundImage: `url(${navBannerPath})` }}
       >
         <div id="sitelogo">
           <Link to="/">
             <img src={`/commerce.png`} className="inline h-14" />
+            <span className="font-bold text-2xl ml-2">
+              <span className="text-blue-700">DevCycle</span>{' '}
+              <span className="text-red-600">
+                {isSale ? <>live sale</> : <>commerce</>}
+              </span>
+            </span>
           </Link>
         </div>
         <div className="flex">
-          <div id="country selector">
+          <div id="country selector" className="ml-2 mr-3 shadow-lg">
             <Select onValueChange={setCountry}>
               <SelectTrigger className="">
                 <SelectValue

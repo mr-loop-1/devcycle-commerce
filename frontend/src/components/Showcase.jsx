@@ -23,9 +23,9 @@ export default function Showcase({ isSale, data }) {
   }, []);
 
   return (
-    <div id="showcase" className="mx-4 my-4">
+    <div id="showcase" className="my-4">
       <div className="flex flex-col md:flex-row justify-around w-full max-sm:h-[100vw] md:h-[30vw] ">
-        <div className="max-sm:w-full md:h-full grow bg-gray-400 p-2 aspect-[3/2]">
+        <Card className="max-sm:w-full md:h-full grow  p-1 md:p-2">
           {isSale ? (
             <img src={`/main.jpg`} className="h-full object-cover" />
           ) : (
@@ -34,7 +34,7 @@ export default function Showcase({ isSale, data }) {
               className=""
             />
           )}
-        </div>
+        </Card>
         <div className="max-sm:w-full md:h-full border-2 p-2 flex flex-row md:flex-col justify-between">
           <div className="max-sm:w-1/2 md:h-1/2 aspect-square bg-red-100">
             <img
