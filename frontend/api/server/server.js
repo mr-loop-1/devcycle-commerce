@@ -122,8 +122,10 @@ export const getCartSpecs = (req) => {
     2. then check shippping streategy
     3. group the cost
   */
-  const { country, isSale, shippingWaiver, products } = req;
-  const productsData = structuredClone(products);
+  const { country, isSale, shippingWaiver, cartProducts } = req;
+  const productsData = structuredClone(products).filter((product) =>
+    cartProducts.includes(product.id)
+  );
   const priceData = {
     mrp: productsData.reduce((accumulator, currentProduct) => {
       return accumulator + currentProduct.specs.price;
@@ -154,5 +156,5 @@ export const getCartSpecs = (req) => {
     }),
   };
 
-  return priceData;
+  return { priceData, productsData };
 };
