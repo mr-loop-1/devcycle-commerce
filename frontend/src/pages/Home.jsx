@@ -62,7 +62,7 @@ export default function HomePage() {
   }, [isSale]);
 
   return (
-    <div className="mx-auto md:w-[80%] lg:w-[70%]">
+    <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {confetti && <Confetti />}
 

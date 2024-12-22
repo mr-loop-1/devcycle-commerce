@@ -12,14 +12,14 @@ export default function ProductList({ isSale, data }) {
               style={{ scrollbarWidth: 'thin' }}
             >
               {category.products.map((product) => {
+                return <Product isSale={isSale} product={product} />;
+              })}
+              {/* {category.products.map((product) => {
                 return <Product product={product} />;
               })}
               {category.products.map((product) => {
                 return <Product product={product} />;
-              })}
-              {category.products.map((product) => {
-                return <Product product={product} />;
-              })}
+              })} */}
             </div>
           </div>
         );

@@ -30,7 +30,7 @@ export default function RecommendPage() {
   });
 
   return (
-    <div className="mx-auto md:w-[80%] lg:w-[70%]">
+    <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
       <Card className="mx-2 mt-4 py-5 md:py-10 px-4">
         <div className="w-full text-center text-orange-500 text-4xl font-bold">
           tailored for you
