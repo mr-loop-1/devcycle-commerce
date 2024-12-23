@@ -1,0 +1,14 @@
+[
+  {
+    "query": "abcs",
+    "variable": "shipping-waiver",
+    "target": ["medium", "high"],
+    "cause": ["normal"],
+    "impact": [
+      {
+        "id": 1,
+        "multiplicant": 0.5
+      }
+    ]
+  }
+]
