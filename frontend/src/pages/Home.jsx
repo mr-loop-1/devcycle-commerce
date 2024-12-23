@@ -9,6 +9,7 @@ import Categories from '@/components/Categories';
 import ProductList from '@/components/ProductList';
 import { getProductsCategoriesApi } from './../../api/api';
 import { useCountry } from '@/contexts/CountryProvider';
+import ChatBot from '@/components/ChatBot';
 
 export default function HomePage() {
   const isSale = useVariableValue('sale-status', false);
@@ -96,6 +97,8 @@ export default function HomePage() {
       <Showcase data={data} isSale={isSale} />
       {/* <Categories data={data} isSale={isSale} /> */}
       <ProductList data={data} country={country} isSale={isSale} />
+      {chatbot && <ChatBot />}
+      <ChatBot />
     </div>
   );
 }

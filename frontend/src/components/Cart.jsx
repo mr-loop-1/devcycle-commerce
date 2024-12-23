@@ -55,30 +55,43 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
               })}
             </div>
             {isSale && (
-              <div className="p-2 bg-lime-300 font-mono rounded-xl">
+              <div className="p-2 bg-lime-600 text-white font-semibold font-mono rounded-xl text-sm ">
                 Congratulations, you have saved{' '}
+                {countryConfig[country].currency}
                 {(
                   cartData.priceData.mrp - cartData.priceData.salePrice
                 ).toFixed(2)}{' '}
                 on this order
               </div>
             )}
+
             {isSale &&
               shippingWaiver == 'medium' &&
               (cartData.priceData.shippingCost !=
               cartData.priceData.discountedShipping ? (
-                <div className="bg-blue-300 h-3">congr</div>
+                <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
+                  Congratulations, some of the products in cart are eligible for
+                  free shipping
+                </div>
               ) : (
-                <div className="bg-blue-300 h-3">sory</div>
+                <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
+                  Unfortunately, none of your cart items are eligible for free
+                  shipping under the offer
+                </div>
               ))}
             {isSale &&
               shippingWaiver == 'high' &&
               (cartData.priceData.shippingCost ? (
-                <div className="bg-red-300 h-3">congrats</div>
+                <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
+                  Congratulations, some of the products in cart are eligible for
+                  free shipping
+                </div>
               ) : (
-                <div className="bg-red-300 h-3">sryy</div>
+                <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
+                  All items in your cart are already free shipping
+                </div>
               ))}
-            <Card className="mt-2 mb-6 md:mb-10">
+            <Card className="mt-2 mb-3 md:mb-5">
               <div id="cart-drawer-cost" className="flex flex-col mx-2">
                 <span className="flex justify-between">
                   <span>Cart Value</span>
@@ -88,7 +101,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   </span>
                 </span>
                 {isSale && (
-                  <span className="flex justify-between">
+                  <span className="flex justify-between my-1">
                     <span className="">Sale Discount</span>
                     <span>
                       {countryConfig[country].currency}-
@@ -99,7 +112,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   </span>
                 )}
 
-                <span className="flex justify-between">
+                <span className="flex justify-between my-1">
                   <span>Shipping Charges</span>
                   <span>
                     {countryConfig[country].currency}
@@ -110,7 +123,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   shippingWaiver == 'medium' &&
                   cartData.priceData.shippingCost !=
                     cartData.priceData.discountedShipping && (
-                    <span className="flex justify-between">
+                    <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
                       <span>
                         {countryConfig[country].currency}-
@@ -124,7 +137,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                 {isSale &&
                   shippingWaiver == 'high' &&
                   cartData.priceData.shippingCost != 0 && (
-                    <span className="flex justify-between">
+                    <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
                       <span>
                         {countryConfig[country].currency}-
@@ -132,7 +145,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                       </span>
                     </span>
                   )}
-                <span className="flex justify-between text-2xl font-semibold">
+                <span className="flex justify-between text-2xl font-semibold my-1">
                   <span className="">Total Cost:</span>
                   <span>
                     {countryConfig[country].currency}

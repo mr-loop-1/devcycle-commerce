@@ -6,9 +6,10 @@ import { useCountry } from '@/contexts/CountryProvider';
 import CartProduct from '@/components/CartProducts';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { country as countryConfig } from '../../api/db/config';
 
 export default function CartPage() {
-  const isSale = useVariableValue('sale-active', false);
+  const isSale = useVariableValue('sale-status', false);
   const cartPage = useVariableValue('cart-page', false);
   const shippingWaiver = useVariableValue('shipping-waiver', 'normal');
   const chatbot = useVariableValue('chatbot-status', false);
@@ -52,31 +53,37 @@ export default function CartPage() {
               <Card className="h-fit py-4 px-2 md:p-6 bg-stone-200 flex flex-col">
                 <span className="flex justify-between">
                   <span>Cart Value</span>
-                  <span>{cartData.priceData.mrp.toFixed(2)}</span>
+                  <span>
+                    {countryConfig[country].currency}
+                    {cartData.priceData.mrp.toFixed(2)}
+                  </span>
                 </span>
                 {isSale && (
-                  <span className="flex justify-between">
-                    <span>Sale Discount</span>
+                  <span className="flex justify-between my-1">
+                    <span className="">Sale Discount</span>
                     <span>
-                      -
+                      {countryConfig[country].currency}-
                       {(
                         cartData.priceData.mrp - cartData.priceData.salePrice
                       ).toFixed(2)}
                     </span>
                   </span>
                 )}
-                <span className="flex justify-between">
-                  <span>Shipping Cost</span>
-                  <span>{cartData.priceData.shippingCost.toFixed(2)}</span>
+                <span className="flex justify-between my-1">
+                  <span>Shipping Charges</span>
+                  <span>
+                    {countryConfig[country].currency}
+                    {cartData.priceData.shippingCost.toFixed(2)}
+                  </span>
                 </span>
                 {isSale &&
                   shippingWaiver == 'medium' &&
                   cartData.priceData.shippingCost !=
                     cartData.priceData.discountedShipping && (
-                    <span className="flex justify-between">
+                    <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
                       <span>
-                        -
+                        {countryConfig[country].currency}-
                         {(
                           cartData.priceData.shippingCost -
                           cartData.priceData.discountedShipping
@@ -87,14 +94,18 @@ export default function CartPage() {
                 {isSale &&
                   shippingWaiver == 'high' &&
                   cartData.priceData.shippingCost != 0 && (
-                    <span className="flex justify-between">
+                    <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
-                      <span>-{cartData.priceData.shippingCost.toFixed(2)}</span>
+                      <span>
+                        {countryConfig[country].currency}-
+                        {cartData.priceData.shippingCost.toFixed(2)}
+                      </span>
                     </span>
                   )}
                 {isSale && (
-                  <div className="p-2 bg-lime-300 font-mono rounded-xl">
+                  <div className="p-2 mt-4 font-mono rounded-xl  bg-lime-600 text-white font-semibold">
                     Congratulations, you have saved{' '}
+                    {countryConfig[country].currency}
                     {(
                       cartData.priceData.mrp - cartData.priceData.salePrice
                     ).toFixed(2)}{' '}
@@ -105,21 +116,36 @@ export default function CartPage() {
                   shippingWaiver == 'medium' &&
                   (cartData.priceData.shippingCost !=
                   cartData.priceData.discountedShipping ? (
-                    <div className="bg-blue-300 h-3">congr</div>
+                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
+                      Congratulations, some of the products in cart are eligible
+                      for free shipping
+                    </div>
                   ) : (
-                    <div className="bg-blue-300 h-3">sory</div>
+                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
+                      {' '}
+                      Unfortunately, none of your cart items are eligible for
+                      free shipping under the offer
+                    </div>
                   ))}
                 {isSale &&
                   shippingWaiver == 'high' &&
                   (cartData.priceData.shippingCost ? (
-                    <div className="bg-red-300 h-3">congrats</div>
+                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
+                      Congratulations, some of the products in cart are eligible
+                      for free shipping
+                    </div>
                   ) : (
-                    <div className="bg-red-300 h-3">sryy</div>
+                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
+                      {' '}
+                      Unfortunately, none of your cart items are eligible for
+                      free shipping under the offer
+                    </div>
                   ))}
               </Card>
               <Card className="h-fit mt-4 py-4 px-2 mb-6 md:p-6 bg-stone-200 flex justify-between text-xl font-semibold">
                 <span>Total Cost</span>
                 <span>
+                  {countryConfig[country].currency}
                   {(isSale
                     ? shippingWaiver == 'normal'
                       ? cartData.priceData.salePrice +
