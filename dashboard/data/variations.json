@@ -3,12 +3,12 @@
     "key": "sale-active",
     "name": "sale active",
     "variables": {
-      "sale-status": "true"
+      "sale-status": true
     },
     "variablesArray": [
       {
         "key": "sale-status",
-        "value": "true"
+        "value": true
       }
     ]
   },
@@ -16,12 +16,12 @@
     "key": "sale-inactive",
     "name": "sale inactive",
     "variables": {
-      "sale-status": "false"
+      "sale-status": false
     },
     "variablesArray": [
       {
         "key": "sale-status",
-        "value": "false"
+        "value": false
       }
     ]
   },

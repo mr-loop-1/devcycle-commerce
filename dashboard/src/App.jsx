@@ -14,6 +14,7 @@ import Reference from './components/Reference';
 import { useToast } from '@/hooks/use-toast';
 import showToast from './components/errorToast';
 import InfoBox from './components/ProjectInfo';
+import State from './components/State';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -173,6 +174,7 @@ function App() {
         )}
       </Card>
       <Reference />
+      <State featureState={featureState} />
     </div>
   );
 }
