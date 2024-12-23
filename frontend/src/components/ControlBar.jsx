@@ -14,8 +14,6 @@ import State from './State';
 
 export default function ControlBar() {
   // const { inspect, setInspect } = useInspect();
-  console.log('🚀 ~ ControlBar ~ inspect:', inspect);
-
   return (
     <div className="mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl mt-8 py-2 border-2 flex justify-center items-center">
       {/* <span>
