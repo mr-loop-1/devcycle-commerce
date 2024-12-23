@@ -5,6 +5,8 @@ import FeatureHistory from '@/components/featureActions/featureHistory';
 import ErrorTab from '@/components/ErrorTab';
 import { useToast } from '@/hooks/use-toast';
 import showToast from '@/components/errorToast';
+import State from '@/components/State';
+import Reference from '@/components/Reference';
 
 export default function ControlPanel({
   apiKey,
@@ -22,56 +24,62 @@ export default function ControlPanel({
   const { toast } = useToast();
 
   const handleAction = async (rawData) => {
-    setLoading(() => true);
+    try {
+      setLoading(() => true);
 
-    const data = {
-      country: {
-        key: rawData.country,
-      },
-      feature: {
-        key: rawData.feature,
-      },
-      newVariation: {
-        key: rawData.variation,
-      },
-      oldVariation: {
-        key: featureState[rawData.country][rawData.feature].served.key,
-      },
-    };
+      const data = {
+        country: {
+          key: rawData.country,
+        },
+        feature: {
+          key: rawData.feature,
+        },
+        newVariation: {
+          key: rawData.variation,
+        },
+        oldVariation: {
+          key: featureState[rawData.country][rawData.feature].served.key,
+        },
+      };
 
-    // change both feature state and target state and using target state change the api too;
-    const newFeatureState = structuredClone(featureState);
-    newFeatureState[data.country.key][data.feature.key].served.key =
-      data.newVariation.key;
+      // change both feature state and target state and using target state change the api too;
+      const newFeatureState = structuredClone(featureState);
+      newFeatureState[data.country.key][data.feature.key].served.key =
+        data.newVariation.key;
 
-    const newTargetState = structuredClone(targetState);
-    const idx = newTargetState[data.feature.key].findIndex((target) => {
-      return (
-        target.audience.filters.filters[0].values[0] ==
-        data.country.key.toUpperCase()
+      const newTargetState = structuredClone(targetState);
+      const idx = newTargetState[data.feature.key].findIndex((target) => {
+        return (
+          target.audience.filters.filters[0].values[0] ==
+          data.country.key.toUpperCase()
+        );
+      });
+
+      newTargetState[data.feature.key][idx].distribution[0]._variation =
+        variationIds[data.newVariation.key];
+
+      const response = await createTargetsApi(
+        apiKey,
+        projectKey,
+        data.feature.key,
+        newTargetState[data.feature.key]
       );
-    });
 
-    newTargetState[data.feature.key][idx].distribution[0]._variation =
-      variationIds[data.newVariation.key];
-
-    const response = await createTargetsApi(
-      apiKey,
-      projectKey,
-      data.feature.key,
-      newTargetState[data.feature.key]
-    );
-
-    if (response.type == 'success') {
-      setFeatureState(() => newFeatureState);
-      setTargetState(() => newTargetState);
-      setStream((oldStream) => [...oldStream, data]);
-    } else {
-      showToast(toast, response.type);
-      setError(() => response.type);
+      if (response.type == 'success') {
+        setFeatureState(() => newFeatureState);
+        setTargetState(() => newTargetState);
+        setStream((oldStream) => [...oldStream, data]);
+      } else {
+        showToast(toast, response.type);
+        setError(() => response.type);
+      }
+    } catch (err) {
+      console.error(err);
+      showToast(toast, 'unknownError');
+      setError(() => 'unknownError');
+    } finally {
+      setLoading(() => false);
     }
-
-    setLoading(() => false);
   };
 
   return (
@@ -79,6 +87,11 @@ export default function ControlPanel({
       {stream.map((history, i) => {
         return <FeatureHistory history={history} key={i} />;
       })}
+
+      <div className="flex justify-center">
+        <State featureState={featureState} />
+        <Reference />
+      </div>
 
       <FeatureAction
         handleAction={handleAction}

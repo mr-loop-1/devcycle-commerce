@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div>
-      <Card className="mx-6 mt-6 pt-6 px-6 h-screen md:mx-14 lg:mx-auto max-auto lg:max-w-2xl">
+      <Card className="mx-6 mt-6 pt-6 px-6  md:mx-14 lg:mx-auto max-auto lg:max-w-2xl mb-40 pb-40">
         <div id="header" className="flex justify-between mb-6">
           <img
             className="inline cursor-pointer"

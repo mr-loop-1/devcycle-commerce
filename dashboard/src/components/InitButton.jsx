@@ -24,21 +24,28 @@ export default function InitButton({
   const handleSetup = async () => {
     try {
       setLoading(() => true);
-      setError(() => null);
+      // setError(() => null);
 
       const projectKeyResponse = await createProject({ apiKey });
+      console.log('🚀 ~ handleSetup ~ projectKeyResponse:', projectKeyResponse);
       if (projectKeyResponse.type != 'success') {
         showToast(toast, projectKeyResponse.type);
         setError(() => projectKeyResponse.type);
+        return;
       }
       setProjectKey(() => projectKeyResponse.data);
       const featuresDataResponse = await createFeatures({
         apiKey,
         projectKey: projectKeyResponse.data,
       });
+      console.log(
+        '🚀 ~ handleSetup ~ featuresDataResponse:',
+        featuresDataResponse
+      );
       if (featuresDataResponse.type != 'success') {
         showToast(toast, featuresDataResponse.type);
         setError(() => featuresDataResponse.type);
+        return;
       }
       const variationIds = setVariations(featuresDataResponse.data);
 
@@ -49,14 +56,20 @@ export default function InitButton({
         projectKeyResponse.data,
         variationIds
       );
+      console.log(
+        '🚀 ~ handleSetup ~ targetsDataResponse:',
+        targetsDataResponse
+      );
       if (targetsDataResponse.type != 'success') {
         showToast(toast, targetsDataResponse.type);
         setError(() => targetsDataResponse.type);
+        return;
       }
       setTargetState(() => targetsDataResponse.data);
 
       setRemoteSetup(() => true);
     } catch (err) {
+      console.log('🚀 ~ handleSetup ~ err:', err);
       showToast(toast, 'unknownError');
       setError(() => 'unknownError');
     } finally {
@@ -93,6 +106,11 @@ export default function InitButton({
           <span className="text-red-700 text-sm font-semibold">
             There seems to be some problem synchornising the features with
             devcycle. The data is found to be out-of-order or invalid
+          </span>
+        )}
+        {error == 'unkownError' && (
+          <span className="text-red-700 text-sm font-semibold">
+            Unkown error has occured. The project data may have been corrupted.
           </span>
         )}
       </div>

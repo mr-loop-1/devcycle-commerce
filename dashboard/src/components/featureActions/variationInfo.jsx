@@ -35,7 +35,7 @@ export default function VariationInfo({ label, variation }) {
               {variationJson[variation].variablesArray.map((variable) => {
                 return (
                   <li>
-                    {variable.key} : {variable.value}
+                    {variable.key} : {String(variable.value)}
                   </li>
                 );
               })}

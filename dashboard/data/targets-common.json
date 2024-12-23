@@ -2,13 +2,31 @@
   "sale": {
     "key": "sale",
     "served": {
-      "key": "active"
+      "key": "sale-inactive"
     }
   },
   "algorithms": {
     "key": "algorithms",
     "served": {
-      "key": "stock-aware"
+      "key": "normal-order"
+    }
+  },
+  "cart-interface": {
+    "key": "cart-interface",
+    "served": {
+      "key": "normal-layout"
+    }
+  },
+  "shipping": {
+    "key": "shipping",
+    "served": {
+      "key": "normal"
+    }
+  },
+  "chatbot": {
+    "key": "chatbot",
+    "served": {
+      "key": "chatbot-inactive"
     }
   }
 }

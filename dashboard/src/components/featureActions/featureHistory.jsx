@@ -62,13 +62,13 @@ export default function FeatureHistory({ history }) {
                     </span>
                     :{' '}
                     <span className="text-red-700 font-semibold">
-                      {variable.value}
+                      {String(variable.value)}
                       <MoveRightIcon className="inline text-black mx-2" />
-                      {
+                      {String(
                         variationJson[history.newVariation.key].variables[
                           variable.key
                         ]
-                      }
+                      )}
                     </span>
                   </span>
                 );
