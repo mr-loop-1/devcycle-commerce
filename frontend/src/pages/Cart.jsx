@@ -173,17 +173,18 @@ export default function CartPage() {
                 <span>Total Cost</span>
                 <span>
                   {countryConfig[country].currency}
-                  {(isSale
-                    ? shippingWaiver == 'none'
-                      ? cartData.priceData.salePrice +
-                        cartData.priceData.shippingCost
-                      : shippingWaiver == 'primary'
-                      ? cartData.priceData.salePrice +
-                        cartData.priceData.discountedShipping
-                      : cartData.priceData.salePrice +
-                        cartData.priceData.shippingCost
-                    : cartData.priceData.mrp + cartData.priceData.shippingCost
+                  {(isSale && shippingWaiver == 'none'
+                    ? cartData.priceData.salePrice +
+                      cartData.priceData.shippingCost
+                    : shippingWaiver == 'primary'
+                    ? cartData.priceData.salePrice +
+                      cartData.priceData.discountedShipping
+                    : cartData.priceData.salePrice
                   ).toFixed(2)}
+                  {!isSale &&
+                    (
+                      cartData.priceData.mrp + cartData.priceData.shippingCost
+                    ).toFixed(2)}
                 </span>
               </Card>
             </div>

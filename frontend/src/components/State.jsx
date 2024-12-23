@@ -21,7 +21,7 @@ export default function State() {
     <div>
       <Dialog>
         <DialogTrigger>
-          <Button className="bg-blue-700">State</Button>
+          <Button className="bg-blue-700">Flag State</Button>
         </DialogTrigger>
         <DialogContent className="max-w-[90%] md:max-w-[60%] lg:max-w-[40%] overflow-y-auto max-h-screen">
           <DialogHeader>

@@ -41,7 +41,7 @@ export default function Product({ isSale, product, country }) {
               {product.specs.shippingType == 1 ? (
                 <span>Free Shipping</span>
               ) : product.specs.shippingType == 2 ? (
-                isSale && ['high', 'medium'].includes(shippingWaiver) ? (
+                isSale && ['all', 'primary'].includes(shippingWaiver) ? (
                   <span className="line-through">
                     {countryConfig[country].currency}
                     {product.specs.cost.toFixed(2)} shipping
@@ -52,7 +52,7 @@ export default function Product({ isSale, product, country }) {
                     {product.specs.cost.toFixed(2)} shipping
                   </span>
                 )
-              ) : isSale && shippingWaiver == 'high' ? (
+              ) : isSale && shippingWaiver == 'all' ? (
                 <span className="line-through">
                   {countryConfig[country].currency}
                   {product.specs.cost.toFixed(2)} shipping
@@ -66,12 +66,14 @@ export default function Product({ isSale, product, country }) {
             </span>
             {isSale &&
               product.specs.shippingType == 2 &&
-              ['high', 'medium'].includes(shippingWaiver) && (
-                <span>Shipping Waived in Sale</span>
+              ['all', 'primary'].includes(shippingWaiver) && (
+                <span className="text-sm text-orange-800">Shipping Waived</span>
               )}
             {isSale &&
               product.specs.shippingType == 3 &&
-              shippingWaiver == 'high' && <span>Shipping Waived in Sale</span>}
+              shippingWaiver == 'all' && (
+                <span className="text-sm text-orange-800">Shipping Waived</span>
+              )}
           </div>
           {cart.includes(product.id) ? (
             <Button
