@@ -112,7 +112,7 @@ export const createTargetsApi = async (key, projectKey, featureKey, data) => {
     // 404 not possible
     const response = await axios.patch(
       `https://api.devcycle.com/v1/projects/${projectKey}/features/${featureKey}/configurations`,
-      { targets: data },
+      { targets: data, status: 'active' },
       {
         params: {
           environment: import.meta.env.DEVCYCLE_ENV || 'development',

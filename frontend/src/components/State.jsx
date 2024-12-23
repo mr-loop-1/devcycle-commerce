@@ -16,7 +16,6 @@ export default function State() {
   const devcycleClient = useDevCycleClient();
 
   const features = devcycleClient.allFeatures();
-  console.log('🚀 ~ Reference ~ features:', features);
 
   return (
     <div>
@@ -24,7 +23,7 @@ export default function State() {
         <DialogTrigger>
           <Button>State</Button>
         </DialogTrigger>
-        <DialogContent className="max-w-[90%] md:max-w-[50%] lg:max-w-[30%] overflow-y-auto max-h-screen">
+        <DialogContent className="max-w-[90%] md:max-w-[60%] lg:max-w-[40%] overflow-y-auto max-h-screen">
           <DialogHeader>
             <DialogTitle>Devcycle Live Feature Snapshot</DialogTitle>
             <DialogDescription className="text-base">
@@ -41,7 +40,7 @@ export default function State() {
   );
 }
 
-function RefFeature({ featureKey, featureState }) {
+function RefFeature({ featureKey, features }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -71,27 +70,27 @@ function RefFeature({ featureKey, featureState }) {
           <span>
             served variation:{' '}
             <span className="bg-orange-50 text-orange-700 font-semibold px-1">
-              {feature[fk].variationKey}
+              {features[featureKey].variationKey}
             </span>
           </span>
           <span>
             served variables
             <div className="ml-2 flex flex-col">
-              {variationsJson[feature[fk].variationKe].variablesArray.map(
-                (variable) => {
-                  return (
-                    <span>
-                      <span className="bg-lime-50 text-lime-700 font-semibold">
-                        {variable.key}
-                      </span>
-                      :{' '}
-                      <span className="text-pink-700 font-bold font-mono">
-                        {String(variable.value)}
-                      </span>
+              {variationsJson[
+                features[featureKey].variationKey
+              ].variablesArray.map((variable) => {
+                return (
+                  <span>
+                    <span className="bg-lime-50 text-lime-700 font-semibold">
+                      {variable.key}
                     </span>
-                  );
-                }
-              )}
+                    :{' '}
+                    <span className="text-pink-700 font-bold font-mono">
+                      {String(variable.value)}
+                    </span>
+                  </span>
+                );
+              })}
             </div>
           </span>
         </div>
