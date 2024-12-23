@@ -7,11 +7,12 @@ import CartProduct from '@/components/CartProducts';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { country as countryConfig } from '../../api/db/config';
+import ChatBot from '@/components/ChatBot';
 
 export default function CartPage() {
   const isSale = useVariableValue('sale-status', false);
   const cartPage = useVariableValue('cart-page', false);
-  const shippingWaiver = useVariableValue('shipping-waiver', 'normal');
+  const shippingWaiver = useVariableValue('shipping-waiver', 'none');
   const chatbot = useVariableValue('chatbot-status', false);
 
   const { cart, dispatch } = useCart();
@@ -30,6 +31,32 @@ export default function CartPage() {
 
   return (
     <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
+      {isSale && (
+        <div className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap">
+          ALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE
+        </div>
+      )}
+      {isSale && shippingWaiver == 'primary' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} some* products are now eligible for free shipping
+        </div>
+      )}
+      {isSale && shippingWaiver == 'all' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} all products are now eligible for free shipping
+        </div>
+      )}
       <div className="mx-auto md:max-w-[80%] mt-4 py-5 md:py-10">
         <div className="w-full text-center font-bold text-3xl">
           Cart checkout
@@ -77,7 +104,7 @@ export default function CartPage() {
                   </span>
                 </span>
                 {isSale &&
-                  shippingWaiver == 'medium' &&
+                  shippingWaiver == 'primary' &&
                   cartData.priceData.shippingCost !=
                     cartData.priceData.discountedShipping && (
                     <span className="flex justify-between my-1">
@@ -92,7 +119,7 @@ export default function CartPage() {
                     </span>
                   )}
                 {isSale &&
-                  shippingWaiver == 'high' &&
+                  shippingWaiver == 'all' &&
                   cartData.priceData.shippingCost != 0 && (
                     <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
@@ -113,7 +140,7 @@ export default function CartPage() {
                   </div>
                 )}
                 {isSale &&
-                  shippingWaiver == 'medium' &&
+                  shippingWaiver == 'primary' &&
                   (cartData.priceData.shippingCost !=
                   cartData.priceData.discountedShipping ? (
                     <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
@@ -128,7 +155,7 @@ export default function CartPage() {
                     </div>
                   ))}
                 {isSale &&
-                  shippingWaiver == 'high' &&
+                  shippingWaiver == 'all' &&
                   (cartData.priceData.shippingCost ? (
                     <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
                       Congratulations, some of the products in cart are eligible
@@ -147,10 +174,10 @@ export default function CartPage() {
                 <span>
                   {countryConfig[country].currency}
                   {(isSale
-                    ? shippingWaiver == 'normal'
+                    ? shippingWaiver == 'none'
                       ? cartData.priceData.salePrice +
                         cartData.priceData.shippingCost
-                      : shippingWaiver == 'medium'
+                      : shippingWaiver == 'primary'
                       ? cartData.priceData.salePrice +
                         cartData.priceData.discountedShipping
                       : cartData.priceData.salePrice +
@@ -172,6 +199,7 @@ export default function CartPage() {
           </Card>
         )}
       </div>
+      {chatbot && <ChatBot />}
     </div>
   );
 }

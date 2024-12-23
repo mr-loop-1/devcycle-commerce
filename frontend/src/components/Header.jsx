@@ -17,8 +17,8 @@ import { ShoppingBag } from 'lucide-react';
 export default function Header() {
   const isSale = useVariableValue('sale-status', false);
   const cartPage = useVariableValue('cart-page', false);
-  const recommendPage = useVariableValue('recommend-page', false);
-  const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
+  const recommendPage = useVariableValue('recommend-page', 'profit');
+  const shippingWaiver = useVariableValue('shipping-waiver', 'none');
 
   const { cart, dispatch } = useCart();
   const { country } = useCountry();

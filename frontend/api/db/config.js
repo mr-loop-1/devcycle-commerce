@@ -12,7 +12,7 @@ export const country = {
   },
   CA: {
     name: 'Canada',
-    currency: 'C$ ',
+    currency: '$',
     slug: 2,
   },
   AE: {

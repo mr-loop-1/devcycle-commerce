@@ -2,7 +2,7 @@ import { useVariableValue } from '@devcycle/react-client-sdk';
 import react from 'react';
 
 export default function Navbar() {
-  const saleActiveFlag = useVariableValue('sale-active', false);
+  const saleActiveFlag = useVariableValue('sale-status', false);
   let navBannerPath = saleActiveFlag ? '/sale/banner.jpg' : '/navBanner.jpg';
 
   return (

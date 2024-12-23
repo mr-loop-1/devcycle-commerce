@@ -33,19 +33,19 @@
       }
     ]
   },
-  "normal": {
+  "shipping-waiver": {
     "description": "",
     "values": [
       {
-        "value": "normal",
+        "value": "none",
         "description": "default shipping costs"
       },
       {
-        "value": "medium",
+        "value": "primary",
         "description": "shipping cost of products where shipping is handled in-house is waived off"
       },
       {
-        "value": "high",
+        "value": "all",
         "description": "shipping cost of all products including third-party handled is waived off"
       }
     ]

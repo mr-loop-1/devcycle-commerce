@@ -6,18 +6,18 @@ import Product from '@/components/Product';
 import { useCountry } from '@/contexts/CountryProvider';
 import { Card } from '@/components/ui/card';
 import { ArrowUpRight, SquareArrowOutUpRight } from 'lucide-react';
+import ChatBot from '@/components/ChatBot';
+import { useCart } from '@/contexts/CartProvider';
 
 export default function RecommendPage() {
-  const isSale = useVariableValue('sale-active', false);
+  const isSale = useVariableValue('sale-status', false);
   const recommendPage = useVariableValue('recommend-page', false);
-  const recommendStrategy = useVariableValue(
-    'recommend-strategy',
-    'normal-order'
-  );
+  const recommendStrategy = useVariableValue('recommend-strategy', 'profit');
   const chatbot = useVariableValue('chatbot-status', false);
-  const shippingWaiver = useVariableValue('shipping-waiver', 'normal');
+  const shippingWaiver = useVariableValue('shipping-waiver', 'none');
 
   const { country } = useCountry();
+  const { cart } = useCart();
 
   if (!isSale || !recommendPage) {
     redirect('/');
@@ -27,10 +27,38 @@ export default function RecommendPage() {
     isSale,
     country,
     recommendStrategy,
+    cart,
   });
 
   return (
     <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
+      {isSale && (
+        <div className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap">
+          ALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE
+        </div>
+      )}
+      {isSale && shippingWaiver == 'primary' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} some* products are now eligible for free shipping
+        </div>
+      )}
+      {isSale && shippingWaiver == 'all' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} all products are now eligible for free shipping
+        </div>
+      )}
+
       <Card className="mx-2 mt-4 py-5 md:py-10 px-4">
         <div className="w-full text-center text-orange-500 text-4xl font-bold">
           tailored for you
@@ -64,6 +92,7 @@ export default function RecommendPage() {
           </div>
         </div>
       </Card>
+      {chatbot && <ChatBot />}
     </div>
   );
 }

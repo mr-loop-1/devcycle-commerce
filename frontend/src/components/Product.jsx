@@ -5,7 +5,7 @@ import { useVariableValue } from '@devcycle/react-client-sdk';
 import { country as countryConfig } from '../../api/db/config';
 
 export default function Product({ isSale, product, country }) {
-  const shippingWaiver = useVariableValue('shipping-waiver', 'null');
+  const shippingWaiver = useVariableValue('shipping-waiver', 'none');
   const { cart, dispatch } = useCart();
 
   return (

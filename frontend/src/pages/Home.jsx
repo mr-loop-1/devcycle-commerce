@@ -13,9 +13,10 @@ import ChatBot from '@/components/ChatBot';
 
 export default function HomePage() {
   const isSale = useVariableValue('sale-status', false);
-  const sortStrategy = useVariableValue('sort-strategy', 'normal-order');
+  const sortStrategy = useVariableValue('sort-strategy', 'popular');
   const chatbot = useVariableValue('chatbot-status', false);
-  const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
+  const shippingWaiver = useVariableValue('shipping-waiver', 'none');
+  console.log('🚀 ~ HomePage ~ shippingWaiver:', shippingWaiver);
 
   const { country } = useCountry();
 
@@ -77,7 +78,7 @@ export default function HomePage() {
           SALE SALE
         </div>
       )}
-      {isSale && shippingWaiver == 'medium' && (
+      {isSale && shippingWaiver == 'primary' && (
         <div
           className="w-full text-center text-white font-semibold bg-blue-800"
           style={{ textShadow: '0 0 10px white' }}
@@ -85,7 +86,7 @@ export default function HomePage() {
           hurray{'!,'} some* products are now eligible for free shipping
         </div>
       )}
-      {isSale && shippingWaiver == 'high' && (
+      {isSale && shippingWaiver == 'all' && (
         <div
           className="w-full text-center text-white font-semibold bg-blue-800"
           style={{ textShadow: '0 0 10px white' }}

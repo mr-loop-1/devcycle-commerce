@@ -66,7 +66,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
             )}
 
             {isSale &&
-              shippingWaiver == 'medium' &&
+              shippingWaiver == 'primary' &&
               (cartData.priceData.shippingCost !=
               cartData.priceData.discountedShipping ? (
                 <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
@@ -80,7 +80,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                 </div>
               ))}
             {isSale &&
-              shippingWaiver == 'high' &&
+              shippingWaiver == 'all' &&
               (cartData.priceData.shippingCost ? (
                 <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
                   Congratulations, some of the products in cart are eligible for
@@ -120,7 +120,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   </span>
                 </span>
                 {isSale &&
-                  shippingWaiver == 'medium' &&
+                  shippingWaiver == 'primary' &&
                   cartData.priceData.shippingCost !=
                     cartData.priceData.discountedShipping && (
                     <span className="flex justify-between my-1">
@@ -135,7 +135,7 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                     </span>
                   )}
                 {isSale &&
-                  shippingWaiver == 'high' &&
+                  shippingWaiver == 'all' &&
                   cartData.priceData.shippingCost != 0 && (
                     <span className="flex justify-between my-1">
                       <span>Shipping Discount</span>
@@ -150,10 +150,10 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
                   <span>
                     {countryConfig[country].currency}
                     {(isSale
-                      ? shippingWaiver == 'normal'
+                      ? shippingWaiver == 'none'
                         ? cartData.priceData.salePrice +
                           cartData.priceData.shippingCost
-                        : shippingWaiver == 'medium'
+                        : shippingWaiver == 'primary'
                         ? cartData.priceData.salePrice +
                           cartData.priceData.discountedShipping
                         : cartData.priceData.salePrice +

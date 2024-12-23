@@ -27,7 +27,7 @@ export default function Showcase({ isSale, data }) {
       <div className="flex flex-col md:flex-row justify-around w-full max-sm:h-[100vw] md:h-[30vw] ">
         <Card className="max-sm:w-full md:h-full grow  p-1 md:p-2">
           {isSale ? (
-            <img src={`/main.jpg`} className="h-full object-cover" />
+            <img src={`/main.png`} className="h-full object-cover" />
           ) : (
             <img
               src={`/products/${data[0].products[img1].slug}.webp`}

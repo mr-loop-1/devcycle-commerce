@@ -81,13 +81,23 @@ export const getAllProductsAndCategories = (req) => {
 };
 
 export const getRecommendedProducts = (req) => {
-  const { country, isSale, recommendStrategy } = req;
+  const { country, cart, isSale, recommendStrategy } = req;
   /*
   1. filter products available in the country
   2. get the products to feature
   3. convert curreny to local
   */
-  const productsData = structuredClone(products).slice(0, 3);
+  let productsData = structuredClone(products).filter(
+    (prod) => !cart.includes(prod.id)
+  );
+
+  let arr = [];
+  while (arr.length < 8) {
+    var r = Math.floor(Math.random() * (productsData.length - 1)) + 1;
+    if (arr.indexOf(r) === -1 && r) arr.push(r);
+  }
+
+  productsData = productsData.filter((prod, i) => arr.includes(i));
 
   for (const product of productsData) {
     const specs = {
@@ -153,7 +163,7 @@ export const getCartSpecs = (req) => {
     shippingCost: productsData.reduce((accumulator, currentProduct) => {
       return accumulator + currentProduct.specs.cost;
     }, 0),
-    ...(shippingWaiver == 'medium' && {
+    ...(shippingWaiver == 'primary' && {
       discountedShipping: productsData.reduce((accumulator, currentProduct) => {
         return (
           accumulator +

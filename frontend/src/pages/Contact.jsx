@@ -1,5 +1,5 @@
 export default function ContactPage() {
-  const chatbot = useVariableValue('chatbot', false);
+  const chatbot = useVariableValue('chatbot-status', false);
   if (chatbot) {
     redirect('/');
   }
