@@ -26,7 +26,6 @@ export default function State({ featureState }) {
           <DialogHeader>
             <DialogTitle>Devcycle Live Feature Snapshot</DialogTitle>
             <DialogDescription className="text-base">
-              {/* <div className="mt-2">countries</div> */}
               {config.countriesArray.map((country) => {
                 return (
                   <ReferenceCountry

@@ -20,14 +20,16 @@ export default function Reference() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Devcycle Specs Reference</DialogTitle>
-            <DialogDescription>
-              <div>features</div>
+            <DialogDescription className="text-base">
+              <div className="mt-4 mb-2">features</div>
               {Object.keys(featuresJson).map((fk) => {
                 return (
-                  <div className="ml-2">
+                  <div className="ml-3 my-3">
                     <span>
-                      <span>{fk}</span>:{' '}
-                      <span>"{featuresJson[fk].description}"</span>
+                      <span className="bg-blue-50 text-blue-700 font-semibold px-1">
+                        {fk}
+                      </span>
+                      : <span>"{featuresJson[fk].description}"</span>
                     </span>
                     <ReferenceChildren feature={featuresJson[fk]} />
                   </div>
@@ -46,9 +48,9 @@ function ReferenceChildren({ feature }) {
   const [openVariation, setOpenVariation] = useState(false);
 
   return (
-    <div className="ml-2">
+    <div className="ml-3 my-1">
       <div>
-        variables{' '}
+        <span className="text-lime-700 font-semibold mr-2">variables</span>
         {openVariable ? (
           <img
             className="inline"
@@ -67,22 +69,31 @@ function ReferenceChildren({ feature }) {
           />
         )}
         {openVariable && (
-          <div className="flex flex-col ml-2">
+          <div className="flex flex-col ml-2 my-1">
             {feature.variables.map((variable) => {
               return (
-                <span>
-                  {variable.key} {variable.type} {variable.description}
+                <div>
+                  <span className="flex">
+                    <span className="text-lime-700 bg-lime-50 px-2 font-semibold shrink-0 h-fit">
+                      {variable.key}
+                    </span>
+
+                    <span className="text-pink-700 font-bold mx-2 font-mono">
+                      {variable.type}
+                    </span>
+                    {variable.description}
+                  </span>
                   {variablesJson[variable.key] && (
                     <RefValues values={variablesJson[variable.key].values} />
                   )}
-                </span>
+                </div>
               );
             })}
           </div>
         )}
       </div>
       <div>
-        vaiation{' '}
+        <span className="text-orange-700 font-semibold mr-2">vaiations</span>
         {openVariation ? (
           <img
             className="inline"
@@ -101,17 +112,24 @@ function ReferenceChildren({ feature }) {
           />
         )}
         {openVariation && (
-          <div className="flex flex-col ml-2">
+          <div className="flex flex-col ml-3 my-1">
             {feature.variations.map((variation) => {
               return (
                 <span>
-                  {variation.key} {variation.description}
-                  <div className="ml-2 flex flex-col">
+                  <span className="text-orange-700 bg-orange-50 px-2 font-semibold">
+                    {variation.key}
+                  </span>
+                  <div className="ml-5 my-1 flex flex-col">
                     {feature.variables.map((variable) => {
                       return (
                         <span>
-                          {variable.key}:{' '}
-                          {String(variation.variables[variable.key])}
+                          <span className="font-semibold text-lime-700 bg-lime-50 px-1 mr-1">
+                            {variable.key}
+                          </span>
+                          :{' '}
+                          <span className="ml-1 font-bold font-mono text-pink-700">
+                            {String(variation.variables[variable.key])}
+                          </span>
                         </span>
                       );
                     })}
@@ -130,8 +148,8 @@ function RefValues({ values }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="ml-2">
-      values{' '}
+    <div className="ml-5">
+      <span className="text-pink-700 mr-2">values</span>
       {open ? (
         <img
           className="inline"
@@ -154,7 +172,10 @@ function RefValues({ values }) {
           {values.map((v) => {
             return (
               <span>
-                "{v.value}": {v.description}
+                <span className="font-semibold text-pink-700 mr-1">
+                  "{v.value}"
+                </span>
+                : {v.description}
               </span>
             );
           })}
