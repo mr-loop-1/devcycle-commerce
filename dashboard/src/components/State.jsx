@@ -22,7 +22,7 @@ export default function State({ featureState }) {
         <DialogTrigger>
           <Button>State</Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-w-[90%] md:max-w-[50%] lg:max-w-[30%] overflow-y-auto max-h-screen">
           <DialogHeader>
             <DialogTitle>Devcycle Live Feature Snapshot</DialogTitle>
             <DialogDescription className="text-base">

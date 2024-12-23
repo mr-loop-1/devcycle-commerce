@@ -1,0 +1,256 @@
+{
+  "sale": {
+    "name": "sale",
+    "key": "sale",
+    "description": "Indicates whether sale is active or not",
+    "variables": [
+      {
+        "name": "sale status",
+        "description": "boolean variable indicating sale validity",
+        "key": "sale-status",
+        "_feature": "sale",
+        "type": "Boolean"
+      }
+    ],
+    "variations": [
+      {
+        "key": "sale-active",
+        "name": "sale active",
+        "variables": {
+          "sale-status": true
+        }
+      },
+      {
+        "key": "sale-inactive",
+        "name": "sale inactive",
+        "variables": {
+          "sale-status": false
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "sale",
+      "publicDescription": "Indicates whether sale is active or not",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  },
+  "algorithms": {
+    "name": "algorithms",
+    "key": "algorithms",
+    "description": "the algorithms in use",
+    "variables": [
+      {
+        "name": "sort strategy",
+        "description": "sort algorithms in use",
+        "key": "sort-strategy",
+        "_feature": "algorithms",
+        "type": "String"
+      },
+      {
+        "name": "recommend strategy",
+        "description": "recommend algorithms in use",
+        "key": "recommend-strategy",
+        "_feature": "algorithms",
+        "type": "String"
+      }
+    ],
+    "variations": [
+      {
+        "key": "normal-order",
+        "name": "normal order",
+        "variables": {
+          "sort-strategy": "popular",
+          "recommend-strategy": "profit"
+        }
+      },
+      {
+        "key": "sale-focussed",
+        "name": "sale focussed",
+        "variables": {
+          "sort-strategy": "popular",
+          "recommend-strategy": "popular"
+        }
+      },
+      {
+        "key": "profit-aggressive",
+        "name": "profit aggressive",
+        "variables": {
+          "sort-strategy": "profit",
+          "recommend-strategy": "profit"
+        }
+      },
+      {
+        "key": "stock-aware",
+        "name": "stock aware",
+        "variables": {
+          "sort-strategy": "stock",
+          "recommend-strategy": "stock"
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "algorithms",
+      "publicDescription": "the algorithms in use",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  },
+  "cart-interface": {
+    "name": "cart interface",
+    "key": "cart-interface",
+    "description": "enables new experimental cart layout",
+    "variables": [
+      {
+        "name": "cart page",
+        "description": "toggles separate cart page rather than sheet",
+        "key": "cart-page",
+        "_feature": "cart-interface",
+        "type": "Boolean"
+      },
+      {
+        "name": "recommend page",
+        "description": "toggles recommended products page before cart",
+        "key": "recommend-page",
+        "_feature": "cart-interface",
+        "type": "Boolean"
+      }
+    ],
+    "variations": [
+      {
+        "key": "normal-layout",
+        "name": "normal layout",
+        "variables": {
+          "cart-page": false,
+          "recommend-page": false
+        }
+      },
+      {
+        "key": "separate-cart",
+        "name": "separate cart",
+        "variables": {
+          "cart-page": true,
+          "recommend-page": false
+        }
+      },
+      {
+        "key": "recommend-products",
+        "name": "recommend products",
+        "variables": {
+          "cart-page": true,
+          "recommend-page": true
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "cart-interface",
+      "publicDescription": "enables new experimental cart layout",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  },
+  "shipping": {
+    "name": "shipping",
+    "key": "shipping",
+    "description": "shipping cost waivers",
+    "variables": [
+      {
+        "name": "shipping-waiver",
+        "description": "sets strategy for shipping cost",
+        "key": "shipping-waiver",
+        "_feature": "shipping",
+        "type": "String"
+      }
+    ],
+    "variations": [
+      {
+        "key": "normal",
+        "name": "normal",
+        "variables": {
+          "shipping-waiver": "none"
+        }
+      },
+      {
+        "key": "medium",
+        "name": "medium",
+        "variables": {
+          "shipping-waiver": "primary"
+        }
+      },
+      {
+        "key": "high",
+        "name": "high",
+        "variables": {
+          "shipping-waiver": "all"
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "shipping",
+      "publicDescription": "shipping cost waivers",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  },
+  "chatbot": {
+    "name": "chatbot",
+    "key": "chatbot",
+    "description": "toggles between chatbot and help page",
+    "variables": [
+      {
+        "name": "chatbot status",
+        "description": "boolean variable indicating sale validity",
+        "key": "chatbot-status",
+        "_feature": "chatbot",
+        "type": "Boolean"
+      }
+    ],
+    "variations": [
+      {
+        "key": "chatbot-active",
+        "name": "chatbot active",
+        "variables": {
+          "chatbot-status": true
+        }
+      },
+      {
+        "key": "chatbot-inactive",
+        "name": "chatbot inactive",
+        "variables": {
+          "chatbot-status": false
+        }
+      }
+    ],
+    "settings": {
+      "publicName": "chatbot",
+      "publicDescription": "toggles between chatbot and help page",
+      "optInEnabled": true
+    },
+    "sdkVisibility": {
+      "mobile": true,
+      "client": true,
+      "server": true
+    },
+    "type": "release"
+  }
+}

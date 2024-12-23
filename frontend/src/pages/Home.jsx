@@ -12,8 +12,8 @@ import { useCountry } from '@/contexts/CountryProvider';
 
 export default function HomePage() {
   const isSale = useVariableValue('sale-active', false);
-  const sortStrategy = useVariableValue('sort-strategy', 'normal');
-  const chatbot = useVariableValue('chatbot-status', true);
+  const sortStrategy = useVariableValue('sort-strategy', 'normal-order');
+  const chatbot = useVariableValue('chatbot-status', false);
 
   const { country } = useCountry();
 

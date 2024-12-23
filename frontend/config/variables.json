@@ -1,0 +1,53 @@
+{
+  "sort-strategy": {
+    "description": "",
+    "values": [
+      {
+        "value": "popular",
+        "description": "orders the products and categories based on hisotrical data and sales insights"
+      },
+      {
+        "value": "profit",
+        "description": "orders based on maximum individual and aggregate commission that can be earned"
+      },
+      {
+        "value": "stock",
+        "description": "order based on the stock available in the inventory"
+      }
+    ]
+  },
+  "recommend-strategy": {
+    "description": "",
+    "values": [
+      {
+        "value": "popular",
+        "description": "recommends those that were historically brought together with current cart products"
+      },
+      {
+        "value": "profit",
+        "description": "recommends based on which product is giving maximum profit"
+      },
+      {
+        "value": "stock",
+        "description": "recommends based on which product is overstocked"
+      }
+    ]
+  },
+  "normal": {
+    "description": "",
+    "values": [
+      {
+        "value": "normal",
+        "description": "default shipping costs"
+      },
+      {
+        "value": "medium",
+        "description": "shipping cost of products where shipping is handled in-house is waived off"
+      },
+      {
+        "value": "high",
+        "description": "shipping cost of all products including third-party handled is waived off"
+      }
+    ]
+  }
+}

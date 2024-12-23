@@ -1,0 +1,219 @@
+{
+  "sale-active": {
+    "key": "sale-active",
+    "name": "sale active",
+    "variables": {
+      "sale-status": true
+    },
+    "variablesArray": [
+      {
+        "key": "sale-status",
+        "value": true
+      }
+    ]
+  },
+  "sale-inactive": {
+    "key": "sale-inactive",
+    "name": "sale inactive",
+    "variables": {
+      "sale-status": false
+    },
+    "variablesArray": [
+      {
+        "key": "sale-status",
+        "value": false
+      }
+    ]
+  },
+  "normal-order": {
+    "key": "normal-order",
+    "name": "normal order",
+    "variables": {
+      "sort-strategy": "popular",
+      "recommend-strategy": "profit"
+    },
+    "variablesArray": [
+      {
+        "key": "sort-strategy",
+        "value": "popular"
+      },
+      {
+        "key": "recommend-strategy",
+        "value": "profit"
+      }
+    ]
+  },
+  "sale-focussed": {
+    "key": "sale-focussed",
+    "name": "sale focussed",
+    "variables": {
+      "sort-strategy": "popular",
+      "recommend-strategy": "popular"
+    },
+    "variablesArray": [
+      {
+        "key": "sort-strategy",
+        "value": "popular"
+      },
+      {
+        "key": "recommend-strategy",
+        "value": "popular"
+      }
+    ]
+  },
+  "profit-aggressive": {
+    "key": "profit-aggressive",
+    "name": "profit aggressive",
+    "variables": {
+      "sort-strategy": "profit",
+      "recommend-strategy": "profit"
+    },
+    "variablesArray": [
+      {
+        "key": "sort-strategy",
+        "value": "profit"
+      },
+      {
+        "key": "recommend-strategy",
+        "value": "profit"
+      }
+    ]
+  },
+  "stock-aware": {
+    "key": "stock-aware",
+    "name": "stock aware",
+    "variables": {
+      "sort-strategy": "stock",
+      "recommend-strategy": "stock"
+    },
+    "variablesArray": [
+      {
+        "key": "sort-strategy",
+        "value": "stock"
+      },
+      {
+        "key": "recommend-strategy",
+        "value": "stock"
+      }
+    ]
+  },
+  "normal-layout": {
+    "key": "normal-layout",
+    "name": "normal layout",
+    "variables": {
+      "cart-page": false,
+      "recommend-page": false
+    },
+    "variablesArray": [
+      {
+        "key": "cart-page",
+        "value": false
+      },
+      {
+        "key": "recommend-page",
+        "value": false
+      }
+    ]
+  },
+  "separate-cart": {
+    "key": "separate-cart",
+    "name": "separate cart",
+    "variables": {
+      "cart-page": true,
+      "recommend-page": false
+    },
+    "variablesArray": [
+      {
+        "key": "cart-page",
+        "value": true
+      },
+      {
+        "key": "recommend-page",
+        "value": false
+      }
+    ]
+  },
+  "recommend-products": {
+    "key": "recommend-products",
+    "name": "recommend products",
+    "variables": {
+      "cart-page": true,
+      "recommend-page": true
+    },
+    "variablesArray": [
+      {
+        "key": "cart-page",
+        "value": true
+      },
+      {
+        "key": "recommend-page",
+        "value": true
+      }
+    ]
+  },
+  "normal": {
+    "key": "normal",
+    "name": "normal",
+    "variables": {
+      "shipping-waiver": "none"
+    },
+    "variablesArray": [
+      {
+        "key": "shipping-waiver",
+        "value": "none"
+      }
+    ]
+  },
+  "medium": {
+    "key": "medium",
+    "name": "medium",
+    "variables": {
+      "shipping-waiver": "primary"
+    },
+    "variablesArray": [
+      {
+        "key": "shipping-waiver",
+        "value": "primary"
+      }
+    ]
+  },
+  "high": {
+    "key": "high",
+    "name": "normal",
+    "variables": {
+      "shipping-waiver": "all"
+    },
+    "variablesArray": [
+      {
+        "key": "shipping-waiver",
+        "value": "all"
+      }
+    ]
+  },
+  "chatbot-active": {
+    "key": "chatbot-active",
+    "name": "chatbot active",
+    "variables": {
+      "chatbot-status": true
+    },
+    "variablesArray": [
+      {
+        "key": "chatbot-status",
+        "value": true
+      }
+    ]
+  },
+  "chatbot-inactive": {
+    "key": "chatbot-inactive",
+    "name": "chatbot inactive",
+    "variables": {
+      "chatbot-status": false
+    },
+    "variablesArray": [
+      {
+        "key": "chatbot-status",
+        "value": false
+      }
+    ]
+  }
+}

@@ -8,6 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import Reference from './Reference';
+import State from './State';
 
 export default function ControlBar() {
   return (
@@ -16,36 +18,10 @@ export default function ControlBar() {
         <Switch /> Turn On Inspect Mode
       </span>
       <span className="mx-3">
-        <Dialog>
-          <DialogTrigger>
-            <Button>State</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Are you absolutely sure?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <State />
       </span>
       <span>
-        <Dialog>
-          <DialogTrigger>
-            <Button>Reference</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Are you absolutely sure?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <Reference />
       </span>
     </div>
   );

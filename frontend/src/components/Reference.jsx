@@ -6,8 +6,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import featuresJson from './../../data/features.json';
-import variablesJson from './../../data/variables.json';
+import featuresJson from './../../config/features.json';
+import variablesJson from './../../config/variables.json';
 
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -16,7 +16,9 @@ export default function Reference() {
   return (
     <div>
       <Dialog>
-        <DialogTrigger>Reference</DialogTrigger>
+        <DialogTrigger>
+          <Button>Reference</Button>
+        </DialogTrigger>
         <DialogContent className="max-w-[90%] md:max-w-[60%] lg:max-w-[40%] overflow-y-auto max-h-screen">
           <DialogHeader>
             <DialogTitle>Devcycle Specs Reference</DialogTitle>

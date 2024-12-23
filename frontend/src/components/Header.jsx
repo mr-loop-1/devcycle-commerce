@@ -15,9 +15,10 @@ import { country as countryConfig, countryArray } from '../../api/db/config';
 import { ShoppingBag } from 'lucide-react';
 
 export default function Header() {
-  const isSale = useVariableValue('sale-active', false);
+  const isSale = useVariableValue('sale-status', false);
+  console.log('🚀 ~ Header ~ isSale:', isSale);
   const cartPage = useVariableValue('cart-page', false);
-  const recommendPage = useVariableValue('recommend-page', true);
+  const recommendPage = useVariableValue('recommend-page', false);
   const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
 
   const { cart, dispatch } = useCart();
