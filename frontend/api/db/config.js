@@ -16,24 +16,24 @@ export const country = {
     slug: 2,
   },
   AE: {
-    name: 'Dubai',
-    currency: 'AED',
-    slug: 3,
+    name: 'UAE',
+    currency: 'AED ',
+    slug: 5,
   },
   CN: {
     name: 'China',
     currency: '¥',
-    slug: 4,
+    slug: 6,
   },
   US: {
     name: 'USA',
     currency: '$',
-    slug: 5,
+    slug: 3,
   },
   JP: {
     name: 'Japan',
     currency: '¥',
-    slug: 6,
+    slug: 4,
   },
   GB: {
     name: 'Britain',
@@ -47,9 +47,9 @@ export const countryArray = ['IN', 'CA', 'US', 'JP', 'AE', 'CN', 'GB'];
 export const currencyMultiplicant = {
   IN: 1,
   CA: 0.017,
-  AE: 1,
-  CN: 1,
-  US: 1,
-  JP: 1,
-  GB: 1,
+  AE: 0.043,
+  CN: 0.086,
+  US: 0.012,
+  JP: 1.85,
+  GB: 0.0093,
 };

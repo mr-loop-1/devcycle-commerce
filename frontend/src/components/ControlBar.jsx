@@ -13,7 +13,7 @@ import State from './State';
 
 export default function ControlBar() {
   return (
-    <div className="mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl mt-5 py-2 border-2 flex justify-center items-center">
+    <div className="mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl mt-8 py-2 border-2 flex justify-center items-center">
       <span>
         <Switch /> Turn On Inspect Mode
       </span>

@@ -113,14 +113,6 @@ export default function Header() {
           </span>
         </div>
       </div>
-      {isSale && <div className="w-full h-3 bg-green-300"></div>}
-      {isSale && shippingWaiver == 'medium' && (
-        <div className="w-full h-3 bg-blue-300"></div>
-      )}
-      {isSale && shippingWaiver == 'high' && (
-        <div className="w-full h-3 bg-red-300"></div>
-      )}
-      {isSale && <hr className="mt-4" />}
     </div>
   );
 }

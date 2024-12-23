@@ -17,7 +17,7 @@ export default function Reference() {
     <div>
       <Dialog>
         <DialogTrigger>
-          <Button>Reference</Button>
+          <Button className="bg-pink-700">Reference</Button>
         </DialogTrigger>
         <DialogContent className="max-w-[90%] md:max-w-[60%] lg:max-w-[40%] overflow-y-auto max-h-screen">
           <DialogHeader>

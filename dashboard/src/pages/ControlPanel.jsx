@@ -104,7 +104,11 @@ export default function ControlPanel({
         key={stream.length}
       />
 
-      {loading && 'under process'}
+      {loading && (
+        <div className="mt-4 text-center text-blue-700 font-semibold">
+          processing...
+        </div>
+      )}
       {error && (
         <div>
           <ErrorTab error={error} />

@@ -14,6 +14,7 @@ export default function HomePage() {
   const isSale = useVariableValue('sale-status', false);
   const sortStrategy = useVariableValue('sort-strategy', 'normal-order');
   const chatbot = useVariableValue('chatbot-status', false);
+  const shippingWaiver = useVariableValue('shipping-waiver', 'medium');
 
   const { country } = useCountry();
 
@@ -65,9 +66,35 @@ export default function HomePage() {
     <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {/* {confetti && <Confetti />} */}
+      {isSale && (
+        <div className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap">
+          ALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
+          SALE SALE
+        </div>
+      )}
+      {isSale && shippingWaiver == 'medium' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} some* products are now eligible for free shipping
+        </div>
+      )}
+      {isSale && shippingWaiver == 'high' && (
+        <div
+          className="w-full text-center text-white font-semibold bg-blue-800"
+          style={{ textShadow: '0 0 10px white' }}
+        >
+          hurray{'!,'} all products are now eligible for free shipping
+        </div>
+      )}
 
       <Showcase data={data} isSale={isSale} />
-      <Categories data={data} isSale={isSale} />
+      {/* <Categories data={data} isSale={isSale} /> */}
       <ProductList data={data} country={country} isSale={isSale} />
     </div>
   );
