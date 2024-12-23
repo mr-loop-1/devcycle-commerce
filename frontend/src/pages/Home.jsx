@@ -16,7 +16,6 @@ export default function HomePage() {
   const sortStrategy = useVariableValue('sort-strategy', 'popular');
   const chatbot = useVariableValue('chatbot-status', false);
   const shippingWaiver = useVariableValue('shipping-waiver', 'none');
-  console.log('🚀 ~ HomePage ~ shippingWaiver:', shippingWaiver);
 
   const { country } = useCountry();
 
