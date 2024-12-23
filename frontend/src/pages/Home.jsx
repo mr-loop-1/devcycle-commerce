@@ -11,7 +11,7 @@ import { getProductsCategoriesApi } from './../../api/api';
 import { useCountry } from '@/contexts/CountryProvider';
 
 export default function HomePage() {
-  const isSale = useVariableValue('sale-active', false);
+  const isSale = useVariableValue('sale-status', false);
   const sortStrategy = useVariableValue('sort-strategy', 'normal-order');
   const chatbot = useVariableValue('chatbot-status', false);
 

@@ -8,9 +8,11 @@ export default function VariationInfo({ label, variation }) {
   return (
     <div>
       <div className="">{label} variation</div>
-      <div className="">
+      <div className="ml-3 my-2">
         <div className="">
-          {variation}
+          <span className="font-semibold text-orange-700 bg-orange-50 px-1 mr-2">
+            {variation}
+          </span>
           {expand ? (
             <img
               className="inline"
@@ -30,16 +32,20 @@ export default function VariationInfo({ label, variation }) {
           )}
         </div>
         {expand && (
-          <div className="ml-4">
-            <ul>
-              {variationJson[variation].variablesArray.map((variable) => {
-                return (
-                  <li>
-                    {variable.key} : {String(variable.value)}
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="ml-3 my-2 flex flex-col">
+            {variationJson[variation].variablesArray.map((variable) => {
+              return (
+                <span>
+                  <span className="font-semibold text-lime-700 bg-lime-50 px-1">
+                    {variable.key}
+                  </span>{' '}
+                  :{' '}
+                  <span className="font-bold text-pink-700 font-mono px-1">
+                    {String(variable.value)}
+                  </span>
+                </span>
+              );
+            })}
           </div>
         )}
       </div>

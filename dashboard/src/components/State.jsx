@@ -20,7 +20,7 @@ export default function State({ featureState }) {
     <div>
       <Dialog>
         <DialogTrigger>
-          <Button>State</Button>
+          <Button className="bg-blue-700">State</Button>
         </DialogTrigger>
         <DialogContent className="max-w-[90%] md:max-w-[50%] lg:max-w-[30%] overflow-y-auto max-h-screen">
           <DialogHeader>
@@ -47,7 +47,7 @@ function ReferenceCountry({ country, featureState }) {
 
   return (
     <div className="my-2">
-      <span className="font-semibold mr-2">
+      <span className="font-semibold mr-2 text-black">
         <img className="inline w-5 h-5 mr-2" src="/in.svg" />
         {config.countries[country]}
       </span>

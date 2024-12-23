@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div>
-      <Card className="mx-6 mt-6 pt-6 px-6  md:mx-14 lg:mx-auto max-auto lg:max-w-2xl mb-40 pb-40">
+      <Card className="mx-6 mt-6 pt-6 px-6  md:mx-14 lg:mx-auto lg:max-w-2xl mb-20 pb-40">
         <div id="header" className="flex justify-between mb-6">
           <img
             className="inline cursor-pointer"
@@ -173,8 +173,9 @@ function App() {
           </div>
         )}
       </Card>
-      <Reference />
-      <State featureState={featureState} />
+      {/* <div className="bottom-0 mt-auto mx-6 md:mx-14 lg:mx-auto lg:max-w-2xl rounded-t-lg h-28 bg-blue-700">
+        sad
+      </div> */}
     </div>
   );
 }

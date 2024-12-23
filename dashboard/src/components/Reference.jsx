@@ -16,7 +16,9 @@ export default function Reference() {
   return (
     <div>
       <Dialog>
-        <DialogTrigger>Reference</DialogTrigger>
+        <DialogTrigger>
+          <Button className="bg-pink-700">Reference</Button>
+        </DialogTrigger>
         <DialogContent className="max-w-[90%] md:max-w-[60%] lg:max-w-[40%] overflow-y-auto max-h-screen">
           <DialogHeader>
             <DialogTitle>Devcycle Specs Reference</DialogTitle>

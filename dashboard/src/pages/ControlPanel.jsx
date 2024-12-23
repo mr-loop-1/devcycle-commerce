@@ -87,10 +87,13 @@ export default function ControlPanel({
       {stream.map((history, i) => {
         return <FeatureHistory history={history} key={i} />;
       })}
+      <hr className="my-4" />
 
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-5">
         <State featureState={featureState} />
-        <Reference />
+        <span className="ml-2">
+          <Reference />
+        </span>
       </div>
 
       <FeatureAction
