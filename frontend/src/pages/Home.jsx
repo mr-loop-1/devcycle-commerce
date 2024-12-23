@@ -98,7 +98,6 @@ export default function HomePage() {
       {/* <Categories data={data} isSale={isSale} /> */}
       <ProductList data={data} country={country} isSale={isSale} />
       {chatbot && <ChatBot />}
-      <ChatBot />
     </div>
   );
 }

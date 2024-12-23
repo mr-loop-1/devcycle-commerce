@@ -3,14 +3,23 @@ import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { useVariableValue } from '@devcycle/react-client-sdk';
 import { country as countryConfig } from '../../api/db/config';
+import { useInspect } from '@/contexts/inspectProvider';
 
 export default function Product({ isSale, product, country }) {
   const shippingWaiver = useVariableValue('shipping-waiver', 'none');
   const { cart, dispatch } = useCart();
+  const { inspect } = useInspect();
 
   return (
     <Card className="p-2 w-60 mb-2 flex-shrink-0 mr-3 md:mr-6 flex flex-col">
-      <img src={`/products/${product.slug}.webp`} />
+      <div className="relative w-full">
+        <img src={`/products/${product.slug}.webp`} />
+        {inspect && (
+          <div className="absolute top-0 right-0 bg-white text-black font-semibold p-1 rounded-lg">
+            stock: {product.stock[country]}
+          </div>
+        )}
+      </div>
       <div className="flex w-full flex-col justify-between grow">
         <div className="">
           <span className="font-mono">{product.title}</span>

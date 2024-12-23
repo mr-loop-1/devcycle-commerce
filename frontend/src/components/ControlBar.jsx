@@ -10,21 +10,21 @@ import {
 } from '@/components/ui/dialog';
 import Reference from './Reference';
 import State from './State';
-import { useInspect } from '@/contexts/inspectProvider';
+// import { useInspect } from '@/contexts/inspectProvider';
 
 export default function ControlBar() {
-  const { inspect, setInspect } = useInspect();
+  // const { inspect, setInspect } = useInspect();
   console.log('🚀 ~ ControlBar ~ inspect:', inspect);
 
   return (
     <div className="mx-4 md:mx-auto md:w-[80%] lg:w-[70%] shadow-2xl mt-8 py-2 border-2 flex justify-center items-center">
-      <span>
+      {/* <span>
         <Switch
           checked={inspect}
           onCheckedChange={() => setInspect(!inspect)}
         />{' '}
         Turn On Inspect Mode
-      </span>
+      </span> */}
       <span className="mx-3">
         <State />
       </span>

@@ -4,7 +4,7 @@ This is my submission to dev.to's Devcycle feature flag challenge
 
 ### Architecture
 
-<img src="https://github.com/user-attachments/assets/f1930365-b565-4838-92b9-65cdc214f495" height="500" />
+<img src="https://github.com/user-attachments/assets/b18b8435-7fb5-4517-befc-72e9b365628e" height="500" />
 
 ## Local Setup
 
