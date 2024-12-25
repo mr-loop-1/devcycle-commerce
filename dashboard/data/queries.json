@@ -1,14 +1,36 @@
 [
   {
-    "query": "abcs",
-    "variable": "shipping-waiver",
-    "target": ["medium", "high"],
-    "cause": ["normal"],
-    "impact": [
-      {
-        "id": 1,
-        "multiplicant": 0.5
-      }
-    ]
+    "query": "chat bad, rude, complaints",
+    "severeQuery": "chat ver very",
+    "variable": "chatbot-status",
+    "feature": "chatbot",
+    "normalCause": {
+      "chart": "complaint",
+      "minValue": "50"
+    },
+    "flow": {
+      "required": [true]
+    },
+    "end": {
+      "chart": "compaint",
+      "maxValue": "49"
+    }
+  },
+  {
+    "query": "recommend bad, cart abdndoneing",
+    "severeQuery": "recomena bdqkhew",
+    "variable": "recommend-page",
+    "feature": "cart-layout",
+    "normalCause": {
+      "chart": "cart-abandonment",
+      "value": "30"
+    },
+    "flow": {
+      "required": [true]
+    },
+    "end": {
+      "chart": "cart-abandonment",
+      "maxValue": "29"
+    }
   }
 ]

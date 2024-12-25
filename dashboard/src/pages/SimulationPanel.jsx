@@ -13,6 +13,19 @@ import State from '@/components/State';
 import SalesChart from '@/components/charts/Sales';
 import { ProfitsChart } from '@/components/charts/Profits';
 
+import variationJson from './../../data/variations.json';
+
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import ChartHistory from '@/components/simulation/ChartHistory';
+import Charts from '@/components/simulation/Charts';
+
 export default function SimulationPanel({
   apiKey,
   featureState,
@@ -90,15 +103,84 @@ export default function SimulationPanel({
   //     )}
   //   </div>
   // );
+  const [queryIndices, setQueryIndices] = useState([]);
+  const [queryIdx, setQueryIdx] = useState(0);
+  const [queries, setQueries] = useState({
+    idx: 0,
+    status: 1,
+  });
 
-  // const [query, setQuery] = useState({
-  //   ...queriesJson[0],
-  //   status: 1,
-  // });
   const [stream, setStream] = useState([]);
+  const [chartStream, setChartStream] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // const [charts, setCharts] = useState(chartsJson);
+  const [status, setStatus] = useState('init'); // init, ready, start, over, reset
+
+  const [charts, setCharts] = useState(chartsJson);
+
+  const nextIdx = (queryIndices) => {
+    const numSet = new Set(queryIndices);
+    let i = 0;
+    while (numSet.has(i)) {
+      i++;
+    }
+    return i;
+  };
+
+  const applyEffects = (queryIdx, queryIndices) => {
+    for (let i; i != queriesJson.length; i++) {
+      if (queryIdx == i) continue;
+    }
+  };
+
+  const processQuery = (data, newFeatureState) => {
+    /*
+    check the current query and see if it is impacted by the change
+    effects will happen for all charts, exept the current query target chart
+    */
+
+    const newVariableValue =
+      variationJson[data.newVariation].variables[
+        queriesJson[queryIdx].variable
+      ];
+
+    if (
+      queriesJson[queryIdx].feature == data.feature.key &&
+      !queriesJson[queryIdx].flow.required.includes(newVariableValue)
+    ) {
+      // query can be removed and has been atm done in terms of flow
+
+      const newQueryIndices = [...queryIndices, queryIdx];
+      let newQueryIdx = nextIdx(tempQueryIndices);
+
+      let tempQueryIndices = [...newQueryIndices];
+      let tempQueryIdx = newQueryIdx;
+
+      if (tempQueryIdx != queriesJson.len) {
+        let tempVariableValue =
+          variationJson[
+            newFeatureState[country][queriesJson[tempQueryIdx].feature].served
+              .key
+          ].variables[queriesJson[tempQueryIdx].variable];
+
+        while (
+          tempQueryIdx != queriesJson.len &&
+          !queriesJson[tempQueryIdx].flow.required.includes(tempVariableValue)
+        ) {
+          tempQueryIndices.push(tempQueryIdx);
+          tempQueryIdx = nextIdx(tempQueryIndices);
+        }
+        newQueryIdx = tempQueryIdx;
+      }
+
+      applyEffects(newQueryIdx, newQueryIndices);
+
+      setQueryIdx(() => newQueryIdx);
+      setQueryIndices(() => newQueryIndices);
+    } else {
+      applyEffects(queryIdx, queryIndices);
+    }
+  };
 
   const handleAction = async (rawData) => {
     try {
@@ -150,6 +232,8 @@ export default function SimulationPanel({
         showToast(toast, response.type);
         setError(() => response.type);
       }
+
+      processQuery(data, newFeatureState);
     } catch (err) {
       console.error(err);
       showToast(toast, 'unknownError');
@@ -161,39 +245,64 @@ export default function SimulationPanel({
 
   return (
     <div>
-      <Button>Start</Button>
-
-      {stream.map((history, i) => {
-        return <FeatureHistory history={history} key={i} />;
-      })}
-      <hr className="my-4" />
-
-      <SalesChart key={stream.length} />
-      <ProfitsChart />
-
-      <div className="flex justify-center mt-5">
-        <State featureState={featureState} />
-        <span className="ml-2">
-          <Reference />
-        </span>
+      <div className="">
+        {(status == 'init' || status == 'reset') && (
+          <Button className="" onClick={() => setStatus(() => 'ready')}>
+            Initialize defaults
+          </Button>
+        )}
+        {status == 'ready' && (
+          <Button onClick={() => setStatus(() => 'start')} className="">
+            Start
+          </Button>
+        )}
+        {(status == 'start' || status == 'over') && (
+          <Button className="" onClick={() => setStatus(() => 'reset')}>
+            Reset
+          </Button>
+        )}
       </div>
 
-      <FeatureAction
-        handleAction={handleAction}
-        featureState={featureState}
-        loading={loading}
-        error={error}
-        key={stream.length}
-      />
-
-      {loading && (
-        <div className="mt-4 text-center text-blue-700 font-semibold">
-          processing...
-        </div>
-      )}
-      {error && (
-        <div>
-          <ErrorTab error={error} />
+      {['start', 'over'].includes(status) && (
+        <div id="main-simulation-pane">
+          <div className="">
+            {stream.map((history, i) => {
+              return (
+                <div className="">
+                  <FeatureHistory history={history} key={i} />
+                  <ChartHistory history={chartStream[i]} />
+                </div>
+              );
+            })}
+          </div>
+          <hr className="my-4" />
+          <div className="w-[90%] mx-auto">
+            <Charts />
+          </div>
+          {/* <ProfitsChart /> */}
+          <div className="flex justify-center mt-5">
+            <State featureState={featureState} />
+            <span className="ml-2">
+              <Reference />
+            </span>
+          </div>
+          <FeatureAction
+            handleAction={handleAction}
+            featureState={featureState}
+            loading={loading}
+            error={error}
+            key={stream.length}
+          />
+          {loading && (
+            <div className="mt-4 text-center text-blue-700 font-semibold">
+              processing...
+            </div>
+          )}
+          {error && (
+            <div>
+              <ErrorTab error={error} />
+            </div>
+          )}{' '}
         </div>
       )}
     </div>

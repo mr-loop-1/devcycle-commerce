@@ -1,10 +1,10 @@
 [
   {
-    "id": 1,
-    "title": "sales",
-    "value": 1342,
-    "target": 10000,
-    "multiplier": 2000,
-    "restMultiplicant": 1
+    "chart": "complaints",
+    "startValue": "20"
+  },
+  {
+    "chart": "cart-abandonment",
+    "startValue": "15"
   }
 ]
