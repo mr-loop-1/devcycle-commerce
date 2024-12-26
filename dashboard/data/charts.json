@@ -1,10 +1,36 @@
 [
   {
-    "chart": "complaints",
-    "startValue": "20"
+    "chart": "complaint",
+    "value": 152,
+    "title": "Complaints Tracking - Chatbot",
+    "dataType": "cph",
+    "maxValue": 200,
+    "description": "The customer care team is tracking (and self-testing) the complaints-per-hour (cpm) of experitmental chatbot such as unhelpful or rude behavior. Try to keep it down under 200 cpm."
   },
   {
-    "chart": "cart-abandonment",
-    "startValue": "15"
+    "chart": "checkout-abandon",
+    "value": 45,
+    "title": "Cart Abandoned - Checkout Process",
+    "dataType": "chph",
+    "maxValue": 100,
+    "description": "The sales team is tracking the checkout failure rate in terms of checkout-abandons-per-hour (chph) after reaching the cart page. Historical analysis has set a toleration of up to 100 per hour."
+  },
+  {
+    "chart": "cart-abandon",
+    "value": 973,
+    "title": "Cart Abandoned - Never Visited",
+    "dataType": "caph",
+    "maxValue": 500,
+
+    "description": "The sales team is tracking the failure rate to reach the cart page after adding products to it as cart-abandons-per-hour (caph). Historical analysis has calculated a limit of up to 500 caph as normal behavior."
+  },
+  {
+    "chart": "stock-cancel",
+    "value": 12,
+    "title": "Order Cancels - Out-of-Stock",
+    "dataType": "ocpm",
+    "maxValue": 50,
+
+    "description": "The fulfilment team is tracking the order-cancellations-per-minute (ocpm) due to multiple people ordering same low-stocked item at same time. This leads to a race condition. We can't afford it above 50 due to customer anger."
   }
 ]

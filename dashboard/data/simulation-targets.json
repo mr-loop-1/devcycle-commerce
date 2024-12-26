@@ -1,0 +1,22 @@
+[
+  {
+    "feature": "sale",
+    "variation": "sale-active"
+  },
+  {
+    "feature": "algorithms",
+    "variation": "normal-order"
+  },
+  {
+    "feature": "chatbot",
+    "variation": "chatbot-active"
+  },
+  {
+    "feature": "shipping",
+    "variation": "normal"
+  },
+  {
+    "feature": "cart-interface",
+    "variation": "recommend-products"
+  }
+]

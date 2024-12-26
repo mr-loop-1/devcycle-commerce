@@ -1,0 +1,17 @@
+[
+  {
+    "chart": "sales",
+    "value": [1500],
+    "title": "Total Sales Made",
+    "dataType": "cpm",
+    "description": "The customer care team is tracking the complaints-per-minute (cpm) of experitmental chatbot such as unhelpful or rude behavior. Try to keep it down under 100 cpm"
+  },
+  {
+    "chart": "profits",
+    "value": [245000],
+    "title": "Total Profits Gained",
+    "dataType": "cpm",
+    "maxValue": 1000000,
+    "description": "The customer care team is tracking the complaints-per-minute (cpm) of experitmental chatbot such as unhelpful or rude behavior. Try to keep it down under 100 cpm"
+  }
+]

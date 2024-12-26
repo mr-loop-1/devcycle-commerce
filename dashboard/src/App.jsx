@@ -28,7 +28,7 @@ function App() {
   const [targetState, setTargetState] = useState(null);
   const [projectKey, setProjectKey] = useState(null);
   const [variationIds, setVariationIds] = useState(null);
-  const [featureState, setFeatureState] = useState(null);
+  const [featureState, setFeatureState] = useState(setFeatures());
 
   // true only after above all are setup
   const [remoteSetup, setRemoteSetup] = useState(false);
@@ -57,15 +57,25 @@ function App() {
     setLoading(() => false);
   };
 
-  useEffect(() => {
-    setFeatureState(() => setFeatures());
-  }, []);
+  // useEffect(() => {
+  //   // setFeatureState(() => setFeatures());
+  //   // const initialValue = document.body.style.zoom;
+  //   // // Change zoom level on mount
+  //   // document.body.style.zoom = '110%';
+  //   // return () => {
+  //   //   // Restore default value
+  //   //   document.body.style.zoom = initialValue;
+  //   // };
+  // }, []);
   // this should be done in the init button step
 
   // I need to make hasValidaApi key false on server and unkown errors too
 
   return (
     <div>
+      <div className="text-center text-sm text-pink-700 font-semibold">
+        for Devcycle by Abdul Samad
+      </div>
       <Card className="mx-6 mt-6 pt-6 px-6  md:mx-14 lg:mx-auto lg:max-w-2xl mb-20 pb-40">
         <div id="header" className="flex justify-between mb-6">
           <img
@@ -74,7 +84,7 @@ function App() {
             width={40}
             height={40}
           />
-          <span className="">:love by Abdul Samad</span>
+          <span className="font-semibold">dashboard</span>
         </div>
         <div id="api-input">
           <div className="flex justify-between">

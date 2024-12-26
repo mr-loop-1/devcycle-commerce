@@ -57,6 +57,9 @@ export default function Header() {
             </span>
           </Link>
         </div>
+        <span className="self-start text-sm text-pink-700 font-semibold">
+          for Devcycle by Abdul Samad
+        </span>
         <div className="flex mt-2">
           <div id="country selector" className="ml-2 mr-3 shadow-lg">
             <Select onValueChange={setCountry}>

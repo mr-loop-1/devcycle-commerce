@@ -1,36 +1,62 @@
 [
   {
-    "query": "chat bad, rude, complaints",
-    "severeQuery": "chat ver very",
+    "query": "it has been noticed that the failure to reach the cart page may be related to the new flow of recommend page before cart page. It is leading to people browsing the recommends and leaving",
+    "variable": "recommend-page",
+    "feature": "cart-interface",
+    "normalCause": {
+      "chart": "cart-abandon",
+      "value": 500
+    },
+    "flow": {
+      "required": [true]
+    }
+  },
+  {
+    "query": "The customer care team is getting heavy incall of angry customers complaining about the chatbot's unhelpful and circular behavior. It also led to misunderstandings about various offers.",
     "variable": "chatbot-status",
     "feature": "chatbot",
     "normalCause": {
       "chart": "complaint",
-      "minValue": "50"
+      "value": 200
     },
     "flow": {
       "required": [true]
-    },
-    "end": {
-      "chart": "compaint",
-      "maxValue": "49"
     }
   },
   {
-    "query": "recommend bad, cart abdndoneing",
-    "severeQuery": "recomena bdqkhew",
-    "variable": "recommend-page",
-    "feature": "cart-layout",
+    "query": "The sales team has tracked that high shipping cost may be a reason why there is so high abandonment at checkout.",
+    "variable": "shipping-waiver",
+    "feature": "shipping",
     "normalCause": {
-      "chart": "cart-abandonment",
-      "value": "30"
+      "chart": "checkout-abandon",
+      "value": 100
+    },
+    "flow": {
+      "required": ["none"]
+    }
+  },
+  {
+    "query": "The new cart page flow is now seeming to be a downgrade from the previous sidesheet as metrics team is seeing lot of people missing the new cart",
+    "variable": "cart-page",
+    "feature": "cart-interface",
+    "normalCause": {
+      "chart": "cart-abandon",
+      "value": 500
     },
     "flow": {
       "required": [true]
+    }
+  },
+  {
+    "query": "The fulfilment team is getting heavy incall of angry customers about their cancellation of products which went out of stock after order confirmation.",
+    "variable": "sort-strategy",
+    "feature": "algorithms",
+    "normalCause": {
+      "chart": "stock-cancel",
+      "value": 50
     },
-    "end": {
-      "chart": "cart-abandonment",
-      "maxValue": "29"
+    "flow": {
+      "required": ["popular", "profit"]
     }
   }
 ]

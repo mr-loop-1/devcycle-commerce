@@ -35,9 +35,9 @@ function App() {
         <Header />
         <ControlBar />
         <Routes>
-          <Route path="" Component={HomePage} />
           <Route path="/recommend" Component={RecommendPage} />
           <Route path="/cart" Component={CartPage} />
+          <Route path="*" Component={HomePage} />
         </Routes>
         <Footer />
       </Router>

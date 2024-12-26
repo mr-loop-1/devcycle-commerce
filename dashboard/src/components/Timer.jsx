@@ -1,4 +1,4 @@
-export default function InfoBox({ projectKey }) {
+export default function Timer({ setStatus, setGameOver }) {
   return (
     <div className="flex flex-col font-semibold">
       <span className="self-center">
@@ -7,9 +7,6 @@ export default function InfoBox({ projectKey }) {
       </span>
       <span className="self-center">
         environment: <span className="text-blue-700 font-mono">production</span>
-      </span>
-      <span className="self-center font-medium text-sm">
-        if using with frontend, please cross-check the project key
       </span>
     </div>
   );

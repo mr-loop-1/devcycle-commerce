@@ -3,9 +3,11 @@ import { ToastAction, ToastDescription } from '@/components/ui/toast';
 export default function showToast(toast, error) {
   const errors = {
     apiInitError: 'There was a problem in initializing the Api key',
+    unknownError: 'An error has occured',
   };
   const titles = {
     apiInitError: 'Invalid Api Key',
+    unknownError: 'Unkown Error',
   };
   toast({
     className:

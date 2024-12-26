@@ -67,18 +67,13 @@ export default function CartDrawer({ cart, country, isSale, shippingWaiver }) {
 
             {isSale &&
               shippingWaiver == 'primary' &&
-              (cartData.priceData.shippingCost !=
-              cartData.priceData.discountedShipping ? (
+              cartData.priceData.shippingCost !=
+                cartData.priceData.discountedShipping && (
                 <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
                   Congratulations, some of the products in cart are eligible for
                   free shipping
                 </div>
-              ) : (
-                <div className="bg-violet-600 text-white font-semibold p-2 font-mono rounded-xl text-sm ">
-                  Unfortunately, none of your cart items are eligible for free
-                  shipping under the offer
-                </div>
-              ))}
+              )}
             {isSale &&
               shippingWaiver == 'all' &&
               (cartData.priceData.shippingCost ? (

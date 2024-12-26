@@ -68,7 +68,10 @@ export default function HomePage() {
       {/* Hello there !{saleActiveFlag ? <img src="/sale/banner.jpg" /> : 'No sale'} */}
       {/* {confetti && <Confetti />} */}
       {isSale && (
-        <div className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap">
+        <div
+          style={{ textShadow: '0 0 10px white' }}
+          className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap"
+        >
           ALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
           SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
           SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
@@ -82,15 +85,17 @@ export default function HomePage() {
           className="w-full text-center text-white font-semibold bg-blue-800"
           style={{ textShadow: '0 0 10px white' }}
         >
-          hurray{'!,'} some* products are now eligible for free shipping
+          hurray{'!,'} products with in-house shipping are now eligible for free
+          shipping
         </div>
       )}
       {isSale && shippingWaiver == 'all' && (
         <div
-          className="w-full text-center text-white font-semibold bg-blue-800"
+          className="w-full text-center text-white font-semibold bg-lime-800"
           style={{ textShadow: '0 0 10px white' }}
         >
-          hurray{'!,'} all products are now eligible for free shipping
+          hurray{'!,'} all products including third-party shipped are now
+          eligible for free shipping
         </div>
       )}
 

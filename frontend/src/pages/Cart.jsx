@@ -32,7 +32,10 @@ export default function CartPage() {
   return (
     <div className="mx-3 md:mx-auto md:w-[80%] lg:w-[70%]">
       {isSale && (
-        <div className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap">
+        <div
+          style={{ textShadow: '0 0 10px white' }}
+          className="w-full text-white font-extrabold italic border-white mt-6 bg-red-600 overflow-hidden whitespace-nowrap"
+        >
           ALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
           SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
           SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE SALE
@@ -46,15 +49,17 @@ export default function CartPage() {
           className="w-full text-center text-white font-semibold bg-blue-800"
           style={{ textShadow: '0 0 10px white' }}
         >
-          hurray{'!,'} some* products are now eligible for free shipping
+          hurray{'!,'} products with in-house shipping are now eligible for free
+          shipping
         </div>
       )}
       {isSale && shippingWaiver == 'all' && (
         <div
-          className="w-full text-center text-white font-semibold bg-blue-800"
+          className="w-full text-center text-white font-semibold bg-lime-800"
           style={{ textShadow: '0 0 10px white' }}
         >
-          hurray{'!,'} all products are now eligible for free shipping
+          hurray{'!,'} all products including third-party shipped are now
+          eligible for free shipping
         </div>
       )}
       <div className="mx-auto md:max-w-[80%] mt-4 py-5 md:py-10">
@@ -141,33 +146,21 @@ export default function CartPage() {
                 )}
                 {isSale &&
                   shippingWaiver == 'primary' &&
-                  (cartData.priceData.shippingCost !=
-                  cartData.priceData.discountedShipping ? (
+                  cartData.priceData.shippingCost !=
+                    cartData.priceData.discountedShipping && (
                     <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
                       Congratulations, some of the products in cart are eligible
                       for free shipping
                     </div>
-                  ) : (
-                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
-                      {' '}
-                      Unfortunately, none of your cart items are eligible for
-                      free shipping under the offer
-                    </div>
-                  ))}
+                  )}
                 {isSale &&
                   shippingWaiver == 'all' &&
-                  (cartData.priceData.shippingCost ? (
+                  cartData.priceData.shippingCost && (
                     <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
                       Congratulations, some of the products in cart are eligible
                       for free shipping
                     </div>
-                  ) : (
-                    <div className="p-2 mt-4 font-mono rounded-xl  bg-violet-600 text-white font-semibold">
-                      {' '}
-                      Unfortunately, none of your cart items are eligible for
-                      free shipping under the offer
-                    </div>
-                  ))}
+                  )}
               </Card>
               <Card className="h-fit mt-4 py-4 px-2 mb-6 md:p-6 bg-stone-200 flex justify-between text-xl font-semibold">
                 <span>Total Cost</span>
