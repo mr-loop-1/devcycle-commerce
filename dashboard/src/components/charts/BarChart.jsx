@@ -76,6 +76,12 @@ export default function BarChartSim({ info }) {
               tickFormatter={(value) => {
                 return value;
               }}
+              // label={{
+              //   value: 'Total Sales', // Label for Y-axis
+              //   angle: -90,
+              //   position: 'insideLeft',
+              //   offset: 0,
+              // }}
               ticks={[500]}
             />
 
