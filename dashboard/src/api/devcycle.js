@@ -115,7 +115,7 @@ export const createTargetsApi = async (key, projectKey, featureKey, data) => {
       { targets: data, status: 'active' },
       {
         params: {
-          environment: import.meta.env.DEVCYCLE_ENV || 'development',
+          environment: 'development',
         },
         headers: {
           Authorization: `Bearer ${key}`,

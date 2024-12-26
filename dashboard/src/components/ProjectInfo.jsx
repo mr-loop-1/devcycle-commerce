@@ -6,7 +6,8 @@ export default function InfoBox({ projectKey }) {
         <span className="text-blue-700 font-mono">{projectKey}</span>
       </span>
       <span className="self-center">
-        environment: <span className="text-blue-700 font-mono">production</span>
+        environment:{' '}
+        <span className="text-blue-700 font-mono">development</span>
       </span>
       <span className="self-center font-medium text-sm">
         if using with frontend, please cross-check the project key
