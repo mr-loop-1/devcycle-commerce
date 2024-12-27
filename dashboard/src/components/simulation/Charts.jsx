@@ -21,6 +21,9 @@ export default function Charts({ charts, queries }) {
     localCharts[
       chartConfig.chartToIdx[queriesJson[query.idx].normalCause.chart]
     ].query = queriesJson[query.idx];
+    localCharts[
+      chartConfig.chartToIdx[queriesJson[query.idx].normalCause.chart]
+    ].queryIdx = query.idx;
   }
 
   const [api, setApi] = useState();
@@ -94,13 +97,16 @@ export default function Charts({ charts, queries }) {
             return (
               <span
                 className={clsx(
-                  'mx-1 px-3 py-1 bg-white border border-zinc-200 rounded-xl cursor-pointer',
+                  'mx-1 px-3 py-1 bg-white border  rounded-xl cursor-pointer',
                   current == btn.idx && 'bg-zinc-200',
                   current == btn.idx &&
                     !localCharts[btn.idx].status &&
                     'border-none',
                   localCharts[btn.idx].status == 1 && 'border-orange-600',
-                  localCharts[btn.idx].status > 1 && 'border-red-600'
+                  localCharts[btn.idx].status > 1 && 'border-red-600',
+                  current != btn.idx &&
+                    !localCharts[btn.idx].status &&
+                    'border-zinc-200'
                 )}
                 onClick={() => api.scrollTo(btn.idx)}
               >
@@ -140,6 +146,7 @@ export default function Charts({ charts, queries }) {
                     status: ch.status,
                     idx: i,
                     type: 1,
+                    queryIdx: ch.queryIdx,
                   }}
                 />
               </CarouselItem>

@@ -94,14 +94,18 @@ export default function ChartHistory({ prev, curr }) {
                     return (
                       <span
                         className={clsx(
-                          'mx-2 px-4 py-1 bg-white border border-zinc-200 rounded-xl cursor-pointer',
+                          'mx-2 px-4 py-1 bg-white border  rounded-xl cursor-pointer',
                           current == btn.idx && 'bg-zinc-200',
                           prevCharts[btn.idx].value !=
                             currCharts[btn.idx].value && 'border-blue-600',
                           current == btn.idx &&
                             prevCharts[btn.idx].value ==
                               currCharts[btn.idx].value &&
-                            'border-none'
+                            'border-none',
+                          current != btn.idx &&
+                            prevCharts[btn.idx].value ==
+                              currCharts[btn.idx].value &&
+                            'border-zinc-200'
                         )}
                         onClick={() => api.scrollTo(btn.idx)}
                       >

@@ -193,7 +193,7 @@ export default function RadialChart({ info }) {
 
               <span className="mt-2">
                 <span className="text-blue-700 font-semibold">Suggestion:</span>{' '}
-                {suggestions[info.idx]}
+                {suggestions[info.queryIdx]}
               </span>
             </div>
           </div>
